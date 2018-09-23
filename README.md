@@ -2,7 +2,7 @@
 <br />
 <br />
 ## @Authors: 
-####           <p>*Jônathas Assunção* - [Git](https://jonassuncao.github.io/) </p>
-####           <p>*David Antônio* - </p>
-####           <p>*Dominic Rocha* - </p>
+####           <p>**Jônathas Assunção** </p> - [Git](https://jonassuncao.github.io/)
+####           <p>**David Antônio**</p>
+####           <p>**Dominic Rocha**</p>
 
