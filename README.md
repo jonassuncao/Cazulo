@@ -1,8 +1,8 @@
-#Sistema de Administração Condominio - *SisAC*
+# Sistema de Administração Condominio - **SisAC**
 <br />
 <br />
-### @Authors: 
-##           *Jônathas Assunção* - [Git](https://jonassuncao.github.io/) 
-##           *David* -
-##           *Dominic* - 
+## @Authors: 
+####           <p>*Jônathas Assunção* - [Git](https://jonassuncao.github.io/) </p>
+####           <p>*David Antônio* - </p>
+####           <p>*Dominic Rocha* - </p>
 
