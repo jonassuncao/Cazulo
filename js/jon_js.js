@@ -9,7 +9,7 @@ $('#btLogar').click(function(){
     if($('#senha').val().length == 0)   return;
     //Ativa img LOAD
     carregar_load('#loadiing', '../images/load.gif', true);
-    window.location.href="#load"; 
+    
     //Envia os dados para o servidor
     //Redireciona a tela
     return false;
