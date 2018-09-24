@@ -1,6 +1,6 @@
 $(document).ready(function() {    
    //Quando carrega a página
-   carregar_load('#loadiing', 'images/load.gif', true);
+   
 });
 
 $('#btLogar').click(function(){
