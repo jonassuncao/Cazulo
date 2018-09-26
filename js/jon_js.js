@@ -1,17 +1,15 @@
-$(document).ready(function() {    
-   //Quando carrega a página
-   
-});
+
 
 $('#btLogar').click(function(){
     //Valida se os campos estão preenchidos
     if($('#usuario').val().length == 0) return;
     if($('#senha').val().length == 0)   return;
     //Ativa img LOAD
-    carregar_load('#loadiing', 'images/load.gif', true);
+    carregar_load('#load_div', 'images/load.gif', true);
     
     //Envia os dados para o servidor
     //Redireciona a tela
+    window.location.replace("admin");
     return false;
 });
 
