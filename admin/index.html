@@ -31,11 +31,11 @@
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="../css/jon_css.css">
-	<!--===============================================================================================-->
+  <!--===============================================================================================-->
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  
+
   <!--===============================================================================================-->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="../js/jon_js.js"></script>
@@ -43,7 +43,7 @@
 
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-black sidebar-mini">
   <div class="wrapper">
     <header class="main-header">
 
@@ -105,31 +105,32 @@
             <img src="../images/icons/favicon.ico" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Jônathas Assunção</p>            
+            <p>Jônathas Assunção</p>
           </div>
         </div>
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MENU</li>
+          <li><a href="#"><i class="fa fa-book"></i> <span>Prestação de Contas</span></a></li>
+          <li><a href="#"><i class="fa fa-file-powerpoint-o"></i> <span>Previsão de Despesas</span></a></li>
+          <li><a href="#"><i class="fa fa-file-text"></i> <span>Taxa de Condomínio</span></a></li>
+          <li><a href="#"><i class="fa fa-money"></i> <span>Controle de Adimplência</span></a></li>
+          <li class="header">Configuração</li>
           <li class="treeview">
             <a href="#">
-              <i class="fa fa-dashboard"></i> <span>Parâmetros</span>
+              <i class="fa fa-gears"></i> <span>Parâmetros</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> Condomínios</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Unidades</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Categoria</a></li>
+              <li><a href="#"><i class="fa fa-building-o"></i> Condomínios</a></li>
+              <li><a href="#"><i class="fa fa-map-o"></i> Unidades</a></li>
+              <li><a href="#"><i class="fa fa-folder-open-o"></i> Categoria</a></li>
             </ul>
           </li>
-          <li><a href="#"><i class="fa fa-book"></i> <span>Prestação de Contas</span></a></li>
-          <li><a href="#"><i class="fa fa-book"></i> <span>Previsão de Despesas</span></a></li>
-          <li><a href="#"><i class="fa fa-book"></i> <span>Taxa de Condomínio</span></a></li>
-          <li><a href="#"><i class="fa fa-book"></i> <span>Controle de Adimplência</span></a></li>
-          <li><a href="#"><i class="fa fa-book"></i> <span>Usuários</span></a></li>
+          <li><a href="#"><i class="fa fa-users"></i> <span>Usuários</span></a></li>
         </ul>
       </section>
       <!-- /.sidebar -->
@@ -138,29 +139,30 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Wrapper. Contains page content -->
-        <div id="load_div" style="left: 2vh; margin-top: 45vh; margin-left: 45vw;"></div>
-        <script>carregar_load('#load_div', '../images/load.gif', true);</script>
+      <div id="load_div" style="left: 2vh; margin-top: 45vh; margin-left: 45vw;"></div>
+      <script>carregar_load('#load_div', '../images/load.gif', true);</script>
       <!-- Content Header (Page header) -->
-      <section class="content-header">        
+      <section class="content-header">
         <h1>
           Início
           <small>Pagina Inicial</small>
         </h1>
       </section>
     </div>
-    
+
     <!-- /.content-wrapper -->
     <footer class="main-footer">
       <div class="pull-right hidden-xs">
         <b>Versão</b> 1.0.0
       </div>
-      <strong>Copyright &copy; 2018 <a href="https://jonassuncao.github.io/">@Jônathas Assunção</a> | <a href="https://davidbarros.github.io/">@David Antônio</a> | <a href="https://dominicrp.github.io/">@Dominic Rocha</a>.</strong> All rights
+      <strong>Copyright &copy; 2018 <a href="https://jonassuncao.github.io/">@Jônathas Assunção</a> | <a href="https://davidbarros.github.io/">@David
+          Antônio</a> | <a href="https://dominicrp.github.io/">@Dominic Rocha</a>.</strong> All rights
       reserved.
     </footer>
 
 
   </div>
-  <!-- ./wrapper -->  
+  <!-- ./wrapper -->
 
   <!-- jQuery UI 1.11.4 -->
   <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
@@ -197,8 +199,7 @@
   <script src="dist/js/pages/dashboard.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="dist/js/demo.js"></script>
-  <!--===============================================================================================-->	
-	<script>//carregar_load('#load_div', '../images/load.gif', false);</script>
+  <!--===============================================================================================-->  
 </body>
 
 </html>
