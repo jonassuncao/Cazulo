@@ -43,14 +43,53 @@ class LoginModel{
      * Verifica se o usuário pode ser autenticado
      */ 
     public function isAutenticado(){            
-        if($this->usuario == "ADMIN") return true;
-        else{
+        if($this->usuario == "ADMIN"){ 
+            //Se o usuário está autenticado
+            //Cria duas seções: Armazenar o nome do usuário e a data que foi autenticado
+            $_SESSION['usuario'] = $this->usuario;
+            $_SESSION['data']   = date('Y-m-d H:i');
+            
+            return true;
+        }else{
             $this->mensagem = "Usuário/Senha incorreto!";
             return false;    
         }
         
     }
 
+    /**
+     *  Verifica se o usuário tem permissão para essa página
+     */
+    public static function isPermissao($controller, $action){
+        //Caso esteja tentando acessar a página de login, o usuário tem permissão
+        if($controller == 'Login' & $action == 'exibir') return true;
+
+        //Verifica se a seção do usuário ainda é válido
+        if(!isset($_SESSION['usuario'])) return false; //Usuário não está logado
+
+        //Verifica se a seção expirou
+        //-------------------------
+        
+        //Consulta no Banco para verificar se usuário tem permissão para acessar o Controller/Action
+        //----------------------------------
+
+        return true;
+    }
+
+    /**
+     *  Destroi a seção
+     */
+    public static function sair(){
+
+        //Limpa as variaveis de requisicao e Seção
+        $_REQUEST = NULL;
+        $_SESSION = NULL;
+        unset($_REQUEST, $_SESSION);        
+        ControllerMaster::setRequest(null, null);        
+
+        //Redireciona para página inicial
+        ControllerMaster::redirect(); 
+    }
 }
 
 ?>

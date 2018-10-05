@@ -24,29 +24,17 @@ function Envio_Ajax(metodo, div_retorno, divLoad, controller, action, param){
         
         beforeSend : function(result){		
 			
-			//Limpa a cor e o conteudo dos box
+			//Limpa o conteudo do box
 			$("#"+div_retorno).html("");
-			$("#"+div_retorno).removeClass("back-success");
-			$("#"+div_retorno).removeClass("back-warning");
-			$("#"+div_retorno).removeClass("back-error");
-
             carregar_load('#'+divLoad, true);
 		},
-		success: function(result){
-			
-			//Caso o usuário consiga logar, exibe um box Success
-			//Caso nãoconsiga logar, exibe um box com Warning
-			if(result.indexOf("Logado") > -1) $("#"+div_retorno).addClass("back-success");
-			else 						      $("#"+div_retorno).addClass("back-warning");
-
+		success: function(result){			
 			$("#"+div_retorno).html(result);
 		},
 		error: function(result){			
-			$("#"+div_retorno).addClass("back-error");
 			$("#"+div_retorno).html('Erro interno, Contacte adminitrador do sistema!');			
 		},			
 		complete: function(result){
-			$("#"+div_retorno).addClass("login-msg");
 			carregar_load('#'+divLoad, false);
 		}			
 	});	

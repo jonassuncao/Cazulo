@@ -18,7 +18,9 @@
 
  // PHP mostra os erros na tela
  ini_set('display_errors', 1);
-
+ 
+ //Inicia as seçoes
+ session_start();
 
  /**
   * Importa a classe que gerencia os controlles; 

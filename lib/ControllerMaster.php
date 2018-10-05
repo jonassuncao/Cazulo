@@ -27,7 +27,11 @@ spl_autoload_register(function($st_class){
     if(file_exists('lib/'.$st_class.'.php'))
         require_once 'lib/'.$st_class.'.php';
 });
- 
+
+//Essa biblioteca será usada para verificar se o usuário possui permissão
+//para acessar o controller/Action
+require_once 'Models/LoginModel.php';
+
 class ControllerMaster{
 
     protected $controller; //Armazena o nome do controller requisitado
@@ -37,10 +41,22 @@ class ControllerMaster{
      * Captura qual controller e qual action deverá ser carregado e executado
      * Caso não haja controller o padrão será o LoginController
      * Caso não haja action o padrão será o exibirAction
+     * 
+     * Primeiro vai tentar capturar as váriaveis do REQUEST,
+     * Caso não haja nada no REQUEST, tenta capturar os parametros na SESSION,
+     * Caso não haja nada na SESSION, usa valores default: controller = Login, action = exibir
      */
     private function getRequest(){
-        $this->controller = isset($_REQUEST['controller']) ? $_REQUEST['controller'] : 'Login';
-        $this->action     = isset($_REQUEST['action'])     ? $_REQUEST['action']     : 'exibir';
+         
+        //Captura valores para o Controller
+        if(isset($_REQUEST['controller']))          $this->controller = $_REQUEST['controller'];     
+        else if(isset($_SESSION['controller']))     $this->controller = $_SESSION['controller'];     
+        else                                        $this->controller = 'Login';
+                
+        //Captura valores para o Action
+        if(isset($_REQUEST['action']))              $this->action = $_REQUEST['action'];     
+        else if(isset($_SESSION['action']))         $this->action = $_SESSION['action'];     
+        else                                        $this->action = 'exibir';        
     }
 
     /**
@@ -48,8 +64,13 @@ class ControllerMaster{
      * Essa função é utilizada para modificar o controler;
      */
     static function setRequest($controller = 'Login', $action= 'exibir'){
+        //Salva os valores no REQUEST
         $_REQUEST['controller'] = $controller;
         $_REQUEST['action']     = $action;
+
+        //Salva o REQUEST na seção, caso de refresh na página os valores do Controller e Action não são perdidos
+        $_SESSION['controller'] = $_REQUEST['controller'];
+        $_SESSION['action']     = $_REQUEST['action'];
     }
 
     /**
@@ -96,6 +117,13 @@ class ControllerMaster{
         else throw new Exception("'".$controller_method."' não é um método válido para classe '".$controller_class."' no controlador '".$controller_file."'");
     }
 
+
+    /**
+     * Redireciona a página para a URL solicitada
+     */
+    public static function redirect(){                                
+        echo "<script>window.location.reload();</script>";                                
+    }
 }
 
 

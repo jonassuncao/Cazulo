@@ -4,6 +4,6 @@ $('#btLogar').click(function(){
     if($('#senha').val().length == 0)   return;
     
     //Envia os dados para o servidor    
-    Envio_Ajax("POST", "body_res", "load_div", "Login", "login", $("form").serialize());
+    Envio_Ajax("POST", "body_resposta", "load_div", "Home", "login");
     return false;
 });
