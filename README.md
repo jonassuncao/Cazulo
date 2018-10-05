@@ -3,6 +3,10 @@
 
 #### [**Jônathas Assunção**](https://jonassuncao.github.io/)  
 
+#### [**Dominic Rocha**](https://dominicrp.github.io/)
+
 #### [**David Antônio**](https://davidbarros.github.io/)
 
-#### [**Dominic Rocha**](https://dominicrp.github.io/)
+#### [**Jader Henrique**](https://jaderhfa.github.io/)
+
+

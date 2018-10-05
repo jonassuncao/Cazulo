@@ -16,7 +16,7 @@
  * File - LoginController.php
  */
  
- //Inclui a classe modelde negócio
+ //Inclui a classe model de negócio
  require_once 'Models/LoginModel.php';
 
  class LoginController{
@@ -25,9 +25,9 @@
      * Exibe a tela de login
      * 
      */
-    public function exibirAction($mensagem = null){
+    public function exibirAction(){
         //Renderiza a página de Login
-        $view = new ViewMaster('Views/Login/loginView.phtml', array('mensagem' => $mensagem));
+        $view = new ViewMaster('Views/Login/loginView.phtml');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->showHTMLPag();
     }
