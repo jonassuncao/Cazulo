@@ -1,0 +1,82 @@
+<?php
+    //Pega as variáveis para renderizar a página
+    $valores = $this->getHTMLValores();       
+?>
+
+<section class="content-header">
+  <h1>
+    Previsão de Despesas
+  </h1>
+</section>
+<section class="content">
+
+<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Previsão de Despesas</h3><br><br>
+              <!-- Button trigger modal -->
+              <button type="button" class="fa fa-plus btn bg-olive" data-toggle="modal" data-target="#myModal">
+                Adicionar item
+              </button>
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Despesas</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="form-group">
+                            <label for="disabledTextInput">Selecione um item</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                              </select>
+                          </div>
+                          
+                        </form>
+                            ...
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary">Salvar mudanças</button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+              <div class="table-responsive">
+                <table class="table table-striped no-margin">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Despesa</th>
+                    <th>Valor</th>
+                  </tr> 
+                  </thead>
+                  <tbody>
+                  <tr id="demo" onclick="document.getElementById('demo').style.background='#008000'">
+                    <td>1</td>
+                    <td>OR9842</td>
+                    <td>Call of Duty IV</td>    
+                  </tr>
+                  <tr>
+                      <td>2</td>
+                    <td>OR1848</td>
+                    <td>Samsung Smart TV</td>
+                  </tr>
+                  </tbody>
+                </table><!-- /.table .table-striped -->
+              </div><!-- /.table-responsive -->
+            </div><!-- /.box-body -->
+      </div><!-- /.box -->
+
+
+
+</section>
+

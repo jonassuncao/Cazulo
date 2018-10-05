@@ -39,36 +39,33 @@
         
     }
 
-    public function prestacaoContasAction(){
-        
-    }
+    public function exibirAction(){ 
+        $controllerSolicitado  = $_POST['opc'];
+        $descricaoOpcao        = $_POST['desc'];
 
-    public function previsaoDespesasAction(){
-        
-    }
+        $login = new LoginModel(); //Instancia uma classe Login
 
-    public function taxaCondominioAction(){
-        
-    }
-
-    public function controleAdimplenciaAction(){
-        
-    }
-
-    public function condominioAction(){
-        
-    }
-
-    public function condominoAction(){
-        
-    }
-
-    public function categoriaAction(){
-        
-    }
-
-    public function usuarioAction(){
-        
+        //Verifica se o usuário que está logado tem permissão para acessar o controller e Action solicitado
+        if($login->isPermissao($controllerSolicitado, 'listar')){ 
+            /**Se entrou no IF, é porque tem a permissão... 
+             * Agora modifica os parametros da Requisição e tenta importar o controller, e chamar a função Action solicitada
+            */
+            ControllerMaster::setRequest($controllerSolicitado, 'listar');  
+            try{
+                $controller = new ControllerMaster(); //Instancia o Gerenciador de Controllers
+                $controller->loadController(); //Tenta importar o Controller e executar o action solicitado
+            }catch(Exception $e) { //Caso dê algum erro, exibe um Modal Erro para o usuário e informa a mensagem de erro
+                $view = new ViewMaster('Views/Sistema/admin/modalErroView.phtml', Array("header"=> "Erro ao carregar página: ".$descricaoOpcao,"body"=> "Motivo: ".$e->getMessage()."<br/>Entre em contato com o suporte."));
+                $view->showHTMLPag();
+            }
+        }else{ 
+            /**
+             * Se Entrou no ELSE, então o usuário não tem permissão para acessar esse controller e Action
+             * Exibe um Modar de Atenção, informando a mensagem retornada pela Class LoginModel()
+             */
+            $view = new ViewMaster('Views/Sistema/admin/modalAtencaoView.phtml', Array("header"=> "A página ".$descricaoOpcao." não pode ser carregada","body"=> "Motivo: ".$login->getMensagem()));
+            $view->showHTMLPag();
+        }
     }
  }
 ?>

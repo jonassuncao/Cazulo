@@ -1,0 +1,72 @@
+<?php
+    //Pega as variáveis para renderizar a página
+    $valores = $this->getHTMLValores();       
+?>
+<section class="content-header">
+  <h1>
+    Controle de Adimplência    
+  </h1>
+</section>
+<section class="content">
+     
+<div class="box">
+            <div class="box-header">
+              <h3 class="box-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tabela de largura total listrada</font></font></h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <table class="table table-striped">
+                <tbody><tr>
+                  <th style="width: 10px"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Data Pagamento</font></font></th>
+                  <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Codigo Boleto</font></font></th>
+                  <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Valor Pago</font></font></th>                  
+                </tr>
+                <tr>
+                  <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1</font></font></td>
+                  <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Atualizar o software</font></font></td>
+                  <td>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-red"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">55%</font></font></span></td>
+                </tr>
+                <tr>
+                  <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2</font></font></td>
+                  <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Banco de dados limpo</font></font></td>
+                  <td>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-yellow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">70%</font></font></span></td>
+                </tr>
+                <tr>
+                  <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3</font></font></td>
+                  <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cron job running</font></font></td>
+                  <td>
+                    <div class="progress progress-xs progress-striped active">
+                      <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-light-blue"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">30%</font></font></span></td>
+                </tr>
+                <tr>
+                  <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4</font></font></td>
+                  <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Corrigir e esmagar erros</font></font></td>
+                  <td>
+                    <div class="progress progress-xs progress-striped active">
+                      <div class="progress-bar progress-bar-success" style="width: 90%"></div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-green"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">90%</font></font></span></td>
+                </tr>
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+
+            <div style="width: 50%; margin: 40px">
+              <button type="button" class="btn btn-block btn-success btn-flat"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Adicionar</font></font></button>
+            </div>     
+
+</section>

@@ -24,14 +24,23 @@
 
  /**
   * Importa a classe que gerencia os controlles; 
-  * Executa o controler principal;
-  * O controller principal vai carregar as variaveis da requisição;
-  * Essa página index.php não tem vaiaveis de requisição;
-  * O controllerMaster vai chamar o controller de Login
-  *
   */
   require_once 'lib/ControllerMaster.php';
-  $controller = new ControllerMaster();
-  $controller->loadController();
+  
+  /**
+   *  Executa o Gerenciador dos Controlles, para redirecionar para a página correta
+   */
+  try{
 
+    //Caso o usuário recarregue a página, Redireciona para o Controller Home e Action listar
+    if(isset($_SESSION['usuario']) && $_REQUEST['controller'] != 'Home' && $_REQUEST['controller'] != 'Login'){
+      ControllerMaster::setRequest('Home', 'listar'); 
+    }
+
+    $controller = new ControllerMaster();
+    $controller->loadController();
+  }catch(Exception $e) { //Caso de algum erro, o Controller: HomeController e a Action: listarAction, serão carregadas
+    ControllerMaster::setRequest('Home', 'listar'); 
+    $controller->loadController();
+  }
 ?>

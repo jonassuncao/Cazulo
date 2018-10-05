@@ -35,7 +35,8 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="Views/Sistema/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!--===============================================================================================-->
-  
+  <link rel="stylesheet" type="text/css" href="Views/Sistema/admin/css/style_css.css">
+  <link rel="stylesheet" type="text/css" href="Views/css/global_css.css">
   <!--===============================================================================================-->
 
   <!-- Google Font -->
@@ -49,15 +50,16 @@
 </head>
 
 <body class="hold-transition skin-black sidebar-mini">
+
   <div class="wrapper">
     <header class="main-header">
 
       <!-- Logo -->
-      <a href="#" class="logo">
+      <a class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>C<span style="color:#0f8cd6">A</span>O</b></span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><img style="width: 2vw;" src="Views/Sistema/admin/images/icons/favicon.ico" alt="Cazulo"> C<span style="color:#0f8cd6">azul</span>o</span>
+        <span class="logo-lg"><img style="width: 20px;" src="Views/Sistema/admin/images/icons/favicon.ico" alt="Cazulo"> C<span style="color:#0f8cd6">azul</span>o</span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-static-top">
@@ -91,7 +93,7 @@
                     <a href="#" class="btn btn-default btn-flat">Alterar Senha</a>
                   </div>
                   <div class="pull-right">
-                    <a href="../?sair" class="btn btn-default btn-flat">Sair</a>
+                    <a onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Login", "logoff"); return false;' class="btn btn-default btn-flat">Sair</a>
                   </div>
                 </li>
               </ul>
@@ -117,15 +119,15 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MENU</li>
-          <?php if(in_array("PrestacaoContas",$valores['user']['permissao'])){?>      <li><a onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "login"); return false;'><i class="fa fa-book"></i> <span>Prestação de Contas</span></a></li>                <?php }?>
-          <?php if(in_array("PrevisaoDespesas",$valores['user']['permissao'])){?>     <li><a onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "login"); return false;'><i class="fa fa-file-powerpoint-o"></i> <span>Previsão de Despesas</span></a></li>  <?php }?>          
-          <?php if(in_array("TaxaCondominio",$valores['user']['permissao'])){?>       <li><a onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "login"); return false;'><i class="fa fa-barcode"></i> <span>Taxa de Condomínio</span></a></li>              <?php }?>
-          <?php if(in_array("ControleAdimplencia",$valores['user']['permissao'])){?>  <li><a onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "login"); return false;'><i class="fa fa-money"></i> <span>Controle de Adimplência</span></a></li>           <?php }?>
+          <?php if(in_array("PrestacaoContas",$valores['user']['permissao'])){?>      <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=prestacaoContas&desc=Prestação de Contas"); return false;'><i class="fa fa-book"></i> <span>Prestação de Contas</span></a></li>                 <?php }?>
+          <?php if(in_array("PrevisaoDespesas",$valores['user']['permissao'])){?>     <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=previsaoDespesas&desc=Previsão de Despesas"); return false;'><i class="fa fa-file-powerpoint-o"></i> <span>Previsão de Despesas</span></a></li>  <?php }?>          
+          <?php if(in_array("TaxaCondominio",$valores['user']['permissao'])){?>       <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=taxaCondominio&desc=Taxa de Condomínio"); return false;'><i class="fa fa-barcode"></i> <span>Taxa de Condomínio</span></a></li>                <?php }?>
+          <?php if(in_array("ControleAdimplencia",$valores['user']['permissao'])){?>  <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=controleAdimplencia&desc=Controle de Adimplência"); return false;'><i class="fa fa-money"></i> <span>Controle de Adimplência</span></a></li>        <?php }?>
 
           <li class="header">Configuração</li>
           <li class="treeview">
           <?php if(in_array("Parametros",$valores['user']['permissao'])){?>
-            <a href="#">
+            <a href="/" >
               <i class="fa fa-gears"></i> <span>Parâmetros</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
@@ -133,12 +135,12 @@
             </a>
           <?php }?>
             <ul class="treeview-menu">
-              <li><a onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "login"); return false;'><i class="fa fa-building-o"></i> Condomínios</a></li> 
-              <li><a onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "login"); return false;'><i class="fa fa-map-o"></i> Unidades</a></li>         
-              <li><a onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "login"); return false;'><i class="fa fa-folder-open-o"></i> Categoria</a></li>
+              <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&desc=Condomínios"); return false;'><i class="fa fa-building-o"></i> Condomínios</a></li> 
+              <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=unidades&desc=Unidades"); return false;'><i class="fa fa-map-o"></i> Unidades</a></li>         
+              <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=categoria&desc=Categoria"); return false;'><i class="fa fa-folder-open-o"></i> Categoria</a></li>
             </ul>
           </li>
-          <?php if(in_array("ControleAdimplencia",$valores['user']['permissao'])){?> <li><a onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "login"); return false;'><i class="fa fa-users"></i> <span>Usuários</span></a></li> <?php }?>
+          <?php if(in_array("Usuarios",$valores['user']['permissao'])){?> <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=usuarios&desc=Usuários"); return false;'><i class="fa fa-users"></i> <span>Usuários</span></a></li> <?php }?>
         </ul>
       </section>
       <!-- /.sidebar -->
@@ -156,14 +158,15 @@
       </section>
     </div>
     <div id="load_div"></div>
+    
 
     <!-- /.content-wrapper -->
     <footer class="main-footer">
       <div class="pull-right hidden-xs">
         <b>Versão</b> 1.0.0
       </div>
-      <strong>Copyright &copy; 2018 <a href="https://jonassuncao.github.io/">@Jônathas Assunção</a> | <a href="https://dominicrp.github.io/">@Dominic Rocha</a> | <a href="https://davidbarros.github.io/">@David
-          Antônio</a> | <a href="https://jaderhfa.github.io/">@Jader Henrique</a>.</strong> All rights
+      <strong>Copyright &copy; 2018 <a target="_blank" href="https://jonassuncao.github.io/">@Jônathas Assunção</a> | <a target="_blank" href="https://dominicrp.github.io/">@Dominic Rocha</a> | <a target="_blank" href="https://davidbarros.github.io/">@David
+          Antônio</a> | <a target="_blank" href="https://jaderhfa.github.io/">@Jader Henrique</a>.</strong> All rights
       reserved.
     </footer>
 

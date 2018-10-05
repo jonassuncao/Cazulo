@@ -82,8 +82,7 @@ class ControllerMaster{
      * @throws Exception
      */
     public function loadController(){
-        $this->getRequest(); //Captura qual o controller e o action a ser carregado
-        
+        $this->getRequest(); //Captura qual o controller e o action a ser carregado        
         /**
          * Verifica se o arquivo do controlador existe
          * 

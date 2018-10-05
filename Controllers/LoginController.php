@@ -59,5 +59,15 @@
             echo $usuario->getMensagem(); //Retorna a mensagem de erro
         }
     }
+
+
+    /**
+     * Desloga do sistema e exclui as seções
+     * 
+     */
+    public function logoffAction(){        
+        LoginModel::sair();            
+    }        
+    
  }
 ?>

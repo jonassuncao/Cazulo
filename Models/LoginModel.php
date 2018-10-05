@@ -60,31 +60,32 @@ class LoginModel{
     /**
      *  Verifica se o usuário tem permissão para essa página
      */
-    public static function isPermissao($controller, $action){
+    public function isPermissao($controller, $action){
         //Caso esteja tentando acessar a página de login, o usuário tem permissão
         if($controller == 'Login' & $action == 'exibir') return true;
 
         //Verifica se a seção do usuário ainda é válido
-        if(!isset($_SESSION['usuario'])) return false; //Usuário não está logado
+        if(!isset($_SESSION['usuario'])){ $this->mensagem="Seção expirada... Logue novamente"; return false;} //Usuário não está logado
 
         //Verifica se a seção expirou
         //-------------------------
         
         //Consulta no Banco para verificar se usuário tem permissão para acessar o Controller/Action
         //----------------------------------
-
+        
         return true;
     }
 
     /**
      *  Destroi a seção
      */
-    public static function sair(){
-
+    public static function sair(){        
         //Limpa as variaveis de requisicao e Seção
-        $_REQUEST = NULL;
-        $_SESSION = NULL;
-        unset($_REQUEST, $_SESSION);        
+        unset($_REQUEST);
+        unset($_SESSION);        
+        $_REQUEST = null;
+        $_SESSION = null;
+        session_destroy();
         ControllerMaster::setRequest(null, null);        
 
         //Redireciona para página inicial
