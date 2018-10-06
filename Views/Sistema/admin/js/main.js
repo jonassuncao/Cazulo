@@ -55,3 +55,27 @@
     
 
 })(jQuery);
+
+function ativarInput(idInput){
+    if($('#'+idInput).attr("disabled")){
+        $('#'+idInput).removeAttr('disabled');
+    }else{
+        $('#'+idInput).attr('disabled', 'disabled');
+    }
+}
+
+$('#btnNovo').click(function() {
+    //Adiciona
+    var novoID = $('#bodyTable tr:last td input').attr('id')+1;
+
+
+    $('                  <tr class="demo" >'+
+                      '<td>2</td>'+
+                    '<td>OR1848</td>'+
+                    '<td>Samsung Smart TV</td>'+
+                    '<td><input id='+novoID+' style="width: 30vw" type="text" class="form-control" placeholder="Descrição ..." disabled></td>'+
+                    '<td><div class="tools">'+
+                    '<i class="fa fa-edit" onClick="ativarInput('+novoID+');"></i>'+
+                    '<i class="fa fa-camera"></i>                    '+
+                  '</tr>"').insertAfter('#bodyTable tr:last');
+});
