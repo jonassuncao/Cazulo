@@ -32,8 +32,5 @@
         $view->showHTMLPag();
         
     }
-    
-    
-    
  }
 ?>
