@@ -24,7 +24,8 @@
         background:none;
         border: none;
         width: 45vw;
-    }  
+    }
+    
   </style>
 
   <div class="box box-info">
@@ -80,7 +81,7 @@
             </tr> 
           </thead>
           <tbody id="bodyTable">
-            <tr class="demo" onclick="$('.class').css('background','#008000')">
+            <tr class="demo">
               <td>1</td>
               <td>OR9842</td>
               <td>Call of Duty IV</td>    
@@ -91,14 +92,14 @@
                 </div><!--/.tools-->
               </td>
             </tr>
-            <tr id="oi"class="demo" >
+            <tr class="demo" >
               <td>2</td>
               <td>OR1848</td>
               <td>Samsung Smart TV</td>
               <td><input class="form-control input_desc" type="text"></td>
               <td>
                 <div class="tools">
-                  <i class="fa fa-trash" onClick="del_input('oi');"></i>                    
+                  <i class="fa fa-trash"></i>                    
             </tr>
           </tbody>
         </table><!-- /.table .table-striped -->
@@ -122,25 +123,36 @@
       }
     }
 
+    //cria nova linha
     $('#btnNovo').click(function() {
       //Adiciona
-      var novoID = $('#bodyTable tr:last td input').attr('id')+1;
-
-      $('<tr class="demo" >'                                           +
-          '<td>2</td>'                                                 +
-          '<td>OR1848</td>'                                            +
-          '<td>Samsung Smart TV</td>'                                  +
-          '<td><input id='+novoID+' type="text" class="form-control input_desc"></td>'                    +
-          '<td>'                                                       +
-            '<div class="tools">'                                      +
-              '<i class="fa fa-trash"></i>'                            +
-          '<td>'                                                       +
-        '</tr>"').insertAfter('#bodyTable tr:last');
+      var novoID = $('#bodyTable tr:last td').attr('id')+1;
+      alert(novoID);
+      
+        $('<tr class="demo" >'                                            +
+            '<td> novoID</td>'                                            +
+            '<td>OR1848</td>'                                             +
+            '<td>Samsung Smart TV</td>'                                   +
+            '<td><input class="form-control input_desc" type="text"></td>'+
+            '<td>'                                                        +
+              '<div class="tools">'                                       +
+                '<i class="fa fa-trash"></i>'                             +
+            '<td>'                                                        +
+          '</tr>').insertAfter('#bodyTable tr:last');
     });
 
-    function del_input(del){
-      $('#'+del).remove();
-    }
+
+
+
+    $(document).on('click', '.fa-trash', function(){
+      $(this).closest('.demo').remove();
+    });
+
+    //quando clicar muda de cor
+    $(document).on('click', '.demo', function() {
+      $(this).css("background-color", "#C6E2FF");
+    });
+
   </script>
 </section>
 
