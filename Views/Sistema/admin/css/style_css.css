@@ -29,3 +29,31 @@
     background-color:rgba(214, 214, 224, 0.8);
     background-image: url("../../../img/load.gif");
 }
+
+.div_table, .div_table_result{
+    padding: 1px; 
+    border-radius: 5px 5px 0 0; 
+    margin:10px; 
+    margin-bottom:20px; 
+    min-width: 330px;
+    float:left;
+}
+
+.div_table, .div_table_bancario{width: 35vw;}
+.div_table_result{width: 60vw;}
+
+.div_table_bancario{background-color: #756d6d40;}
+.div_table_bancario div table tr:last-child{background-color: #756d6dbd;}
+
+.div_table_receita{background-color: #1cc1085c;}
+.div_table_receita div table tr:last-child{background-color: #1cc108;}
+
+.div_table_despesas{background-color: #96050585;}
+.div_table_despesas div table tr:last-child{background-color: #5605058c;}
+
+.div_table_bancario div table tbody tr td:last-child,
+.div_table_receita div table tbody tr td:last-child,
+.div_table_result div table tbody tr td:last-child,
+.div_table_despesas div table tbody tr td:last-child
+{width:100px; text-align:right;}
+
