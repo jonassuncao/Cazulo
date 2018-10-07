@@ -10,73 +10,149 @@
 </section>
 <section class="content">
 
-<div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Previsão de Despesas</h3><br><br>
-              <!-- Button trigger modal -->
-              <button type="button" class="fa fa-plus btn bg-olive" data-toggle="modal" data-target="#myModal">
-                Adicionar item
-              </button>
-              <!-- Modal -->
-              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Despesas</h4>
-                      </div>
-                      <div class="modal-body">
-                        <form>
-                          <div class="form-group">
-                            <label for="disabledTextInput">Selecione um item</label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                              </select>
-                          </div>
-                          
-                        </form>
-                            ...
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                        <button type="button" class="btn btn-primary">Salvar mudanças</button>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </div><!-- /.box-header -->
-            <div class="box-body">
-              <div class="table-responsive">
-                <table class="table table-striped no-margin">
-                  <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Despesa</th>
-                    <th>Valor</th>
-                  </tr> 
-                  </thead>
-                  <tbody>
-                  <tr id="demo" onclick="document.getElementById('demo').style.background='#008000'">
-                    <td>1</td>
-                    <td>OR9842</td>
-                    <td>Call of Duty IV</td>    
-                  </tr>
-                  <tr>
-                      <td>2</td>
-                    <td>OR1848</td>
-                    <td>Samsung Smart TV</td>
-                  </tr>
-                  </tbody>
-                </table><!-- /.table .table-striped -->
-              </div><!-- /.table-responsive -->
-            </div><!-- /.box-body -->
-      </div><!-- /.box -->
+  <style>
+    .demo td div{
+      visibility: hidden;
+    }
+    .demo:hover td div {
+        visibility: visible;
+    }
+    th, td{
+        text-align: center;
+    }
+    input.input_desc{
+        background:none;
+        border: none;
+        width: 45vw;
+    }
+    
+  </style>
+
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Previsão de Despesas</h3><br><br>
+      <!-- Botão para chamar tela Modal -->
+      <button type="button" class="fa fa-plus btn bg-olive" data-toggle="modal" data-target="#myModal">
+        Adicionar item
+      </button>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <!--Botão para fechar tela Modal-->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Despesas</h4>
+              </div><!--/.modal-header-->
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="disabledTextInput">Selecione um item</label>
+                      <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                  </div><!--/.form-group-->
+                </form>
+                  ...
+              </div><!--/.modal-body-->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary">Salvar mudanças</button>
+              </div><!--/.modal-footer-->
+            </div><!--/.modal-content-->
+          </div><!--/modal-dialog-->
+        </div>
+    </div><!-- /.box-header -->
+
+    <div class="box-body">
+      <div class="table-responsive">
+        <table class="table table-striped no-margin">
+          <thead>
+            <tr>
+              <th>#</th>
+               <th>Despesa</th>
+               <th>Valor</th>
+               <th>Descrição</th>
+               <th></th>
+            </tr> 
+          </thead>
+          <tbody id="bodyTable">
+            <tr class="demo">
+              <td>1</td>
+              <td>OR9842</td>
+              <td>Call of Duty IV</td>    
+              <td><input class="form-control input_desc" type="text"></td>
+              <td>
+                <div class="tools">
+                  <i class="fa fa-trash"></i>
+                </div><!--/.tools-->
+              </td>
+            </tr>
+            <tr class="demo" >
+              <td>2</td>
+              <td>OR1848</td>
+              <td>Samsung Smart TV</td>
+              <td><input class="form-control input_desc" type="text"></td>
+              <td>
+                <div class="tools">
+                  <i class="fa fa-trash"></i>                    
+            </tr>
+          </tbody>
+        </table><!-- /.table .table-striped -->
+          <br/>
+          <div class="optEdit">
+            <button id="btnNovo" type="button" class="btn btn-block btn-success btn-lg">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div><!--/.optEdit-->
+          <br/>       
+      </div><!-- /.table-responsive -->
+    </div><!-- /.box-body -->
+  </div><!-- /.box -->
+
+  <script>   
+    function ativarInput(idInput){
+      if($('#'+idInput).attr("disabled")){
+        $('#'+idInput).removeAttr('disabled');
+      }else{
+        $('#'+idInput).attr('disabled', 'disabled');
+      }
+    }
+
+    //cria nova linha
+    $('#btnNovo').click(function() {
+      //Adiciona
+      var novoID = $('#bodyTable tr:last td').attr('id')+1;
+      alert(novoID);
+      
+        $('<tr class="demo" >'                                            +
+            '<td> novoID</td>'                                            +
+            '<td>OR1848</td>'                                             +
+            '<td>Samsung Smart TV</td>'                                   +
+            '<td><input class="form-control input_desc" type="text"></td>'+
+            '<td>'                                                        +
+              '<div class="tools">'                                       +
+                '<i class="fa fa-trash"></i>'                             +
+            '<td>'                                                        +
+          '</tr>').insertAfter('#bodyTable tr:last');
+    });
 
 
 
+
+    $(document).on('click', '.fa-trash', function(){
+      $(this).closest('.demo').remove();
+    });
+
+    //quando clicar muda de cor
+    $(document).on('click', '.demo', function() {
+      $(this).css("background-color", "#C6E2FF");
+    });
+
+  </script>
 </section>
 
