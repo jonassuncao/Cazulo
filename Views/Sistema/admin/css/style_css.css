@@ -39,21 +39,35 @@
     float:left;
 }
 
-.div_table, .div_table_bancario{width: 35vw;}
+.div_table, .div_table_bancario{width: 36vw;}
 .div_table_result{width: 60vw;}
 
 .div_table_bancario{background-color: #756d6d40;}
 .div_table_bancario div table tr:last-child{background-color: #756d6dbd;}
 
-.div_table_receita{background-color: #1cc1085c;}
-.div_table_receita div table tr:last-child{background-color: #1cc108;}
+.div_table_receita{background-color: #1cc10842;}
+.div_table_receita div table tr:last-child{background-color: #1cc1089c;}
 
-.div_table_despesas{background-color: #96050585;}
-.div_table_despesas div table tr:last-child{background-color: #5605058c;}
+.div_table_despesas{background-color: #ff050559;}
+.div_table_despesas div table tr:last-child{background-color: #f908088c;}
+
+.div_table_bancario div table tbody tr td:nth-last-child(2),
+.div_table_receita div table tbody tr td:nth-last-child(2),
+.div_table_result div table tbody tr td:nth-last-child(2),
+.div_table_despesas div table tbody tr td:nth-last-child(2)
+{text-align:right;}
 
 .div_table_bancario div table tbody tr td:last-child,
 .div_table_receita div table tbody tr td:last-child,
 .div_table_result div table tbody tr td:last-child,
 .div_table_despesas div table tbody tr td:last-child
-{width:100px; text-align:right;}
+{width:1%;}
 
+.div_table_bancario div table tbody tr:last-child,
+.div_table_receita div table tbody tr:last-child,
+.div_table_result div table tbody tr:last-child,
+.div_table_despesas div table tbody tr:last-child
+{color: black; 
+font-weight: bold; 
+font-size: 1.6rem; 
+text-align:right;}
