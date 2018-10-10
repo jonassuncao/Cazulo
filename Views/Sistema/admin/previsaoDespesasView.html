@@ -9,10 +9,29 @@
   </h1>
 </section>
 <section class="content">
+
+
+    <script  src = "Views/Sistema/admin/bower_components/jquery/dist/jquery.js"></script> 
+    <script  src = "Views/Sistema/admin/bower_components/jquery/dist/jquery.min.js"></script> 
+  
+    <!--InputMask-->
+    <script  src = "Cazulo/Views/Sistema/admin/bower_components/inputmask/dist/jquery.inputmask.bundle.js"></script>
+    
+    <!--DatePicker-->
+    <link rel = "stylesheet" href ="Cazulo/Views/Sistema/admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+    <script src ="Cazulo/Views/Sistema/admin/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src ="Views/Sistema/admin/bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+  
+
+
+    <style>
+       
+        
+      </style>
+
  
   <div class="box box-info">
     <div class="box-header with-border">
-      <h3 class="box-title">Previsão de Despesas</h3><br><br>
       
       <!--Calendario-->
         <form class="form-horizontal">
@@ -113,28 +132,3 @@
     </div><!-- /.box-body -->
   </div><!-- /.box -->
 </section>
-
-<script>
-  //calendário
-  $("#exemplo").datepicker();
-
-  //mascara inputmask, ERRO= não muda dinamicamente quando add outros
-  $(".input_valor").inputmask({
-    'alias': 'decimal',
-    'groupSeparator': '',
-    'digits': 2,
-    'autoGroup': true,
-    'digitsOptional': false,
-    rightAlign: true,
-    numericInput: true 
-  });   
-
-  //valor invalido na mascara
-  Inputmask.extendDefaults({
-      onKeyValidation: function(key, result){
-          if (!result){
-          alert('Valor inválido')
-          }
-      }
-  });
-</script>

@@ -1,12 +1,15 @@
-     
-//Ativa/Desativa o Input    
-function ativarInput(idInput){
-    if($('#'+idInput).attr("disabled")){
-        $('#'+idInput).removeAttr('disabled');
-    }else{
-        $('#'+idInput).attr('disabled', 'disabled');
+//Previsão de Despesas     
+
+//Ativa/Desativa o Input   
+$(document).ready(function(){ 
+    function ativarInput(idInput){
+        if($('#'+idInput).attr("disabled")){
+            $('#'+idInput).removeAttr('disabled');
+        }else{
+            $('#'+idInput).attr('disabled', 'disabled');
+        }
     }
-}
+});
 
 //Quando clicar no Botao #btnNovo    
 $(document).on('click', '#btnNovo', function(){
@@ -28,10 +31,9 @@ $(document).on('click', '#btnNovo', function(){
         '</tr>');
 });
 
-
+//atualizar os ids quando remover algum
 //Quando clicar na lixeira
 $(document).on('click', '.fa-trash', function(){
-    
     $(this).closest('.demo').append('<div class="modal fade" id="confirm" role="dialog">'+
         '<div class="modal-dialog modal-md">'+
         '<div class="modal-content">'+
@@ -47,6 +49,41 @@ $(document).on('click', '.fa-trash', function(){
     '</div>');
 
     $(this).closest('.demo').remove();
+});
+
+//calendário
+$(document).ready(function(){
+    $('#exemplo').datepicker({
+      format: 'dd/mm/yyyy',
+      language: "pt-BR",
+      autoclose: true,
+      defaultViewDate: true,
+      assumeNearbyYear: true, 
+      //startDate: '0'
+    });
+});
+
+//mascara inputmask, ERRO= não muda dinamicamente quando add outros
+$(document).ready(function() {
+  $(".input_valor").inputmask({
+    'alias': 'decimal',
+    'groupSeparator': '',
+    'digits': 2,
+    'autoGroup': true,
+    'digitsOptional': false,
+    rightAlign: true,
+    numericInput: true 
+  });   
+}); 
+//valor invalido na mascara
+$(document).ready(function() {
+    Inputmask.extendDefaults({
+    onKeyValidation: function(key, result){
+        if (!result){
+        alert('Valor inválido')
+        }
+    }
+    });
 });
 
   
