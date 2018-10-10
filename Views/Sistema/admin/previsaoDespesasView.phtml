@@ -9,6 +9,17 @@
   </h1>
 </section>
 <section class="content">
+ 
+  <script  src = "Views/Sistema/admin/bower_components/jquery/dist/jquery.js"></script> 
+  <script  src = "Views/Sistema/admin/bower_components/jquery/dist/jquery.min.js"></script> 
+
+  <!--InputMask-->
+  <script  src = "Cazulo/Views/Sistema/admin/bower_components/inputmask/dist/jquery.inputmask.bundle.js"></script>
+  
+  <!--DatePicker-->
+  <link rel = "stylesheet" href ="Cazulo/Views/Sistema/admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+  <script src ="Cazulo/Views/Sistema/admin/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+  <script src ="Views/Sistema/admin/bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 
   <style>
     .demo td div{
@@ -20,10 +31,19 @@
     th, td{
         text-align: center;
     }
-    input.input_desc{
+    input.input_desc, .input_valor{
         background:none;
         border: none;
-        width: 45vw;
+    }
+    input.input_desc{
+      width: 45vw;
+    }
+
+    .form-group{
+      display: inblock;
+    }
+    #combobox{
+      width: 30%;
     }
     
   </style>
@@ -31,6 +51,22 @@
   <div class="box box-info">
     <div class="box-header with-border">
       <h3 class="box-title">Previsão de Despesas</h3><br><br>
+      
+      <!--Calendario-->
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-0 control-label">Mês</label>
+              <div class="col-sm-2">
+                <div class="input-group date" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                  <input type="text" class="form-control" id="exemplo"><!--colocar uma mascara e o nome do lado, só mes e ano-->
+                    <div class="input-group-addon" >
+                      <span class="fa fa-calendar" id="date" onclick="this.focus()"></span>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </form>
+
       <!-- Botão para chamar tela Modal -->
       <button type="button" class="fa fa-plus btn bg-olive" data-toggle="modal" data-target="#myModal">
         Adicionar item
@@ -47,8 +83,8 @@
               <div class="modal-body">
                 <form>
                   <div class="form-group">
-                    <label for="disabledTextInput">Selecione um item</label>
-                      <select class="form-control">
+                    <label for="disabledTextInput">Selecione uma Despesa</label>
+                      <select id="combobox" class="form-control">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -84,22 +120,23 @@
             <tr class="demo">
               <td>1</td>
               <td>OR9842</td>
-              <td>Call of Duty IV</td>    
+              <td><input class="form-control input_valor"></td> 
               <td><input class="form-control input_desc" type="text"></td>
               <td>
                 <div class="tools">
-                  <i class="fa fa-trash"></i>
+                  <i class="fa fa-trash" data-toggle="modal" data-target="#confirm"></i> 
+
                 </div><!--/.tools-->
               </td>
             </tr>
             <tr class="demo" >
               <td>2</td>
               <td>OR1848</td>
-              <td>Samsung Smart TV</td>
+              <td><input class="form-control input_valor"></td>
               <td><input class="form-control input_desc" type="text"></td>
               <td>
                 <div class="tools">
-                  <i class="fa fa-trash"></i>                    
+                  <i class="fa fa-trash" data-toggle="modal"></i>                    
             </tr>
           </tbody>
         </table><!-- /.table .table-striped -->
@@ -114,45 +151,121 @@
     </div><!-- /.box-body -->
   </div><!-- /.box -->
 
-  <script>   
-    function ativarInput(idInput){
-      if($('#'+idInput).attr("disabled")){
-        $('#'+idInput).removeAttr('disabled');
-      }else{
-        $('#'+idInput).attr('disabled', 'disabled');
+  <script>  
+    $(document).ready(function(){ 
+      function ativarInput(idInput){
+        if($('#'+idInput).attr("disabled")){
+          $('#'+idInput).removeAttr('disabled');
+        }else{
+          $('#'+idInput).attr('disabled', 'disabled');
+        }
       }
-    }
-
-    //cria nova linha
-    $('#btnNovo').click(function() {
-      //Adiciona
-      var novoID = $('#bodyTable tr:last td').attr('id')+1;
-      alert(novoID);
-      
-        $('<tr class="demo" >'                                            +
-            '<td> novoID</td>'                                            +
-            '<td>OR1848</td>'                                             +
-            '<td>Samsung Smart TV</td>'                                   +
-            '<td><input class="form-control input_desc" type="text"></td>'+
-            '<td>'                                                        +
-              '<div class="tools">'                                       +
-                '<i class="fa fa-trash"></i>'                             +
-            '<td>'                                                        +
-          '</tr>').insertAfter('#bodyTable tr:last');
     });
 
+    //cria nova linha
+    $(document).ready(function(){
+      $('#btnNovo').click(function() {
+        //Adiciona
+        var novoID = $('#bodyTable tr:last td').attr('id')+1;
+        alert(novoID);
+        
+          $('<tr class="demo" >'                                            +
+              '<td> novoID</td>'                                            +
+              '<td>OR1848</td>'                                             +
+              '<td><input class="form-control input_valor"></td>'           +
+              '<td><input class="form-control input_desc" type="text"></td>'+
+              '<td>'                                                        +
+                '<div class="tools">'                                       +
+                  '<i class="fa fa-trash"></i>'                             +
+              '<td>'                                                        +
+            '</tr>').insertAfter('#bodyTable tr:last');
+      });
+    });
 
+    //não funciona o modal
+    $(document).ready(function(){
+      $(document).on('click', '.fa-trash', function(){
 
+          $(".content").append('<div class="modal fade" id="confirm" role="dialog">'+
+            '<div class="modal-dialog modal-md">'+
+              '<div class="modal-content">'+
+                '<div class="modal-body">'+
+                  '<p> Tem certeza que deseja excluir este item?</p>'+
+                '</div>'+
+                '<div class="modal-footer">'+
+                  '<a href="wfefwe" type="button" class="btn btn-danger" id="delete">Sim</a>'+
+                  '<button type="button" data-dismiss="modal" class="btn btn-default">Não</button>'+
+                '</div>'+
+              '</div>'+
+            '</div>'+
+          '</div>');
 
-    $(document).on('click', '.fa-trash', function(){
-      $(this).closest('.demo').remove();
+        $(this).closest('.demo').remove();
+      });
     });
 
     //quando clicar muda de cor
-    $(document).on('click', '.demo', function() {
-      $(this).css("background-color", "#C6E2FF");
+    //$(document).ready(function(){
+      //$(document).on('click', '.demo', function() {
+        //$(this).css("background-color", "#C6E2FF");
+      //});
+    //});
+
+        //calendário
+    
+    $(document).ready(function(){
+      $("#date").datepicker();
+    });
+
+    /*$(document).ready(function(){
+      $('[data-toggle="datepicker"]').datepicker({
+        format: 'dd/mm/yyyy',
+        language: "pt-BR",
+        autoclose: true,
+        defaultViewDate: true,
+        assumeNearbyYear: true, 
+        //startDate: '0'
+      });
+    });*/
+
+
+    
+  /* $(document).ready(function(){
+      $('[data-toggle="datepicker"]').datepicker({
+        format: 'dd/mm/yyyy',
+        language: "pt-BR",
+        autoclose: true,
+        defaultViewDate: true,
+        assumeNearbyYear: true, 
+        //startDate: '0'
+      });
+    });*/
+    
+
+    //mascara inputmask, ERRO= não muda dinamicamente quando add outros
+    $(document).ready(function() {
+      $(".input_valor").inputmask({
+      'alias': 'decimal',
+      'groupSeparator': '',
+      'digits': 2,
+      'autoGroup': true,
+      'digitsOptional': false,
+      rightAlign: true,
+      numericInput: true 
+      });   
+    });
+
+    //valor invalido na mascara
+    Inputmask.extendDefaults({
+      onKeyValidation: function(key, result){
+        if (!result){
+          alert('Valor inválido')
+        }
+      }
     });
 
   </script>
+
+
 </section>
 
