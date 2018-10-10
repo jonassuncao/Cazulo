@@ -55,7 +55,8 @@
 .div_table_receita div table tbody tr td:nth-last-child(2),
 .div_table_result div table tbody tr td:nth-last-child(2),
 .div_table_despesas div table tbody tr td:nth-last-child(2)
-{text-align:right;}
+{text-align:right;
+width: 12vw;}
 
 .div_table_bancario div table tbody tr td:last-child,
 .div_table_receita div table tbody tr td:last-child,

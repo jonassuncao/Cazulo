@@ -1,7 +1,7 @@
-<?php
+<!--?php
     //Pega as variáveis para renderizar a página
     $valores = $this->getHTMLValores();       
-?>
+?-->
 <section class="content-header">
   <h1>
     Prestação de Contas
@@ -72,10 +72,11 @@
    <div class="col-xs-12">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#resumo"   data-toggle="tab">Prestação de Contas</a></li>
-          <li class="">      <a href="#extrato"  data-toggle="tab">Extrato</a></li>
-          <li class="">      <a href="#despesas"   data-toggle="tab">Despesas a Compensar</a></li>
-          <li class="">      <a href="#carteira" data-toggle="tab">Carteira de Cobrança</a></li>
+          <li class="active"><a href="#resumo"      data-toggle="tab">Prestação de Contas</a></li>
+          <li class="">      <a href="#documentos"  data-toggle="tab">Documentos</a></li>
+          <li class="">      <a href="#extrato"     data-toggle="tab">Extrato</a></li>
+          <li class="">      <a href="#despesas"    data-toggle="tab">Despesas a Pagar</a></li>
+          <li class="">      <a href="#carteira"    data-toggle="tab">Receitas de Exercícios Futuros</a></li>
         </ul>
       
         <!-- Início conteúdo-->
@@ -91,13 +92,23 @@
                   <div class="box-header"><h3 class="box-title"><b>Receitas</b></h3></div>            
                   <div class="box-body no-padding">
                     <table class="table table-striped">
-                      <tr>
-                        <td>Taxas de Condominio</td>
-                        <td>34.095,84</td>
+                    <tr>
+                        <td>Saldo Transportado</td>
+                        <td>10.000,00</td>
                         <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
                       </tr>  
                       <tr>
-                        <td>Carteira de Cobrança</td>
+                        <td>Taxas de Condominio</td>
+                        <td>33.754,16</td>
+                        <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                      </tr>
+                      <tr>
+                        <td>Juros sobre Taxas de Condominio</td>
+                        <td>320,84</td>
+                        <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                      </tr>                         
+                      <tr>
+                        <td>Receitas de Exercícios Futuros</td>
                         <td>4.095,84</td>
                         <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
                       </tr>                                      
@@ -113,7 +124,7 @@
                       </tr>             
                       <tr>
                         <td>TOTAL</td>
-                        <td>R$ <b>77.120,10</b></td>                        
+                        <td>R$ <b>87.099,26</b></td>                        
                         <td></td>
                       </tr>                  
                     </table>                                        
@@ -127,7 +138,7 @@
               <div style="width:100%;">
                 <!-- Início Tabela Despesas Administrativas-->
                 <div class="div_table_despesas div_table">
-                  <div class="box-header"><h3 class="box-title"><b>Despesas Administrativas</b></h3></div>            
+                  <div class="box-header"><h3 class="box-title"><b>Despesas - Administrativas</b></h3></div>            
                   <div class="box-body no-padding">
                     <table class="table table-striped">
                       <tr>
@@ -152,22 +163,27 @@
 
                 <!-- Início Tabela Despesas Diversas-->
                 <div class="div_table_despesas div_table">
-                  <div class="box-header"><h3 class="box-title"><b>Despesas Diversas</b></h3></div>            
+                  <div class="box-header"><h3 class="box-title"><b>Despesas - Diversas</b></h3></div>            
                   <div class="box-body no-padding">
-                    <table class="table table-striped">
+                    <table class="table table-striped">   
+                      <tr>
+                        <td>Descontos sobre Taxas de Condominio</td>
+                        <td>20,84</td>
+                        <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                      </tr>                         
+                      <tr>
+                        <td>Despesas de Exercicios Futuros</td>
+                        <td>1.463,87</td>
+                        <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                      </tr>                            
                       <tr>
                         <td>Materiais de Limpeza</td>
                         <td>739,30</td>
                         <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
-                      </tr>      
-                      <tr>
-                        <td>Cheque (902109) - MB Vidros</td>
-                        <td>1.463,87</td>
-                        <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
-                      </tr>                                            
+                      </tr>                                       
                       <tr>
                         <td>TOTAL</td>
-                        <td>R$ <b>2.203,17</b></td>
+                        <td>R$ <b>2.224,01</b></td>
                         <td></td>
                       </tr>                                                    
                     </table>                                        
@@ -232,17 +248,17 @@
                   <table class="table table-striped">
                     <tr>
                       <td>Receitas</td>
-                      <td style="color: green;"><b>+ 77.120,10</b></td>
+                      <td style="color: green;"><b>+ 87.099,26</b></td>
                       <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
                     </tr>               
                     <tr>
                       <td>Despesas</td>
-                      <td style="color: red;"><b>- 7.802,75</b></td>
+                      <td style="color: red;"><b>- 7.823,59</b></td>
                       <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
                     </tr>               
                     <tr>
                       <td>Saldo a Transportar</td>
-                      <td style="color: green;">R$ <b>69.317,35</b></td>
+                      <td style="color: green;">R$ <b>79.275,67</b></td>
                       <td></td>
                     </tr>                                                    
                   </table>                                        
@@ -251,11 +267,12 @@
                 <div style="clear: both;"></div>
               </div>                                                   
               <!-- Fim Saldo a Transportar-->              
+              
+              <hr>
 
-              <!-- Início Tabela Despesas Demostrativos-->
               <div style="width:100%;">
                 <!-- Início Tabela Informe Adminsitrativo-->
-                <div class="div_table_bancario div_table">
+                <div class="div_table_result div_table_bancario div_table">
                   <div class="box-header"><h3 class="box-title"><b>Saldo Bancário - 30/09/2017</b></h3></div>            
                   <div class="box-body no-padding">
                     <table class="table table-striped">
@@ -278,10 +295,44 @@
                   </div>
                 </div>
                 <!-- Fim Tabela Informe Administrativo-->
+                <div style="clear: both;"></div>
+              </div>
 
-                <!-- Início Tabela Despesas a Compensar-->
+              <!-- Início Tabela Demostrativos a Receber/Pagar-->
+              <div style="width:100%;">
+                <!-- Início Tabela Receitas de Exercícios Futuros-->
+                <div class="div_table_receita div_table">
+                  <div class="box-header"><h3 class="box-title"><b>Receitas de Exercícios Futuros</b></h3></div>            
+                  <div class="box-body no-padding">
+                    <table class="table table-striped">
+                      <tr>
+                        <td>Recebimento de Acordo (1014B072018)</td>
+                        <td>1.463,87</td>
+                        <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                      </tr>         
+                      <tr>
+                        <td>Recebimento de Acordo (1044B072018)</td>
+                        <td>2.365,23</td>
+                        <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                      </tr>         
+                      <tr>
+                        <td>Taxa de Condominio (3062EB062018)</td>
+                        <td>266,74</td>
+                        <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                      </tr>                                                                                         
+                      <tr>
+                        <td>TOTAL</td>
+                        <td>R$ <b>4.095,84</b></td>
+                        <td></td>
+                      </tr>                                                    
+                    </table>                                        
+                  </div>
+                </div>   
+                <!-- Fim Tabela Receitas de Exercícios Futuros-->
+
+                <!-- Início Tabela Despesas de Exercicios Futuros-->
                 <div class="div_table_despesas div_table">
-                  <div class="box-header"><h3 class="box-title"><b>Despesas a Compensar</b></h3></div>            
+                  <div class="box-header"><h3 class="box-title"><b>Despesas de Exercicios Futuros</b></h3></div>            
                   <div class="box-body no-padding">
                     <table class="table table-striped">
                       <tr>
@@ -297,10 +348,55 @@
                     </table>                                        
                   </div>
                 </div>                
+                <!-- Fim Tabela Despesas a Pagar-->              
+                <div style="clear: both;"></div>
+              </div> 
+              <!-- Fim Tabela Demostrativos a Receber/Pagar-->
+
+              <!-- Início Tabela Demostrativos a Receber/Pagar Realizados-->
+              <div style="width:100%;">
+                <!-- Início Tabela Informe Adminsitrativo-->
+                <div class="div_table_receita div_table">
+                  <div class="box-header"><h3 class="box-title"><b>Receitas de Exercicios Futuros</b></h3></div>            
+                  <div class="box-body no-padding">
+                    <table class="table table-striped">               
+                      <tr>
+                        <td>Taxa de Condominio (3062EB092018)</td>
+                        <td>372,74</td>
+                        <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                      </tr>                                                                                         
+                      <tr>
+                        <td>TOTAL</td>
+                        <td>R$ <b>372,74</b></td>
+                        <td></td>
+                      </tr>                                                    
+                    </table>                                        
+                  </div>
+                </div>   
+                <!-- Fim Tabela Informe Administrativo-->
+
+                <!-- Início Tabela Despesas a Compensar-->
+                <div class="div_table_despesas div_table">
+                  <div class="box-header"><h3 class="box-title"><b>Despesas a Pagar - Efetuado</b></h3></div>            
+                  <div class="box-body no-padding">
+                    <table class="table table-striped">
+                      <tr>
+                        <td>Cheque (902234) - Jardinagem</td>
+                        <td>463,87</td>
+                        <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                      </tr>                                             
+                      <tr>
+                        <td>TOTAL</td>
+                        <td>R$ <b>463,87</b></td>
+                        <td></td>
+                      </tr>                                                    
+                    </table>                                        
+                  </div>
+                </div>                
                 <!-- Fim Tabela Despesas a Compensar-->              
                 <div style="clear: both;"></div>
               </div> 
-              <!-- Fim Demonstrativos-->
+              <!-- Fim Demostrativos a Receber/Pagar Realizados-->
 
               <!-- Início Tabela Demonstrativo Saldo-->
               <div style="width:100%">
@@ -313,23 +409,33 @@
                       <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
                     </tr>  
                     <tr>
-                      <td>Carteira de Cobrança</td>
+                      <td>Receitas de Exercícios Futuros</td>
                       <td style="color: green;">+ 4.095,84</td>
                       <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
-                    </tr>                                  
+                    </tr>     
                     <tr>
-                      <td>Despesas a Compensar</td>
+                      <td>Receitas a Receber - Efetuado</td>
+                      <td style="color: red;">- 372,74</td>
+                      <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                    </tr>                                                   
+                    <tr>
+                      <td>Despesas a Pagar</td>
                       <td style="color: red;">- 1.463,87</td>
                       <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
-                    </tr>               
+                    </tr>            
+                    <tr>
+                      <td>Despesas a Pagar - Efetuado</td>
+                      <td style="color: green;">+463,87</td>
+                      <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                    </tr>                        
                     <tr>
                       <td>Caixa</td>
-                      <td style="color: green;">+ 20.876,41</td>
+                      <td style="color: green;">+ 30.743,70</td>
                       <td><button type="button" title="Detalhar" style="padding:1px; width:auto;" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
                     </tr>                                   
                     <tr>
                       <td>Saldo a Transportar em <b>30/09/2017</b></td>
-                      <td style="color: green;">R$ <b>69.317,35</b></td>
+                      <td style="color: green;">R$ <b>79.275,67</b></td>
                       <td></td>
                     </tr>                                                    
                   </table>                                        
@@ -342,6 +448,50 @@
             </section>
           </div>
           <!-- Fim conteúdo Prestação-->
+
+          <!-- Inicio Documentos-->
+          <div class="tab-pane" id="carteira">
+            <section id="new">              
+              <table class="table table-striped">
+                <tr>
+                  <th>Data</th>
+                  <th>Num. Doc.</th>
+                  <th>Descrição</th>
+                  <th>Valor</th>
+                  <th style="width: 10px"></th>
+                </tr>
+                <tr>
+                  <td>07/09/2017</td>
+                  <td>1014B072018</td>
+                  <td>Recebimento de Acordo</td>
+                  <td>1.463,87</td>
+                  <td><button type="button" title="Detalhar" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                </tr>          
+                <tr>
+                  <td>10/09/2017</td>
+                  <td>1044B072018</td>
+                  <td>Recebimento de Acordo</td>
+                  <td>2.365,23</td>
+                  <td><button type="button" title="Detalhar" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                </tr>  
+                <tr>
+                  <td>01/09/2017</td>
+                  <td>3062EB062018</td>
+                  <td>Taxa de Condominio</td>
+                  <td>266,74</td>
+                  <td><button type="button" title="Detalhar" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                </tr>                                        
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td style="font-weight: bold;">TOTAL</td>                  
+                  <td style="font-weight: bold; color: green">R$ 4.095,84</td>                  
+                  <td></td>
+                </tr>                
+              </table>                                                                              
+            </section>
+          </div>              
+          <!-- Fim Documentos-->
 
           <!-- Início conteúdo Extrato-->
           <div class="tab-pane" id="extrato">

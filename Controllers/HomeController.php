@@ -30,10 +30,19 @@
     public function listarAction(){
         $usuario = new HomeModel($_SESSION['usuario']);
 
+        $path = "Views/Sistema/admin/";
+        $diretorio = dir($path);
+        $pag = array();
+        while($arquivo = $diretorio -> read()){
+            if(!(strpos($arquivo, '.html') === false))
+                array_push($pag, str_replace("View.html", "", $arquivo));
+        }
+        $diretorio -> close();   
+        //echo var_dump($pag);
         //Define os parametros a serem enviados para a página HTML
 
         //Renderiza a página de Login
-        $view = new ViewMaster('Views/Sistema/admin/fundoView.phtml', Array("user"=>$usuario->toValores()));
+        $view = new ViewMaster('Views/Sistema/admin/fundoView.phtml', Array("user"=>$usuario->toValores(), "pag"=>$pag));
         //Retorna para o navegador a página HTML à ser exibida.
         $view->showHTMLPag();
         
@@ -50,12 +59,14 @@
             /**Se entrou no IF, é porque tem a permissão... 
              * Agora modifica os parametros da Requisição e tenta importar o controller, e chamar a função Action solicitada
             */
-            ControllerMaster::setRequest($controllerSolicitado, 'listar');  
+            //ControllerMaster::setRequest($controllerSolicitado, 'listar');  
             try{
-                $controller = new ControllerMaster(); //Instancia o Gerenciador de Controllers
-                $controller->loadController(); //Tenta importar o Controller e executar o action solicitado
+                $view = new ViewMaster('Views/Sistema/admin/'.$controllerSolicitado.'View.html');
+                $view->showHTMLPag();
+              //  $controller = new ControllerMaster(); //Instancia o Gerenciador de Controllers
+               // $controller->loadController(); //Tenta importar o Controller e executar o action solicitado
             }catch(Exception $e) { //Caso dê algum erro, exibe um Modal Erro para o usuário e informa a mensagem de erro
-                $view = new ViewMaster('Views/Sistema/admin/modalErroView.phtml', Array("header"=> "Erro ao carregar página: ".$descricaoOpcao,"body"=> "Motivo: ".$e->getMessage()."<br/>Entre em contato com o suporte."));
+                $view = new ViewMaster('Views/Sistema/admin/modalErroView.html', Array("header"=> "Erro ao carregar página: ".$descricaoOpcao,"body"=> "Motivo: ".$e->getMessage()."<br/>Entre em contato com o suporte."));
                 $view->showHTMLPag();
             }
         }else{ 
@@ -63,7 +74,7 @@
              * Se Entrou no ELSE, então o usuário não tem permissão para acessar esse controller e Action
              * Exibe um Modar de Atenção, informando a mensagem retornada pela Class LoginModel()
              */
-            $view = new ViewMaster('Views/Sistema/admin/modalAtencaoView.phtml', Array("header"=> "A página ".$descricaoOpcao." não pode ser carregada","body"=> "Motivo: ".$login->getMensagem()));
+            $view = new ViewMaster('Views/Sistema/admin/modalAtencaoView.html', Array("header"=> "A página ".$descricaoOpcao." não pode ser carregada","body"=> "Motivo: ".$login->getMensagem()));
             $view->showHTMLPag();
         }
     }
