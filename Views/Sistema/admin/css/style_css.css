@@ -1,4 +1,4 @@
-
+/*Style para Logins*/
 .load_img{      
     
     z-index: 10;
@@ -29,7 +29,9 @@
     background-color:rgba(214, 214, 224, 0.8);
     background-image: url("../../../img/load.gif");
 }
+/*FIM Style para Logins*/
 
+/*Style para Tabelas*/
 .div_table, .div_table_result{
     padding: 1px; 
     border-radius: 5px 5px 0 0; 
@@ -72,3 +74,16 @@ width: 12vw;}
 font-weight: bold; 
 font-size: 1.6rem; 
 text-align:right;}
+/*FIM - Style para Tabelas*/
+
+
+.demo td div{visibility: hidden;}
+.demo:hover td div {visibility: visible;}
+th, td{text-align: center;}
+input.input_desc, .input_valor{
+    background:none;
+    border: none;
+}
+input.input_desc{width: 45vw;}
+.form-group{display: inblock;}
+#combobox{width: 30%;}
