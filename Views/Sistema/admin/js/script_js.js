@@ -16,7 +16,7 @@ $(document).on('click', '#btnNovo', function(){
     
     //Adiciona nova linha na tabela
         var novoID;
-        if(!$('#bodyTable tr:last td').length) novoID = 0;
+        if(!$('#bodyTable tr:last td').length) novoID = 1;
         else novoID = parseInt($('#bodyTable tr:last td').html())+1;
         
         $('#bodyTable').append('<tr class="demo" >'                                            +
