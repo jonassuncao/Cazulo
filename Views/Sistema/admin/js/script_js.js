@@ -10,16 +10,16 @@ $(document).ready(function(){
         }
     }
 });
-
+//ta indo de 2 em 2
 //Quando clicar no Botao #btnNovo    
 $(document).on('click', '#btnNovo', function(){
-    
+     
     //Adiciona nova linha na tabela
         var novoID;
         if(!$('#bodyTable tr:last td').length) novoID = 0;
         else novoID = parseInt($('#bodyTable tr:last td').html())+1;
         
-        $('#bodyTable').append('<tr class="demo" >'                                            +
+        $('#bodyTable').append('<tr class="demo" >'                       +
             '<td>'+novoID+'</td>'                                         +
             '<td>OR1848</td>'                                             +
             '<td><input class="form-control input_valor"></td>'           +
@@ -28,7 +28,7 @@ $(document).on('click', '#btnNovo', function(){
             '<div class="tools">'                                         +
                 '<i class="fa fa-trash"></i>'                             +
             '<td>'                                                        +
-        '</tr>');
+       '</tr>');
 });
 
 //atualizar os ids quando remover algum
@@ -53,40 +53,11 @@ $(document).on('click', '.fa-trash', function(){
 
 //calendário
 $(document).ready(function(){
-    $('#exemplo').datepicker({
+    $('#data').datepicker("setDate", new Date()).datepicker({
       format: 'dd/mm/yyyy',
       language: "pt-BR",
       autoclose: true,
       defaultViewDate: true,
-      assumeNearbyYear: true, 
-      //startDate: '0'
+      assumeNearbyYear: true,    
     });
 });
-
-//mascara inputmask, ERRO= não muda dinamicamente quando add outros
-$(document).ready(function() {
-  $(".input_valor").inputmask({
-    'alias': 'decimal',
-    'groupSeparator': '',
-    'digits': 2,
-    'autoGroup': true,
-    'digitsOptional': false,
-    rightAlign: true,
-    numericInput: true 
-  });   
-}); 
-//valor invalido na mascara
-$(document).ready(function() {
-    Inputmask.extendDefaults({
-    onKeyValidation: function(key, result){
-        if (!result){
-        alert('Valor inválido')
-        }
-    }
-    });
-});
-
-  
-
-
-
