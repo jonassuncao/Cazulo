@@ -3,11 +3,11 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html>
+<html lang = "pt-br" class="media-desk-lg">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Cadastro Cazuco</title>
+  <title>Cadastro Cazulo</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -66,7 +66,7 @@ desired effect
       <span class="logo-mini"><b>C</b>zO</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg">
-        <b>Cazuco</b>
+        <b>Cazulo</b>
       </span>
 
     </a>
@@ -306,7 +306,7 @@ desired effect
         <div id="main" class="container-fluid">
                    
             <!--Modificando o titulo da pagina--> 
-               <h3 class="page-header">Adicionar Item</h3>
+               <h3 class="page-header">Preencha as informações pessoais</h3>
             
                <!--Adcionar botoes-->    
                <form action="index.html">
@@ -315,100 +315,137 @@ desired effect
                 <!--Adcionar campos-->
                 <div class="row">
                       
-                      <div class="form-group col-md-9">
-                        <label for="campo1">Campo Um</label>
+                      <div class="form-group col-md-12">
+                        <label for="campo1">Nome</label>
                         <input type="text" class="form-control" id="campo1">
+                        
                       </div>
                       
-                      <div class="form-group col-md-3">
-                        <label for="campo2">Campo Dois</label>
-                        <input type="text" class="form-control" id="campo3">
+                      <div class="form-group col-md-4">
+                          <label for="campo2">CPF</label>
+                          <input type="text" class="form-control cpf-mask" id= "input-CPF" placeholder="Ex.: 000.000.000-00" maxlength="14" autocomplete="off">
                       </div>
-                      
 
                       <div class="form-group col-md-4">
-                          <label for="campo1">Campo Um</label>
-                          <input type="text" class="form-control" id="campo1">
+                          <label for="example-input-1">Nascimento</label>
+                          <input type="text" class="form-control date-mask" id="example-input-1" placeholder="Ex.: dd/mm/aaaa" maxlength="10" autocomplete="off">
+                      </div>
+                    
+                      <div class="form-group col-md-4">
+                            
+                            <label for="example-input-1">Sexo</label>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline1">Masculino</label>
+                              </div>
+                              <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadioInline2">Feminino</label>
+                              </div>
+                          
+                      </div>
+
+                      
+                      <div class="form-group col-md-2">
+                          <label for="inputState">Estado Civil</label>
+                          <select id="inputState" class="form-control">
+                              <option value="Não definido">Estado Civil</option>
+                              <option value="Solteiro">Solteiro(a)</option>
+                              <option value="Casado">Casado(a)</option>
+                          </select>
                         </div>
                         
                         <div class="form-group col-md-4">
-                          <label for="campo2">Campo Dois</label>
-                          <input type="text" class="form-control" id="campo3">
+                            <label for="input-profissao">Profissão</label>
+                            <input type="text" class="form-control profissao-mask" id="input-profissao" placeholder=" " >
                         </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="input-NomeMãe">Nome da Mãe</label>
+                            <input type="text" class="form-control NomeMãe-mask" id="input-NomeMãe" placeholder=" " >
+                        </div>
+
                         
-                        <div class="form-group col-md-4">
-                          <label for="campo3">Campo Três</label>
-                          <input type="text" class="form-control" id="campo3">
+                        <div class="form-group col-md-3">
+                            <label for="campo1">Telefone fixo:</label>
+                            <input type="text" class="form-control phone-mask" placeholder="Ex.: 0000-0000">
+                        </div>
+                          
+                        
+                        <div class="form-group col-md-3">
+                            <label for="campo1">Telefone celular com DDD:</label>
+                            <input type="text" class="form-control phone-ddd-mask" placeholder="Ex.: (00) 0000-0000">
                         </div>
 
-                        <div class="form-group col-md-4">
-                            <label for="campo1">Campo Um</label>
-                            <input type="text" class="form-control" id="campo1">
-                          </div>
-                          
-                          <div class="form-group col-md-4">
-                            <label for="campo2">Campo Dois</label>
-                            <input type="text" class="form-control" id="campo3">
-                          </div>
-                          
-                          <div class="form-group col-md-4">
-                            <label for="campo3">Campo Três</label>
-                            <input type="text" class="form-control" id="campo3">
+                      
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ex.: seuemail@hotmail.com">
+                        </div>
+
+                        <div class="form-group col-md-10">
+                            <label for="inputState">Endereço</label>
+                            <select id="inputState" class="form-control">
+                                <option value="APLiberty">Selecione o condominio</option>
+                              <option value="APLiberty">Liberty II</option>
+                              <option value="APSolDourado">Sol Dourado</option>
+                            </select>
                           </div>
 
-                          <div class="form-group col-md-4">
-                              <label for="campo1">Campo Um</label>
-                              <input type="text" class="form-control" id="campo1">
-                            </div>
-                            
-                            <div class="form-group col-md-4">
-                              <label for="campo2">Campo Dois</label>
-                              <input type="text" class="form-control" id="campo3">
-                            </div>
-                            
-                            <div class="form-group col-md-4">
-                              <label for="campo3">Campo Três</label>
-                              <input type="text" class="form-control" id="campo3">
-                            </div>
 
-                            <div class="form-group col-md-4">
-                                <label for="campo1">Campo Um</label>
-                                <input type="text" class="form-control" id="campo1">
-                              </div>
-                              
-                              <div class="form-group col-md-4">
-                                <label for="campo2">Campo Dois</label>
-                                <input type="text" class="form-control" id="campo3">
-                              </div>
-                              
-                              <div class="form-group col-md-4">
-                                <label for="campo3">Campo Três</label>
-                                <input type="text" class="form-control" id="campo3">
-                              </div>
+                      <div class="form-group col-md-2">
+                        <label for="inputState">Estado</label>
+                        <select id="inputState" class="form-control">
+                          <option value="">Selecione</option>
+                          <option value="AC">Acre</option>
+                          <option value="AL">Alagoas</option>
+                          <option value="AP">Amapá</option>
+                          <option value="AM">Amazonas</option>
+                          <option value="BA">Bahia</option>
+                          <option value="CE">Ceará</option>
+                          <option value="DF">Distrito Federal</option>
+                          <option value="ES">Espirito Santo</option>
+                          <option value="GO">Goiás</option>
+                          <option value="MA">Maranhão</option>
+                          <option value="MS">Mato Grosso do Sul</option>
+                          <option value="MT">Mato Grosso</option>
+                          <option value="MG">Minas Gerais</option>
+                          <option value="PA">Pará</option>
+                          <option value="PB">Paraíba</option>
+                          <option value="PR">Paraná</option>
+                          <option value="PE">Pernambuco</option>
+                          <option value="PI">Piauí</option>
+                          <option value="RJ">Rio de Janeiro</option>
+                          <option value="RN">Rio Grande do Norte</option>
+                          <option value="RS">Rio Grande do Sul</option>
+                          <option value="RO">Rondônia</option>
+                          <option value="RR">Roraima</option>
+                          <option value="SC">Santa Catarina</option>
+                          <option value="SP">São Paulo</option>
+                          <option value="SE">Sergipe</option>
+                          <option value="TO">Tocantins</option>
+                        
+                        </select>
+                      </div>
+
+                          <div class="form-group col-md-4">
+                            <label for="campo2">CEP</label>
+                            <input type="text" class="form-control cep-mask" placeholder="Ex.: 00000-000">
+                          </div>
+                          
+                      <div class="form-group col-md-4">
+                          <label for="input-NAp">Ap</label>
+                          <input type="text" class="form-control NAp-mask" id="input-NAp" placeholder="Ap-xxxx " >
+                    </div>
+
+                    
+                    <div class="form-group col-md-4">
+                        <label for="input-NTorre">Torre</label>
+                        <input type="text" class="form-control NAp-mask" id="input-NTorre" placeholder=" " >
+                  </div>
                               
 
                 </div>    
-                
-                <div class="row">
-                    <div class="form-group col-md-2">
-                        <label for="campo3">Campo Três</label>
-                        <input type="text" class="form-control" id="campo3">
-                      </div>
-
-                      <div class="form-group col-md-2">
-                          <label for="campo1">Campo Um</label>
-                          <input type="text" class="form-control" id="campo1">
-                        </div>
-                        
-                        <div class="form-group col-md-4">
-                          <label for="campo2">Campo Dois</label>
-                          <input type="text" class="form-control" id="campo3">
-                        </div>
-                      
-                      <div class="form-group col-md-4">
-                                <label for="campo3">Campo Três</label>
-                                <input type="text" class="form-control" id="campo3">
-                      </div>
                               
 
                 </div>
@@ -420,7 +457,8 @@ desired effect
                         <a href="index.html" class="btn btn-default">Cancelar</a>
                       </div>
                     </div>
-                  </form>
+              
+              </form>
             
             
             
