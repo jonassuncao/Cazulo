@@ -8,57 +8,7 @@
     Previsão de Despesas
   </h1>
 </section>
-<section class="content">
-
-  <style>
-    .demo td div{visibility: hidden;}
-    .demo:hover td div {visibility: visible;}
-    th, td{text-align: center;}
-    input.input_desc, .input_valor{
-        background:none;
-        border: none;
-    }
-    input.input_desc{width: 45vw;}
-    .ui-datepicker-calendar {display: none;}
-    .config{
-      float: right;
-      display: inline-block;
-    }
-    .date{
-      width: 15%;
-    }
-    #vl{
-      padding-left: 20;
-      
-    }
-    #aa{
-      height: 34px;
-    }
-
-     
-  </style>
-
-    <script  src = "Views/Sistema/admin/bower_components/jquery/dist/jquery.js"></script> 
-    <script  src = "Views/Sistema/admin/bower_components/jquery/dist/jquery.min.js"></script> 
-
-    <script  src = "Views/Sistema/admin/bower_components/bootstrap/js/modal.js"></script> 
-  
-    <!--InputMask-->
-    <script  src = "Cazulo/Views/Sistema/admin/bower_components/inputmask/dist/jquery.inputmask.bundle.js"></script>
-    
-    <!--DatePicker-->
-    <link rel = "stylesheet" href ="Cazulo/Views/Sistema/admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
-    <script src ="Cazulo/Views/Sistema/admin/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-    <script src ="Views/Sistema/admin/bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js"></script>
-
-    <!--Bootstrap-Combobox-->
-    <link rel = "stylesheet" href ="Views/Sistema/admin/bower_components/bootstrap-combobox/css/bootstrap-combobox.css">
-    <script src ="Views/Sistema/admin/bower_components/bootstrap-combobox/js/bootstrap-combobox.js"></script>
-
-
-    <link rel = "stylesheet" href ="Views/Sistema/admin/css/style_css.css">
-    <script src ="Views/Sistema/admin/js/script_js.js"></script>
-    
+<section class="content">  
 
   <div class="box box-info">
     <div class="box-header with-border">
@@ -150,6 +100,37 @@
 
     <div class="box-body">
       <div class="table-responsive">
+
+        <div class="modal fade" id="myConfig1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                <p> Tem certeza que deseja excluir este item?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" onClick="$('#tr_1, #myConfig1, .in').remove();" class="btn btn-danger modal_confirma" data-dismiss="modal" >Sim</button>
+                  <button type="button" data-dismiss="modal" class="btn btn-default">Não</button>
+                </div>
+              </div>
+            </div><!--/modal-dialog-->
+            </div>
+          </div>  
+
+        <div class="modal fade" id="myConfig2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content" style="border-radius: 10px">
+                <div class="modal-body">
+                <p> Tem certeza que deseja excluir este item?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" onClick="$('#tr_2, #myConfig2, .in').remove();" class="btn btn-danger modal_confirma" data-dismiss="modal" >Sim</button>
+                  <button type="button" data-dismiss="modal" class="btn btn-default">Não</button>
+                </div>
+              </div>
+            </div><!--/modal-dialog-->
+            </div>
+          </div>  
+
         <table class="table table-striped no-margin">
           <thead>
             <tr>
@@ -161,28 +142,31 @@
             </tr> 
           </thead>
           <tbody id="bodyTable">
-            <tr class="demo">
+            <tr class="demo" id="tr_1">
               <td>1</td>
               <td>OR9842</td>
               <td><input class="form-control input_valor"></td> 
               <td><input class="form-control input_desc" type="text"></td>
               <td>
-                <div class="tools">
-                  <i class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#confirm"></i>
-                </div><!--/.tools-->
-              </td>
+                <button type="button" class="btn btn-default btn-linha" style="padding: 0;" data-toggle="modal" data-target="#myConfig1">
+                  <i class="glyphicon glyphicon-trash" ></i>
+                </button>              
+              </td>                                           
             </tr>
-            <tr class="demo" >
+            <tr class="demo" id="tr_2">
               <td>2</td>
               <td>OR1848</td>
               <td><input class="form-control input_valor"></td>
               <td><input class="form-control input_desc" type="text"></td>
               <td>
-                <div class="tools">
-                  <i class="glyphicon glyphicon-trash" data-toggle="modal"></i>                    
+                <button type="button" class="btn btn-default btn-linha" style="padding: 0;" data-toggle="modal" data-target="#myConfig2 ">
+                  <i class="glyphicon glyphicon-trash" ></i>
+                </button>                                              
+              </td>
             </tr>
           </tbody>
-        </table><!-- /.table .table-striped -->
+        </table><!-- /.table .table-striped -->            
+
           <br/>
           <div class="optEdit">
             <button id="btnNovo" type="button" class="btn btn-block btn-success btn-lg">
@@ -207,23 +191,17 @@ $(document).ready(function() {
     rightAlign: true,
     numericInput: true 
     });   
-  });   
-  //valor invalido na mascara
-  $(document).ready(function() {
-      Inputmask.extendDefaults({
+
+        Inputmask.extendDefaults({
       onKeyValidation: function(key, result){
           if (!result){
           alert('Valor inválido')
           }
       }
+    
       });
-  });
+
+      $('.combobox').combobox();
+  });   
   
-  
-  
-</script>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.combobox').combobox();
-  });
 </script>

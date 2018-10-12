@@ -84,3 +84,31 @@ font-size: 1.6rem;
 text-align:right;}
 /*FIM - Style para Tabelas*/
 
+
+.demo td button{visibility: hidden;}
+.demo:hover td button {visibility: visible;}
+th, td{text-align: center;}
+input.input_desc, .input_valor{
+    background:none;
+    border: none;
+}
+input.input_desc{width: 45vw;}
+.ui-datepicker-calendar {display: none;}
+.config{
+  float: right;
+  display: inline-block;
+}
+.date{
+  width: 15%;
+}
+#vl{
+  padding-left: 20;
+  
+}
+#aa{
+  height: 34px;
+}
+
+.btn-linha:focus, .btn-linha:active {
+  outline: none;
+}
