@@ -303,8 +303,8 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Cadastro Condôminos
-        <small>Formulario de cadastro</small>
+        Editar Condôminios
+        <small>Formulario de edição</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -322,31 +322,81 @@ desired effect
         <div id="main" class="container-fluid">
                    
             <!--Modificando o titulo da pagina--> 
-               <h3 class="page-header">Listar dados dos Condominios </h3>
+               <h3 class="page-header">Editar dados do Condominio Liberty II</h3>
             
                <!--Adcionar botoes-->    
                <form action="index.html">
                 <!-- area de campos do form -->
 
                 <!--Adcionar campos-->
+                <div class="row">
+                      
+                      <div class="form-group col-md-12">
+                        <label for="campo1">Nome</label>
+                        <input type="text" class="form-control" id="campo1">
+                        
+                      </div>
+                      
+                      <div class="form-group col-md-4">
+                          <label for="input-CNPJ">CNPJ</label>
+                          <input type="text" class="form-control cnpj-mask" id= "input-CNPJ" placeholder="Ex.: 00.000.000.0000-00" maxlength="14" autocomplete="off">
+                      </div>
 
-          <div class="container" id="box">    
+                      <div class="form-group col-md-4">
+                          <label for="example-input-1">Lançamento</label>
+                          <input type="text" class="form-control date-mask" id="example-input-1" placeholder="Ex.: dd/mm/aaaa" maxlength="10" autocomplete="off">
+                      </div>
+                    
+                      
+                        <div class="form-group col-md-4">
+                            <label for="input-construtora">Construtora</label>
+                            <input type="text" class="form-control Construtora-mask" id="input-construtora" placeholder=" " >
+                        </div>
 
-                <div class="form-group col-md-12">
-                    <label for="exampleFormControlSelect2">Condominios</label>
-                    <select multiple class="form-control" id="exampleFormControlSelect2">
-                      <option>Libetr II</option>
-                      <option>Kalarary</option>
-                      <option>YES 2</option>
-                      <option>Solar dos Passaros</option>
-                      <option>Jardins Madri</option>
-                    </select>
-                </div>
+                        <div class="form-group col-md-1">
+                            <label for="input-Nandares">N andares</label>
+                            <input type="number" class="form-control Nandares-mask" id="input-Nandares" placeholder=" " >
+                        </div>
+
+                        
+                        <div class="form-group col-md-3">
+                            <label for="campo1">Contato:</label>
+                            <input type="text" class="form-control phone-mask" placeholder="Ex.: 0000-0000">
+                        </div>
+
+                      
+                        <div class="form-group col-md-5">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ex.: seuemail@hotmail.com">
+                        </div>
 
 
+                        <div class="form-group col-md-3">
+                          <label for="campo2">CEP</label>
+                          <input type="text" class="form-control cep-mask" placeholder="Ex.: 00000-000">
+                        </div>
 
+                        <div class="form-group col-md-5">
+                            <label for="inputState">Rua</label>
+                            <input type="text" class="form-control phone-mask" placeholder="Rua x">
+                        </div>
 
-                      <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
+                          <label for="inputState">Numero</label>
+                          <input type="text" class="form-control phone-mask" placeholder="Rua x">
+                      </div>
+
+                      <div class="form-group col-md-5">
+                        <label for="inputState">Setor</label>
+                        <input type="text" class="form-control phone-mask" placeholder="Rua x">
+                    </div>
+
+                    <div class="form-group col-md-10">
+                      <label for="inputState">Complemento</label>
+                      <input type="text" class="form-control phone-mask" placeholder="Rua x">
+                  </div>
+
+                      <div class="form-group col-md-1">
                         <label for="inputState">UF</label>
                         <select id="inputState" class="form-control">
                           <option value="">Selecione</option>
@@ -380,27 +430,102 @@ desired effect
                         
                         </select>
                       </div>
+
+                    
+                    <div class="form-group col-md-1">
+                        <label for="input-NTorre">N Torres</label>
+                        <input type="text" class="form-control NAp-mask" id="input-NTorre" placeholder=" " >
+                  </div>
+                              
+
+                </div>    
+                
+    
+
+            <div class="container" id="box">
+
+                <div class="row">
+                    <div class="form-group col-md-2">
+                        <label for="campo3">Banco</label>
+                        <select id="inputState" class="form-control">
+                            <option value="APLiberty">Selecione o Banco</option>
+                          <option value="BB">001-Banco do Brasil</option>
+                          <option value="Unibanco">002-Banco Itau</option>
+                          <option value="CEF">003-Caixa Economica Federal</option>
+                        </select>
+                      </div>
+  
+                      <div class="form-group col-md-2">
+                          <label for="Magencia">Agencia</label>
+                          <input type="number" class="form-control" id="Nagencia">
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                          <label for="Nconta">Conta</label>
+                          <input type="number" class="form-control" id="Nconta">
+                        </div>
                       
+                      <div class="form-group col-md-3">
+                                <label for="campo3">Tipo de conta</label>
+                                <select id="inputState" class="form-control">
+                                    <option value="APLiberty">Selecione o tipo de conta</option>
+                                  <option value="APLiberty">001-conta corrente</option>
+                                  <option value="APSolDourado">013-conta poupança</option>
+                                </select>
+                      </div>
+
+                      <div class="form-group col-md-1">
+                          <label for="SalvarListaBancos">Salvar</label>
+                          <button type="submit" class="btn-Banco" id="btn-Banco">
+                              <input type="image" src="images/SetaDireita.png" width="30px" height="30px">
+                          </button>
+                      </div>
+
+                      
+
+                      <div class="form-group col-md-12">
+                        <label for="exampleFormControlSelect2">Bancos cadastrados</label>
+                        <select multiple class="form-control" id="exampleFormControlSelect2">
+                          <option>BB</option>
+                          <option>Itau</option>
+                          <option>CEF</option>
+                          <option>Bradesco</option>
+                          <option>HSBC</option>
+                        </select>
+                      </div>
+
+               
                       <hr />
                       <div id="actions" class="row">
                         <div class="col-md-12">
                           <center>
-                          <a href="ListarCondominios.html" class="btn btn-primary">Listar</a>
-                          <a href="index.html" class="btn btn-danger">Cancelar</a>
+                              <button type="submit" class="btn btn-primary">Excluir</button>
                           </center>
                         </div>
                       </div>
-                      
+  
 
+  
+                </div>
+
+            </div>
+               
+                    <hr />
+                    <div id="actions" class="row">
+                      <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">Atualizar</button>
+                        <a href="index.html" class="btn btn-danger">Cancelar</a>
+                      </div>
+                    </div>
+              
+              </form>
+            
+            
+            
           </div>
-      </form>
-            
-            
-            
-  </div>
 
 
-</section>
+    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
