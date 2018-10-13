@@ -8,129 +8,114 @@
     Previsão de Despesas
   </h1>
 </section>
-<section class="content">  
+<section class="content">
+  
+
+  <script type="text/javascript" src="Views/Sistema/admin/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  
+
+
+<!--InputMask-->
+<!--<script  src = "Cazulo/Views/Sistema/admin/bower_components/inputmask/dist/jquery.inputmask.bundle.js"></script>-->
+
+
+<!--Bootstrap-Combobox-->
+<script src ="Views/Sistema/admin/bower_components/bootstrap-combobox/js/bootstrap-combobox.js"></script>
+<link rel = "stylesheet" href ="Views/Sistema/admin/bower_components/bootstrap-combobox/css/bootstrap-combobox.css">
+  <script src ="Views/Sistema/admin/js/script_js.js"></script>
+  
+
 
   <div class="box box-info">
     <div class="box-header with-border">
 
       <!--Calendario-->
-        <div class="form-group calendar">
-          <label>Date masks:</label>
-          <!--Configuração-->
-          <div class="config">
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myConfig">
-                <i class="glyphicon glyphicon-cog"></i>
-              </button>
-
-              <!-- Modal -->
-        <div class="modal fade" id="myConfig" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="form-group calendar">
+        <label>Date masks:</label>
+        <!--Configuração-->
+        <div class="config">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myConfig">
+            <i class="glyphicon glyphicon-cog"></i>
+          </button>
+          <!-- Modal de config -->
+          <div class="modal fade" id="myConfig" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
                   <!--Botão para fechar tela Modal-->
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                   <h4 class="modal-title" id="myModalLabel">Configuração da Taxa de Condomínio</h4>
                 </div><!--/.modal-header-->
                 <div class="modal-body">
-                    <form class="form-inline">
-                      <input type="text" class="form-control">
-                      <label>%</label> 
-                    </form>
-
+                  <form class="form-inline">
+                    <input type="text" class="form-control">
+                    <label>%</label> 
+                  </form>
                 </div><!--/.modal-body-->
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                   <button type="button" class="btn btn-primary">Salvar mudanças</button>
                 </div><!--/.modal-footer-->
               </div><!--/.modal-content-->
-            </div><!--/modal-dialog-->
-            </div>
-          </div>
-            <div class="input-group date">
-              <input type="text" class="form-control" id="data">
-              <div class="input-group-addon">
-                <i class="fa fa-calendar" onclick="this.focus()"></i>
-              </div>
-            </div>
+            </div><!--/.modal-dialog-->
+          </div><!--/.modal-->
         </div>
-        
-
-
-      <!-- Botão para chamar tela Modal -->
+        <div class="input-group date">
+          <input type="text" class="form-control" id="data">
+          <div class="input-group-addon">
+            <i class="fa fa-calendar" onclick="this.focus()"></i>
+          </div>
+        </div>
+      </div>
+          
+      <!-- Botão para chamar tela Modal de seleção de despesas-->
       <button type="button" class="fa fa-plus btn bg-olive" data-toggle="modal" data-target="#myModal">
         Adicionar item
       </button>
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <!--Botão para fechar tela Modal-->
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Despesas</h4>
-              </div><!--/.modal-header-->
-              <div class="modal-body">
-                  <form class="form-inline">
-                      <div class="form-group">
-                        <select class="combobox form-control" style="display: none;">
-                          <option value="" selected="selected">Selecione sua despesa</option>
-                          <option value="Agua">Água</option>
-                          <option value="Adm. Condominio">Adm. Condominio</option>
-                          <option value="Eletricidade">Eletricidade</option>
-                          <option value="Seguranca">Segurança</option>
-                          <option value="Manutencao Elevador">Manutenção Elevador</option>
-                        </select>
-                        <label id="vl">Valor</label>
-                        <input id="aa">
-                      </div>
-                    </form>
-                    <label>Descrição</label>
-                    <input>
-                    
-              </div><!--/.modal-body-->
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary">Salvar mudanças</button>
-              </div><!--/.modal-footer-->
-            </div><!--/.modal-content-->
-          </div><!--/modal-dialog-->
-        </div>
-
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!--Botão para fechar tela Modal-->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Despesas</h4>
+            </div><!--/.modal-header-->
+            <div class="modal-body">
+              <form class="form-inline">
+                <div class="form-group">
+                  <select class="combobox form-control" style="display: none;" id="combo">
+                    <option value="" selected="selected">Selecione sua despesa</option>
+                    <option value="Água">Água</option>
+                    <option value="Adm. Condominio">Adm. Condominio</option>
+                    <option value="Eletricidade">Eletricidade</option>
+                    <option value="Segurança">Segurança</option>
+                    <option value="Manutenção Elevador">Manutenção Elevador</option>
+                  </select>
+                  <label id="vl">Valor</label>
+                  <input id="valor">
+                </div>
+              </form>
+              <label>Descrição</label>
+              <input id="descricao">     
+            </div><!--/.modal-body-->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+              <button type="button" class="btn btn-primary" id="bot">Salvar mudanças</button>
+            </div><!--/.modal-footer-->
+          </div><!--/.modal-content-->
+        </div><!--/modal-dialog-->
+      </div>
     </div><!-- /.box-header -->
 
+
+    <!--Tabela-->
     <div class="box-body">
       <div class="table-responsive">
-
-        <div class="modal fade" id="myConfig1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-body">
-                <p> Tem certeza que deseja excluir este item?</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" onClick="$('#tr_1, #myConfig1, .in').remove();" class="btn btn-danger modal_confirma" data-dismiss="modal" >Sim</button>
-                  <button type="button" data-dismiss="modal" class="btn btn-default">Não</button>
-                </div>
-              </div>
-            </div><!--/modal-dialog-->
-            </div>
-          </div>  
-
-        <div class="modal fade" id="myConfig2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content" style="border-radius: 10px">
-                <div class="modal-body">
-                <p> Tem certeza que deseja excluir este item?</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" onClick="$('#tr_2, #myConfig2, .in').remove();" class="btn btn-danger modal_confirma" data-dismiss="modal" >Sim</button>
-                  <button type="button" data-dismiss="modal" class="btn btn-default">Não</button>
-                </div>
-              </div>
-            </div><!--/modal-dialog-->
-            </div>
-          </div>  
-
         <table class="table table-striped no-margin">
           <thead>
             <tr>
@@ -142,47 +127,18 @@
             </tr> 
           </thead>
           <tbody id="bodyTable">
-            <tr class="demo" id="tr_1">
-              <td>1</td>
-              <td>OR9842</td>
-              <td><input class="form-control input_valor"></td> 
-              <td><input class="form-control input_desc" type="text"></td>
-              <td>
-                <button type="button" class="btn btn-default btn-linha" style="padding: 0;" data-toggle="modal" data-target="#myConfig1">
-                  <i class="glyphicon glyphicon-trash" ></i>
-                </button>              
-              </td>                                           
-            </tr>
-            <tr class="demo" id="tr_2">
-              <td>2</td>
-              <td>OR1848</td>
-              <td><input class="form-control input_valor"></td>
-              <td><input class="form-control input_desc" type="text"></td>
-              <td>
-                <button type="button" class="btn btn-default btn-linha" style="padding: 0;" data-toggle="modal" data-target="#myConfig2 ">
-                  <i class="glyphicon glyphicon-trash" ></i>
-                </button>                                              
-              </td>
-            </tr>
           </tbody>
-        </table><!-- /.table .table-striped -->            
-
-          <br/>
-          <div class="optEdit">
-            <button id="btnNovo" type="button" class="btn btn-block btn-success btn-lg">
-              <i class="fa fa-plus"></i>
-            </button>
-          </div><!--/.optEdit-->
-          <br/>       
+        </table><!-- /.table .table-striped -->       
       </div><!-- /.table-responsive -->
     </div><!-- /.box-body -->
   </div><!-- /.box -->
+
 </section>
 
 <script>
 //mascara inputmask, ERRO= não muda dinamicamente quando add outros
 $(document).ready(function() {
-    $(".input_valor").inputmask({
+    $("#valor").inputmask({
     'alias': 'decimal',
     'groupSeparator': '',
     'digits': 2,
@@ -190,18 +146,17 @@ $(document).ready(function() {
     'digitsOptional': false,
     rightAlign: true,
     numericInput: true 
-    });   
-
-        Inputmask.extendDefaults({
-      onKeyValidation: function(key, result){
-          if (!result){
-          alert('Valor inválido')
-          }
-      }
+    }); 
     
+    //valor invalido na mascara
+    Inputmask.extendDefaults({
+      onKeyValidation: function(key, result){
+          if (!result)alert('Valor inválido');
+      }
       });
 
-      $('.combobox').combobox();
+       $('.combobox').combobox();
   });   
+
   
 </script>
