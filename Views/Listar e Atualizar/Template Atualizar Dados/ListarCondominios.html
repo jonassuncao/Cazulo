@@ -277,22 +277,29 @@ desired effect
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">Menu</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Cadastro</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Atualizar</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Opções</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Cadastro</a></li>
-            <li><a href="#">Atualizar</a></li>
-          </ul>
-        </li>
-      </ul>
+        
+          <li class="header">Menu</li>
+          
+          <!-- Optionally, you can add icons to the links -->
+          <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Inicio</span></a></li>
+          
+          <li class="treeview">
+            <a href="#"><i class="fa fa-link"></i> <span>Cadastrar</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="/Views/Cadastro/Cadastro Condominos e Condominios/CadastrarCondominos.html">Condôminos</a></li>
+              <li><a href="/Views/Cadastro/Cadastro Condominos e Condominios/CadastrarCondominios.html">Condominios</a></li>
+            </ul>
+          </li>
+  
+          <li><a href="/Views/Listar e Atualizar/Template Atualizar Dados/Selecionar.html"><i class="fa fa-link"></i> <span>Listar</span></a></li>
+  
+          <li><a href="#"><i class="fa fa-link"></i> <span>Voltar</span></a></li>
+  
+        </ul>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
@@ -453,6 +460,7 @@ desired effect
                       <div id="actions" class="row">
                         <div class="col-md-12">
                           <center> 
+                          <a href="Selecionar.html" class="btn btn-info">Inicio</a>   
                           <a href="AtualizarCondôminios.html" class="btn btn-primary">Atualizar</a>
                           <a href="Selecionar.html" class="btn btn-danger">Cancelar</a>
                           </center>
