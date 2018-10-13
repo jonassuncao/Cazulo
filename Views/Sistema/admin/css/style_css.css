@@ -85,8 +85,12 @@ text-align:right;}
 /*FIM - Style para Tabelas*/
 
 
-.demo td button{visibility: hidden;}
-.demo:hover td button {visibility: visible;}
+.demo td i, .demo td button{visibility: hidden;}
+.demo:hover td i {visibility: visible;}
+.demo td i .glyphicon-trash{
+  width: 17;
+  height: 17;
+}
 th, td{text-align: center;}
 input.input_desc, .input_valor{
     background:none;
@@ -109,6 +113,3 @@ input.input_desc{width: 45vw;}
   height: 34px;
 }
 
-.btn-linha:focus, .btn-linha:active {
-  outline: none;
-}
