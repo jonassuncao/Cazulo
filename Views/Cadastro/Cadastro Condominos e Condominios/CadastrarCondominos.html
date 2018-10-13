@@ -33,21 +33,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-<style>
-
-#box{
-
-    background-color:rgb(205, 217, 221);
-    border-radius: 10px;
-    padding: 10px
-}
-
-#btn-Banco{
-  background: rgb(18, 142, 184);
-}
-
-</style>
-
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -278,28 +263,28 @@ desired effect
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         
-          <li class="header">Menu</li>
-          
-          <!-- Optionally, you can add icons to the links -->
-          <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Inicio</span></a></li>
-          
-          <li class="treeview">
-            <a href="#"><i class="fa fa-link"></i> <span>Cadastrar</span>
-              <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="/Views/Cadastro/Cadastro Condominos e Condominios/CadastrarCondominos.html">Condôminos</a></li>
-              <li><a href="/Views/Cadastro/Cadastro Condominos e Condominios/CadastrarCondominios.html">Condominios</a></li>
-            </ul>
-          </li>
-  
-          <li><a href="/Views/Listar e Atualizar/Template Atualizar Dados/Selecionar.html"><i class="fa fa-link"></i> <span>Listar</span></a></li>
-  
-          <li><a href="#"><i class="fa fa-link"></i> <span>Voltar</span></a></li>
-  
-        </ul>
+        <li class="header">Menu</li>
+        
+        <!-- Optionally, you can add icons to the links -->
+        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Inicio</span></a></li>
+        
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Cadastrar</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="/Views/Cadastro/Cadastro Condominos e Condominios/CadastrarCondominos.html">Condôminos</a></li>
+            <li><a href="/Views/Cadastro/Cadastro Condominos e Condominios/CadastrarCondominios.html">Condominios</a></li>
+          </ul>
+        </li>
+
+        <li><a href="/Views/Listar e Atualizar/Template Atualizar Dados/Selecionar.html"><i class="fa fa-link"></i> <span>Listar</span></a></li>
+
+        <li><a href="#"><i class="fa fa-link"></i> <span>Voltar</span></a></li>
+
+      </ul>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
@@ -329,32 +314,91 @@ desired effect
         <div id="main" class="container-fluid">
                    
             <!--Modificando o titulo da pagina--> 
-               <h3 class="page-header">Listar dados dos Condominios </h3>
+               <h3 class="page-header">Preencha as informações pessoais</h3>
             
                <!--Adcionar botoes-->    
                <form action="index.html">
                 <!-- area de campos do form -->
 
                 <!--Adcionar campos-->
+                <div class="row">
+                      
+                      <div class="form-group col-md-12">
+                        <label for="campo1">Nome</label>
+                        <input type="text" class="form-control" id="campo1">
+                        
+                      </div>
+                      
+                      <div class="form-group col-md-4">
+                          <label for="campo2">CPF</label>
+                          <input type="text" class="form-control cpf-mask" id= "input-CPF" placeholder="Ex.: 000.000.000-00" maxlength="14" autocomplete="off">
+                      </div>
 
-          <div class="container" id="box">    
+                      <div class="form-group col-md-4">
+                          <label for="example-input-1">Nascimento</label>
+                          <input type="text" class="form-control date-mask" id="example-input-1" placeholder="Ex.: dd/mm/aaaa" maxlength="10" autocomplete="off">
+                      </div>
+                    
+                      <div class="form-group col-md-4">
+                            
+                            <label for="example-input-1">Sexo</label>
+                            <select id="inputState" class="form-control">
+                                <option value="Não definido">Sexo</option>
+                                <option value="Solteiro">Masculino</option>
+                                <option value="Casado">Feminino</option>
+                            </select>
+                      </div>
 
-                <div class="form-group col-md-12">
-                    <label for="exampleFormControlSelect2">Condominios</label>
-                    <select multiple class="form-control" id="exampleFormControlSelect2">
-                      <option>Libetr II</option>
-                      <option>Kalarary</option>
-                      <option>YES 2</option>
-                      <option>Solar dos Passaros</option>
-                      <option>Jardins Madri</option>
-                    </select>
-                </div>
+                      
+                      <div class="form-group col-md-2">
+                          <label for="inputState">Estado Civil</label>
+                          <select id="inputState" class="form-control">
+                              <option value="Não definido">Estado Civil</option>
+                              <option value="Solteiro">Solteiro(a)</option>
+                              <option value="Casado">Casado(a)</option>
+                          </select>
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="input-profissao">Profissão</label>
+                            <input type="text" class="form-control profissao-mask" id="input-profissao" placeholder=" " >
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="input-NomeMãe">Nome da Mãe</label>
+                            <input type="text" class="form-control NomeMãe-mask" id="input-NomeMãe" placeholder=" " >
+                        </div>
+
+                        
+                        <div class="form-group col-md-3">
+                            <label for="campo1">Telefone fixo:</label>
+                            <input type="text" class="form-control phone-mask" placeholder="Ex.: 0000-0000">
+                        </div>
+                          
+                        
+                        <div class="form-group col-md-3">
+                            <label for="campo1">Telefone celular com DDD:</label>
+                            <input type="text" class="form-control phone-ddd-mask" placeholder="Ex.: (00) 0000-0000">
+                        </div>
+
+                      
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ex.: seuemail@hotmail.com">
+                        </div>
+
+                        <div class="form-group col-md-10">
+                            <label for="inputState">Endereço</label>
+                            <select id="inputState" class="form-control">
+                                <option value="APLiberty">Selecione o condominio</option>
+                              <option value="APLiberty">Liberty II</option>
+                              <option value="APSolDourado">Sol Dourado</option>
+                            </select>
+                          </div>
 
 
-
-
-                      <div class="form-group col-md-3">
-                        <label for="inputState">UF</label>
+                      <div class="form-group col-md-2">
+                        <label for="inputState">Estado</label>
                         <select id="inputState" class="form-control">
                           <option value="">Selecione</option>
                           <option value="AC">Acre</option>
@@ -387,27 +431,76 @@ desired effect
                         
                         </select>
                       </div>
-                      
-                      <hr />
-                      <div id="actions" class="row">
-                        <div class="col-md-12">
-                          <center>
-                          <a href="ListarCondominios.html" class="btn btn-primary">Listar</a>
-                          <a href="index.html" class="btn btn-danger">Cancelar</a>
-                          </center>
-                        </div>
+
+                          <div class="form-group col-md-4">
+                            <label for="campo2">CEP</label>
+                            <input type="text" class="form-control cep-mask" placeholder="Ex.: 00000-000">
+                          </div>
+                          
+                      <div class="form-group col-md-4">
+                          <label for="input-NAp">Ap</label>
+                          <input type="text" class="form-control NAp-mask" id="input-NAp" placeholder="Ap-xxxx " >
+                    </div>
+
+                    
+                    <div class="form-group col-md-4">
+                        <label for="input-NTorre">Torre</label>
+                        <input type="text" class="form-control NAp-mask" id="input-NTorre" placeholder=" " >
+                  </div>
+                              
+
+                </div>    
+                
+                
+                <div class="row">
+                    <div class="form-group col-md-2">
+                        <label for="campo3">Banco</label>
+                        <select id="inputState" class="form-control">
+                            <option value="APLiberty">Selecione o Banco</option>
+                          <option value="BB">001-Banco do Brasil</option>
+                          <option value="Unibanco">002-Banco Itau</option>
+                          <option value="CEF">003-Caixa Economica Federal</option>
+                        </select>
                       </div>
+
+                      <div class="form-group col-md-2">
+                          <label for="Magencia">Agencia</label>
+                          <input type="number" class="form-control" id="Nagencia">
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                          <label for="Nconta">Conta</label>
+                          <input type="number" class="form-control" id="Nconta">
+                        </div>
                       
+                      <div class="form-group col-md-4">
+                                <label for="campo3">Tipo de conta</label>
+                                <select id="inputState" class="form-control">
+                                    <option value="APLiberty">Selecione o tipo de conta</option>
+                                  <option value="APLiberty">001-conta corrente</option>
+                                  <option value="APSolDourado">013-conta poupança</option>
+                                </select>
+                      </div>
+                
 
+                </div>
+               
+                    <hr />
+                    <div id="actions" class="row">
+                      <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <a href="index.html" class="btn btn-danger">Cancelar</a>
+                      </div>
+                    </div>
+              
+              </form>
+            
+            
+            
           </div>
-      </form>
-            
-            
-            
-  </div>
 
 
-</section>
+    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
