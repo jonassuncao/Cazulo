@@ -113,3 +113,18 @@ input.input_desc{width: 45vw;}
   height: 34px;
 }
 
+#box{
+
+  background-color:rgb(205, 217, 221);
+  border-radius: 10px;
+  padding: 10px
+}
+
+button{
+  background: white;
+}
+
+
+#btn-Banco{
+  background: rgb(18, 142, 184);
+}
