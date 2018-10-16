@@ -122,6 +122,8 @@
     </div><!-- /.box-header -->
 
 
+    
+
     <!--Tabela-->
     <div class="box-body">
       <div class="table-responsive">
@@ -184,20 +186,12 @@
     </div><!-- /.box-body -->
   </div><!-- /.box -->
 
+  <td><input type="checkbox" id="select_all"></td>
 
+  
 
-
-  <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Validando formulários com JQuery Validation</title>
 <!-- Inclusão do jQuery-->
 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<!-- Inclusão do Plugin jQuery Validation-->
-<script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
-</head>
-<body>
  
 </section>
 
@@ -230,4 +224,22 @@ $(document).ready(function() {
       radioClass   : 'iradio_minimal-blue'
     })	
 
+
+</script>
+
+<script>
+
+  $('#select_all').click(function(event) {
+    if(this.checked) {
+      // Iterate each checkbox
+      $(':checkbox').each(function() {
+        this.checked = true;
+      });
+    }
+    else {
+      $(':checkbox').each(function() {
+        this.checked = false;
+      });
+    }
+  });
 </script>

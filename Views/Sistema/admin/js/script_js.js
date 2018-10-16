@@ -20,6 +20,7 @@ $(document).on('click', '#adicionar-item', function(){
     var inputFundoReserva = $('#inputValorFdReserva').val();
     var fundoReserva;
     var total;
+    var aux;
    
     $("#combo option:selected").each(function() {
         comboBox = $(this).val();
@@ -30,9 +31,9 @@ $(document).on('click', '#adicionar-item', function(){
     //adicionando linha na tabela
     $('#bodyTable').append(
         '<tr class="demo" id="tr_'+novoID+'">'                                     +
-        '   <td>'+novoID+'</td>'                                                   +
-        '   <td>'+comboBox+'</td>'                                                    +
-        '   <td class="valor-unit-desp">'+valorDespesa+'</td>'                            +
+        '   <td>'+novoID+'<input type="checkbox"></td>'                                                   +
+        '   <td>'+comboBox+'</td>'                                                 +
+        '   <td class="valor-unit-desp">'+valorDespesa+'</td>'                     +
         '   <td>'+desc+'</td>'                                                     +
         '   <td>'                                                                  +
         '       <i class="glyphicon glyphicon-pencil"></i>'                        +
@@ -90,7 +91,7 @@ function excluirLinha(linha){
 
     $(linha).remove();
 
-    //alert(text);
+    //pç;alert(text);
 
 }
 
@@ -124,17 +125,14 @@ $(document).on('click', '.modal_confirma', function(){
       '</div>').insertBefore('table');   
 });
 
+//quando adiciono mais despesas não funciona*************
 $(document).on('click', '#select-itens', function(){
 
-    $('.table thead tr').prepend('<th>kkkkkkkkkkk</th>');
+    $('.demo td:first-child input[type="checkbox"]').css("visibility", "visible");
 
-    $('.table tbody .demo').prepend(
-        '<div class="form-group">'+
-        '    <label>'+
-        '       <input type="checkbox" class="minimal">'+
-        '    </label>'+
-        '</div>');
-    
+    //<button type="button" id="select-itens" class="btn btn-default">
+      //  <i class="glyphicon glyphicon-trash"></i>
+      //</button>
 });
 
 $(document).on('click', '#salvarConfFdReserva', function(){
