@@ -1,0 +1,146 @@
+<section class="content-header">
+  <h1>
+    José da Silva
+    <small>123.456.789-00</small>
+  </h1>
+</section>
+
+<hr />
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+  <!--------------------------
+        | Your Page Content Here |
+        -------------------------->
+
+  <div id="main" class="container-fluid">
+
+    <!--Modificando o titulo da pagina-->
+
+    <!--Adcionar botoes-->
+    <form action="index.html">
+      <!-- area de campos do form -->
+
+      <!--Adcionar campos-->
+      <div class="row">
+
+
+        <div class="form-group col-md-2">
+          <label for="exampleFormControlSelect1">Proprietario</label>
+          <select onclick="pessoa(this.value)" class="form-control">
+            <option value="fisica">Fisica</option>
+            <option value="juridica">Juridica</option>
+          </select>
+        </div>
+
+
+        <div class="form-group col-md-4">
+          <label for="campo2">CPF/CNPJ</label>
+          <input type="text" class="form-control cpf-mask" id="input-CPF" placeholder="Ex.: 000.000.000-00" maxlength="14"
+            autocomplete="off">
+        </div>
+
+
+        <div class="form-group col-md-4">
+          <label for="campo2">RG/IE</label>
+          <input type="text" class="form-control cpf-mask" id="input-CPF" placeholder="Ex.: 000.000.000-00" maxlength="14"
+            autocomplete="off">
+        </div>
+
+        <div class="form-group col-md-12">
+          <label for="campo1">Nome/Razão Social</label>
+          <input type="text" class="form-control" id="campo1">
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="campo1">Telefone:</label>
+          <input type="text" class="form-control phone-mask" placeholder="Ex.:(00) 0000-0000">
+        </div>
+
+
+        <div class="form-group col-md-3">
+          <label for="campo1">Celular:</label>
+          <input type="text" class="form-control phone-ddd-mask" placeholder="Ex.: (00) 9 0000-0000">
+        </div>
+
+
+        <div class="form-group col-md-6">
+          <label for="exampleInputEmail1">Email</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ex.: seuemail@hotmail.com">
+        </div>
+
+        <div class="form-group col-md-8">
+            <label for="input-NAp">Condomínio</label>
+            <input type="text" class="form-control NAp-mask" id="input-NAp" disabled value="Condominio Liberty II (00.000.000/0000-00)">
+          </div>
+  
+
+        <div class="form-group col-md-2">
+          <label for="input-NAp">Apartamento</label>
+          <input type="text" class="form-control NAp-mask" id="input-NAp" placeholder="Apartamento">
+        </div>
+
+
+        <div class="form-group col-md-2">
+          <label for="input-NTorre">Torre</label>
+          <input type="text" class="form-control NAp-mask" id="input-NTorre" placeholder="Torre">
+        </div>
+
+
+        <hr />
+        <div class="form-group col-md-12">
+          <div id="box">
+
+            <div class="form-group col-md-6">
+              <label for="Magencia">Descrição</label>
+              <input type="text" class="form-control" id="Nagencia">
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="Nconta">Valor / %Tx. Condominio</label>
+              <input type="text" class="form-control" id="Nconta">
+            </div>
+
+
+            <div class="form-group col-md-2">
+              <br />
+              <a href="#" class="btn btn-success"><i class="fa fa-plus"></i></a>
+              <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i></a>
+              <a href="#" class="btn btn-info"><i class="fa fa-calendar"></i></a>
+            </div>
+
+
+
+            <div class="form-group col-md-10">
+              <label for="exampleFormControlSelect2">Lançamentos cadastrados</label>
+              <select multiple class="form-control" id="exampleFormControlSelect2">
+                <option>Taxa de Mudança | R$ 250,00</option>
+                <option>Garagem - <b>(Mensal)</b> | 6.0%</option>
+                <option>Isenção - <b>(Mensal)</b> | - 100.0%</option>
+              </select>
+            </div>
+
+
+            <div style="clear:both;"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <hr />
+      <div id="actions" class="row">
+        <div class="col-md-12">
+          <a href="" class="btn btn-primary">Salvar</a>
+          <a href="" class="btn btn-danger">Cancelar</a>
+        </div>
+      </div>
+
+    </form>
+
+
+
+  </div>
+
+
+</section>

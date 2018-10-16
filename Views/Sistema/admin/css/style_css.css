@@ -119,38 +119,13 @@ input#descricao{
   height: 34px;
   width: 48vw;
 }
-<<<<<<< HEAD
 
 #box{
-
   background-color:rgb(205, 217, 221);
   border-radius: 10px;
-  padding: 10px
+  padding: 10px;  
 }
-
-button{
-  background: white;
-}
-
 
 #btn-Banco{
   background: rgb(18, 142, 184);
-=======
-input#comboundefined.combobox.form-control, span.input-group-addon.dropdown-toggle{
-  border: 1px solid #999;
-}
-span.input-group-addon.dropdown-toggle{
-  border-left: none;
-}
-button.glyphicon.glyphicon-floppy-disk.btn.btn-primary{
-  width: 100px;
-  margin-right: 15pt; 
-  font-size: 14pt;
-}
-tfoot#footTable{
-  visibility: hidden;
-}
-th#total{
-  color: red;
->>>>>>> 5cd961b5c6235c0a6d59d127d7a0d884b333f0e9
 }

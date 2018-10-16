@@ -1,11 +1,12 @@
 <section class="content-header">
   <h1>
     Condominio Liberty II
-    <small>Informações</small>
+    <small> - Última Atualização: 16/10/2018 16:55 - ADMIN</small>
   </h1>
 </section>
 
 <!-- Main content -->
+<hr />
 <section class="content container-fluid">
 
   <!--------------------------
@@ -16,7 +17,7 @@
 
 
     <!--Adcionar botoes-->
-    <form action="index.html">
+    <form>
       <!-- area de campos do form -->
 
       <!--Adcionar campos-->
@@ -31,31 +32,18 @@
 
         <div class="form-group col-md-3">
           <label for="input-CNPJ">CNPJ</label>
-          <p> 00.000.000.0000-00 </p>
+          <p> 00.000.000/0000-00 </p>
         </div>
 
         <div class="form-group col-md-3">
-          <label for="example-input-1">Lançamento</label>
-          <p> dd/mm/aaaa </p>
-        </div>
-
-
-        <div class="form-group col-md-3">
-          <label for="input-construtora">Construtora</label>
-          <p>Construtora</p>
-        </div>
-
-        <div class="form-group col-md-3">
-          <label for="input-Nandares">N andares</label>
-          <p>Numero de andares</p>
-        </div>
-
-
-        <div class="form-group col-md-3">
-          <label for="campo1">Contato:</label>
+          <label for="campo1">Telefone</label>
           <p>(62)0000-0000</p>
         </div>
 
+        <div class="form-group col-md-3">
+          <label for="campo1">Celular</label>
+          <p>(62)90000-0000</p>
+        </div>
 
         <div class="form-group col-md-3">
           <label for="exampleInputEmail1">Email</label>
@@ -73,7 +61,7 @@
           <p>Rua xxxxx </p>
         </div>
 
-        <div class="form-group col-md-1">
+        <div class="form-group col-md-3">
           <label for="inputState">Numero</label>
           <p>444</p>
         </div>
@@ -83,9 +71,14 @@
           <p>Setor Bueno</p>
         </div>
 
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-6">
           <label for="inputState">Complemento</label>
           <p>Qd XX Lt xx-aa</p>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="inputState">Município</label>
+          <p>Goiânia</p>
         </div>
 
         <div class="form-group col-md-2">
@@ -94,15 +87,14 @@
         </div>
 
       </div>
-
+      <hr/>
 
       <div class="table-wrapper-scroll-y">
 
         <table class="table table-wrapper-scroll-y">
           <thead>
             <tr>
-              <th scope="col">N</th>
-              <th scope="col">Bancos Cdastrados</th>
+              <th scope="col">Bancos Castrados</th>
               <th scope="col">Agencia</th>
               <th scope="col">Conta</th>
               <th scope="col">Operação</th>
@@ -110,31 +102,15 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row">1</th>
-              <td>Banco do Brasil</td>
-              <td>0000-0</td>
-              <td>000000-0</td>
-              <td>013</td>
+              <td>Caixa Economica Federal</td>
+              <td>1234</td>
+              <td>12345678-1</td>
+              <td>001</td>
             </tr>
             <tr>
-              <th scope="row">2</th>
-              <td>Itau</td>
+              <td>Itau - <b>(Encerrada em 16/10/2018 17:00 - ADMIN)</b></td>
               <td>1234-5</td>
-              <td>665888-8</td>
-              <td>001</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Bradesco</td>
-              <td>6554</td>
-              <td>1345446-5</td>
-              <td>001</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>HSBC</td>
-              <td>5656</td>
-              <td>55488-2</td>
+              <td>12345678-1</td>
               <td>013</td>
             </tr>
           </tbody>
@@ -145,31 +121,40 @@
       <hr />
       <div id="actions" class="row">
         <div class="col-md-12">
-          <a href="" class="btn btn-info">Inicio</a>
-          <a href="" class="btn btn-primary">Atualizar</a>
-          <a href="" class="btn btn-danger">Cancelar</a>
+          <a href="#" class="btn btn-default">Voltar</a>
+          <a href="#" class="btn btn-primary">Atualizar</a>
         </div>
       </div>
       <hr />
 
 
-      <div class="container" id="box">
-
-        <div class="form-group col-md-12">
-          <label for="exampleFormControlSelect2">Condôminos</label>
-          <select multiple class="form-control" id="exampleFormControlSelect2">
-            <option>Jader Henrique</option>
-            <option>Dominic</option>
-            <option>Jhonatan</option>
-            <option>David</option>
-          </select>
-        </div>
-
-        <hr />
-        <div id="actions" class="row">
-          <div class="col-md-12">
-            <a href="" class="btn btn-primary">Listar</a>
+      <div id="box">
+          <div class="form-group col-md-12">
+  
+            <div style="width: 30vw;" class="input-group input-group-sm">
+              <input type="text" class="form-control" placeholder="Informe o Apartamento/Torre/Nome Condômino">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-success btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+  
+            <hr />
+  
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+              <option selected>101-B | José da Silva</option>
+              <option>102-B | Maria Aparecida</option>
+            </select>
+  
+            <hr />
+  
+            <div id="actions" class="row">
+              <div class="col-md-12">
+                <a href="#" class="btn btn-primary">Listar</a>
+              </div>
+            </div>
+  
           </div>
+          <div style="clear: both;"></div>
         </div>
       </div>
 

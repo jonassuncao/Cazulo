@@ -1,14 +1,190 @@
-<!--?php
-    //Pega as variáveis para renderizar a página
-    $valores = $this->getHTMLValores();       
-?-->
 <section class="content-header">
   <h1>
-    Parâmetros
-    <small>Condomínio</small>
+    Condomínio Residencial Liberty II
+    <small>19.494.332/0001-06</small>
   </h1>
+
 </section>
-<section class="content">
-     
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+
+  <div id="main" class="container-fluid">
+
+
+    <!--Adcionar botoes-->
+    <form>
+      <!-- area de campos do form -->
+      <hr />
+
+      <!--Adcionar campos-->
+      <div class="row">
+        <div class="form-group col-md-11">
+          <label for="campo1">Razão Social</label>
+          <input type="text" class="form-control" id="campo1">
+
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="input-CNPJ">CNPJ</label>
+          <input type="text" class="form-control cnpj-mask" id="input-CNPJ" placeholder="Ex.: 00.000.000.0000-00"
+            maxlength="14" autocomplete="off">
+        </div>
+
+        <div class="form-group col-md-2">
+          <label for="campo1">Telefone:</label>
+          <input type="text" class="form-control phone-mask" placeholder="Ex.:(00) 0000-0000">
+        </div>
+
+        <div class="form-group col-md-2">
+          <label for="campo1">Celular:</label>
+          <input type="text" class="form-control phone-mask" placeholder="Ex.:(00) 9 0000-0000">
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="exampleInputEmail1">Email</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ex.: seuemail@hotmail.com">
+        </div>
+
+        <br />
+
+        <div class="form-group col-md-2">
+          <label for="campo2">CEP</label>
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control" placeholder="Ex.: 00000-000">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-success btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputState">Rua</label>
+          <input type="text" class="form-control phone-mask" placeholder="Rua x">
+        </div>
+
+        <div class="form-group col-md-1">
+          <label for="inputState">Numero</label>
+          <input type="text" class="form-control phone-mask" placeholder="123">
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputState">Setor</label>
+          <input type="text" class="form-control phone-mask" placeholder="Rua x">
+        </div>
+
+        <div class="form-group col-md-5">
+          <label for="inputState">Complemento</label>
+          <input type="text" class="form-control phone-mask" placeholder="Qd. XXX Lt. XXX">
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputState">Município</label>
+          <input type="text" class="form-control phone-mask" placeholder="Goiânia">
+        </div>
+
+        <div class="form-group col-md-2">
+          <label for="inputState">UF</label>
+          <select id="inputState" class="form-control">
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option>
+            <option value="ES">Espirito Santo</option>
+            <option value="GO" selected>Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+
+          </select>
+        </div>
+
+      </div>
+
+
+
+      <div id="box" class="form-group col-md-11">
+
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label for="campo3">Banco</label>
+            <select id="inputState" class="form-control">
+              <option value="001">Banco do Brasil</option>
+              <option value="002">Banco Itau</option>
+              <option value="003" selected>Caixa Economica Federal</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-1">
+            <label for="Magencia">Agência</label>
+            <input type="number" class="form-control" id="Nagencia">
+          </div>
+
+          <div class="form-group col-md-2">
+            <label for="Nconta">Conta</label>
+            <input type="number" class="form-control" id="Nconta">
+          </div>
+
+          <div class="form-group col-md-3">
+            <label for="campo3">Tipo de conta</label>
+            <select id="inputState" class="form-control">
+              <option value="001">Conta Corrente</option>
+              <option value="0013">Conta Poupança</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-2">
+            <br />
+            <a href="#" class="btn btn-success"><i class="fa fa-plus"></i></a>
+            <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i></a>
+            <a href="#" class="btn btn-info"><i class="fa fa-lock"></i></a>
+          </div>
+
+
+
+          <div class="form-group col-md-10">
+            <label for="exampleFormControlSelect2">Bancos cadastrados</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+              <option>Caixa Economica Federal - AG: 1234 C/C: 12345678-1</option>
+              <option>Itau - AG: 1234 C/P: 12345678-1</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div style="clear:both;"></div>
+      </div>
+
+      <hr />
+      <div id="actions" class="row">
+        <div class="col-md-12">
+          <a href="#" class="btn btn-primary">Salvar</a>
+          <a href="#" class="btn btn-danger">Cancelar</a>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
 
 </section>
