@@ -29,8 +29,15 @@
       <!--Calendario-->
       <div class="form-group calendar">
         <label>Date masks:</label>
-        <!--Configuração-->
-        <div class="config">
+        <div class="icone-desp">
+          <button type="button" id="select-itens" class="btn btn-default">
+            <i class="glyphicon glyphicon-th-list"></i>
+          </button>
+          <!--Botão de fixar-->
+          <button type="button" class="btn btn-default">
+            <i class="glyphicon glyphicon-pushpin"></i>
+          </button>
+          <!--Botão de Configuração-->
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myConfig">
             <i class="glyphicon glyphicon-cog"></i>
           </button>
@@ -43,17 +50,18 @@
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
-                  <h4 class="modal-title" id="myModalLabel">Configuração da Taxa de Condomínio</h4>
+                  <h4 class="modal-title" id="myModalLabel">Configuração</h4>
                 </div><!--/.modal-header-->
                 <div class="modal-body">
                   <form class="form-inline">
-                    <input type="text" class="form-control">
+                    <label>Fundo de reserva*</label> 
+                    <input type="text" class="form-control" placeholder="10%" id="inputValorFdReserva">
                     <label>%</label> 
                   </form>
                 </div><!--/.modal-body-->
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                  <button type="button" class="btn btn-primary">Salvar mudanças</button>
+                  <button type="button" class="btn btn-primary" id="salvarConfFdReserva">Salvar</button>
                 </div><!--/.modal-footer-->
               </div><!--/.modal-content-->
             </div><!--/.modal-dialog-->
@@ -68,7 +76,7 @@
       </div>
           
       <!-- Botão para chamar tela Modal de seleção de despesas-->
-      <button type="button" class="fa fa-plus btn bg-olive" data-toggle="modal" data-target="#myModal">
+      <button type="button" class="fa fa-plus btn btn-primary" data-toggle="modal" data-target="#myModal">
         Adicionar item
       </button>
       <!-- Modal -->
@@ -83,26 +91,30 @@
               <h4 class="modal-title" id="myModalLabel">Despesas</h4>
             </div><!--/.modal-header-->
             <div class="modal-body">
-              <form class="form-inline">
-                <div class="form-group">
-                  <select class="combobox form-control" style="display: none;" id="combo">
-                    <option value="" selected="selected">Selecione sua despesa</option>
-                    <option value="Água">Água</option>
-                    <option value="Adm. Condominio">Adm. Condominio</option>
-                    <option value="Eletricidade">Eletricidade</option>
-                    <option value="Segurança">Segurança</option>
-                    <option value="Manutenção Elevador">Manutenção Elevador</option>
-                  </select>
-                  <label id="vl">Valor</label>
-                  <input id="valor">
-                </div>
-              </form>
-              <label>Descrição</label>
-              <input id="descricao">     
+                <form class="form-inline" id="validar-Formulario">
+                    <div class="form-group">
+                      <p>
+                              <label for="combo">Tipo*</label>
+                              <select class="combobox form-control" style="display: none;" id="combo">
+                                <option value="" selected="selected">Selecione sua despesa</option>
+                                <option value="Água">Água</option>
+                                <option value="Adm. Condominio">Adm. Condominio</option>
+                                <option value="Eletricidade">Eletricidade</option>
+                                <option value="Segurança">Segurança</option>
+                                <option value="Manutenção Elevador">Manutenção Elevador</option>
+                              </select>
+                              <label for="valor">Valor*</label>
+                              <input id="valor" required>
+                              </p>
+                              <label for="descricao">Descrição*</label>
+                              <input type="text" id="descricao" required> 
+                    </div>
+                  </form>
             </div><!--/.modal-body-->
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-primary" id="bot">Salvar mudanças</button>
+              <button type="button" class="btn btn-primary" id="adicionar-item">Adicionar</button>
+              
             </div><!--/.modal-footer-->
           </div><!--/.modal-content-->
         </div><!--/modal-dialog-->
@@ -124,17 +136,69 @@
             </tr> 
           </thead>
           <tbody id="bodyTable">
-            
+
           </tbody>
-          <tfoot>
-            <th colspan="2">Total</td>  
-            <th id=soma-desp></th>
+          <tfoot id="footTable">
+              <tr>
+                  <th colspan="2">Sub-Total</td>
+                  <th id="subTotal"></th>
+                  <th colspan="2"></th>
+                </tr>
+                <tr>
+                  <th colspan="2">Fundo de Reserva</th>
+                  <th id="fundoReserva"></th>
+                  <th colspan="2"></th>
+                </tr>
+                <tr>
+                  <th colspan="2">Total</th>
+                  <th id="total"></th>
+                  <th colspan="2"></th>
+                </tr>
           </tfoot>
         </table><!-- /.table .table-striped -->       
       </div><!-- /.table-responsive -->
+      <!--Salvar Previsão-->
+        <button type="button" class="glyphicon glyphicon-floppy-disk btn btn-primary" data-toggle="modal" data-target="#save-despesa"></button>
+          <!-- Modal -->
+          <div class="modal fade" id="save-despesa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <!--Botão para fechar tela Modal-->
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title" id="myModalLabel">Salvar</h4>
+                </div><!--/.modal-header-->
+                <div class="modal-body">
+                  Se você optar por salvar está previsão orçamentária ela não poderá mais ser editada, caso seu documento ainda não esteja pronto, salve como rascunho.    
+                </div><!--/.modal-body-->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                  <button type="button" class="btn btn-info" id="bot">Salvar como Rascunho</button><!--id adicionar-item-->
+                  <button type="button" class="btn btn-primary" id="bot">Salvar</button>
+                </div><!--/.modal-footer-->
+              </div><!--/.modal-content-->
+            </div><!--/modal-dialog-->
+          </div>
     </div><!-- /.box-body -->
   </div><!-- /.box -->
 
+
+
+
+  <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Validando formulários com JQuery Validation</title>
+<!-- Inclusão do jQuery-->
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<!-- Inclusão do Plugin jQuery Validation-->
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
+</head>
+<body>
+ 
 </section>
 
 <script>
@@ -160,5 +224,10 @@ $(document).ready(function() {
        $('.combobox').combobox();
   });   
 
-  
+  //iCheck for checkbox and radio inputs
+  $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    })	
+
 </script>

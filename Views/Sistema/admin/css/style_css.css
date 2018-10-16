@@ -98,20 +98,28 @@ input.input_desc, .input_valor{
 }
 input.input_desc{width: 45vw;}
 .ui-datepicker-calendar {display: none;}
-.config{
-  float: right;
+.icone-desp, button.glyphicon.glyphicon-floppy-disk.btn.btn-primary{
+  float:right;
   display: inline-block;
 }
 .date{
   width: 15%;
 }
-#vl{
-  padding-left: 20;
-  
+.form-group label{
+  padding-right: 10;
+  padding-left: 10;
 }
-#aa{
+  
+input#valor{
+  width: 20vw;
   height: 34px;
 }
+input#descricao{
+  margin-top: 1vw;
+  height: 34px;
+  width: 48vw;
+}
+<<<<<<< HEAD
 
 #box{
 
@@ -127,4 +135,22 @@ button{
 
 #btn-Banco{
   background: rgb(18, 142, 184);
+=======
+input#comboundefined.combobox.form-control, span.input-group-addon.dropdown-toggle{
+  border: 1px solid #999;
+}
+span.input-group-addon.dropdown-toggle{
+  border-left: none;
+}
+button.glyphicon.glyphicon-floppy-disk.btn.btn-primary{
+  width: 100px;
+  margin-right: 15pt; 
+  font-size: 14pt;
+}
+tfoot#footTable{
+  visibility: hidden;
+}
+th#total{
+  color: red;
+>>>>>>> 5cd961b5c6235c0a6d59d127d7a0d884b333f0e9
 }
