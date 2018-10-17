@@ -8,6 +8,148 @@
   </h1>
 </section>
 <section class="content">
-     
+<div class="box"> 
+    <div class="box-header with-border">
+      <div class="box-body">
+        <div class="col-md-16">
+
+                  <!-- Início Mês-->
+                  <div class="form-group" style="width: 100px; float:left; margin-right:10px;">
+                    <label>Mês</label>
+                    <select class="form-control select2">
+                      <option selected="selected">01</option>
+                      <option>02</option>
+                      <option>03</option>
+                      <option>04</option>
+                      <option>05</option>
+                      <option>06</option>
+                      <option>07</option>
+                      <option>08</option>
+                      <option>09</option>
+                      <option>10</option>
+                      <option>11</option>
+                      <option>12</option>
+                    </select>
+                  </div>
+                  <!-- Fim Mês-->
+                  <!-- Início Ano-->
+                  <div class="form-group" style="width: 100px; float:left; ">
+                    <label>Ano</label>
+                    <select class="form-control select2">
+                      <option selected="selected">2018</option>
+                      <option>2017</option>
+                      <option>2016</option>
+                      <option>2015</option>
+                    </select>
+                  </div>
+                  <!-- Fim Ano-->
+                  <!-- Botão Iniciar Previsão-->
+                  <div class="row">
+                    <button type="button" id="buscarPrevisao"title="Buscar Taxa de Condomínio dos meses anteriores" class="btn btn-block btn-success novaPrevisao"><i class="glyphicon glyphicon-ok"></i></button>
+                  </div>
+                  <!-- Fim Botão-->
+      <div id="encontrarPrevisao" >
+          <!--Tabela-->
+          <div class="table-responsive">
+            <table class="table table-striped no-margin">
+              <thead>
+                <tr>
+                  <th>Bloco</th>
+                  <th>Ap</th>
+                  <th>Nome</th>
+                  <th>Valor</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="bodyTable">
+                <tr>
+                  <td>A</td>
+                  <td>201</td>
+                  <td>Maria Francisca Silva</td>
+                  <td>150,00</td>
+                  <td>
+                    <div>
+                      <i class="glyphicon glyphicon-envelope"></i>
+                      <button type="button" class="btn btn-default btn-linha" style="padding: 0;" data-toggle="modal" data-target="#myConfig' + novoID + '">
+                        <i class="glyphicon glyphicon-plus"></i>
+                      </button>
+                    </div>
+                </tr>
+                <tr>
+                  <td>A</td>
+                  <td>505</td>
+                  <td>Joaquim Barbosa Filho</td>
+                  <td>150,00</td>
+                  <td>
+                    <div>
+                      <i class="glyphicon glyphicon-envelope"></i>
+                      <button type="button" class="btn btn-default btn-linha" style="padding: 0;" data-toggle="modal" data-target="#myConfig' + novoID + '">
+                        <i class="glyphicon glyphicon-plus"></i>
+                      </button>
+                    </div></td>
+                </tr>
+                <tr>
+                  <td>C</td>
+                  <td>102</td>
+                  <td>Antonele Fontinele Duarte</td>
+                  <td>100,00</td>
+                  <td>
+                    <div>
+                      <i class="glyphicon glyphicon-envelope"></i>
+                      <button type="button" class="btn btn-default btn-linha" style="padding: 0;" data-toggle="modal" data-target="#myConfig' + novoID + '">
+                        <i class="glyphicon glyphicon-plus"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>102</td>
+                    <td>Marcelo Farias Souza</td>
+                    <td>Isento</td>
+                    <td>
+                      <i class="glyphicon glyphicon-info-sign"></i> 
+                    </td>
+                  </tr>
+
+              </tbody>
+            </table><!-- /.table .table-striped -->
+          </div><!-- /.table-responsive -->
+          <a href="" id="gerarBoleto" class="btn btn-primary">Gerar Boleto</a>
+      </div>
+    </div>
+  </div>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+          <div class="col-md-3">
+            <div class="box box-default collapsed-box">
+              <div class="box-header with-border">
+                <h3 class="box-title">Expandable</h3>
+  
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                  </button>
+                </div>
+                <!-- /.box-tools -->
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                The body of the box
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+      </section>
+      <!-- /.content -->
+    </div>
+
 
 </section>
