@@ -9,26 +9,58 @@
   </h1>
 </section>
 <section class="content">
-   
-
-
-<!--InputMask-->
-<!--<script  src = "Cazulo/Views/Sistema/admin/bower_components/inputmask/dist/jquery.inputmask.bundle.js"></script>-->
-
-
-<!--Bootstrap-Combobox-->
-<script src ="Views/Sistema/admin/bower_components/bootstrap-combobox/js/bootstrap-combobox.js"></script>
-<link rel = "stylesheet" href ="Views/Sistema/admin/bower_components/bootstrap-combobox/css/bootstrap-combobox.css">
-  <script src ="Views/Sistema/admin/js/script_js.js"></script>
-  
-
 
   <div class="box">
     <div class="box-header with-border">
+      <div class="box-body">
+        <div class="col-md-16">
 
+          <!-- Início Ano-->
+          <div class="form-group" style="width: 100px; float:left; margin-right:10px;">
+            <label>Ano</label>
+            <select class="form-control select2">
+              <option selected="selected">2018</option>
+              <option>2017</option>
+              <option>2016</option>
+              <option>2015</option>
+            </select>
+          </div>
+          <!-- Fim Ano-->
+          <!-- Início Mês-->
+          <div class="form-group" style="width: 100px; float:left;">
+            <label>Mês</label>
+            <select class="form-control select2">
+              <option selected="selected">12</option>
+              <option>11</option>
+              <option>10</option>
+              <option>09</option>
+              <option>08</option>
+              <option>07</option>
+              <option>06</option>
+              <option>05</option>
+              <option>04</option>
+              <option>03</option>
+              <option>02</option>
+              <option>01</option>
+            </select>
+          </div>
+          <!-- Fim Mês-->
+          <!-- Início Botões-->
+          <div class="row" style="width: 40px; float:left; margin-left:10px;">
+            <button type="button" title="Iniciar Nova Previsão" class="btn btn-block btn-success"><i class="fa fa-plus"></i></button>
+            <button type="button" title="Editar Previsão" class="btn btn-block btn-warning"><i class="fa fa-edit"></i></button>
+          </div>
+          <div class="row" style="width: 40px; float:left; margin-left:25px;">
+            <button type="button" title="Imprimir Previsão" class="btn btn-block btn-primary"><i class="fa fa-print"></i></button>
+          </div>
+          <!-- Fim Botões-->
+
+        </div>
+      </div>
+      <hr />
       <!--Calendario-->
       <div class="form-group calendar">
-        <label>Date masks:</label>
+
         <div class="icone-desp">
           <button type="button" id="select-itens" class="btn btn-default">
             <i class="glyphicon glyphicon-th-list"></i>
@@ -41,6 +73,7 @@
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myConfig">
             <i class="glyphicon glyphicon-cog"></i>
           </button>
+
           <!-- Modal de config -->
           <div class="modal fade" id="myConfig" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
@@ -51,30 +84,31 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                   <h4 class="modal-title" id="myModalLabel">Configuração</h4>
-                </div><!--/.modal-header-->
+                </div>
+                <!--/.modal-header-->
                 <div class="modal-body">
                   <form class="form-inline">
-                    <label>Fundo de reserva*</label> 
-                    <input type="text" class="form-control" placeholder="10%" id="inputValorFdReserva">
-                    <label>%</label> 
+                    <label>Fundo de reserva*</label>
+                    <input type="text" class="form-control" placeholder="10" id="inputValorFdReserva">
+                    <label>%</label>
                   </form>
-                </div><!--/.modal-body-->
+                </div>
+                <!--/.modal-body-->
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                  <button type="button" class="btn btn-primary" id="salvarConfFdReserva">Salvar</button>
-                </div><!--/.modal-footer-->
-              </div><!--/.modal-content-->
-            </div><!--/.modal-dialog-->
-          </div><!--/.modal-->
-        </div>
-        <div class="input-group date">
-          <input type="text" class="form-control" id="data">
-          <div class="input-group-addon">
-            <i class="fa fa-calendar" onclick="this.focus()"></i>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" id="salvarConfFdReserva">Salvar</button>
+                </div>
+                <!--/.modal-footer-->
+              </div>
+              <!--/.modal-content-->
+            </div>
+            <!--/.modal-dialog-->
           </div>
+          <!--/.modal-->
         </div>
+
       </div>
-          
+
       <!-- Botão para chamar tela Modal de seleção de despesas-->
       <button type="button" class="fa fa-plus btn btn-primary" data-toggle="modal" data-target="#myModal">
         Adicionar item
@@ -89,37 +123,49 @@
                 <span aria-hidden="true">&times;</span>
               </button>
               <h4 class="modal-title" id="myModalLabel">Despesas</h4>
-            </div><!--/.modal-header-->
+            </div>
+            <!--/.modal-header-->
             <div class="modal-body">
-                <form class="form-inline" id="validar-Formulario">
-                    <div class="form-group">
-                      <p>
-                              <label for="combo">Tipo*</label>
-                              <select class="combobox form-control" style="display: none;" id="combo">
-                                <option value="" selected="selected">Selecione sua despesa</option>
-                                <option value="Água">Água</option>
-                                <option value="Adm. Condominio">Adm. Condominio</option>
-                                <option value="Eletricidade">Eletricidade</option>
-                                <option value="Segurança">Segurança</option>
-                                <option value="Manutenção Elevador">Manutenção Elevador</option>
-                              </select>
-                              <label for="valor">Valor*</label>
-                              <input id="valor" required>
-                              </p>
-                              <label for="descricao">Descrição*</label>
-                              <input type="text" id="descricao" required> 
-                    </div>
-                  </form>
-            </div><!--/.modal-body-->
+              <div class="row">
+
+                <div class="form-group col-md-8">
+                  <label for="combo">Tipo *</label>
+                  <select style="width: 100%" class="combobox form-control" id="combo">
+                    <option value="Água" selected="selected">Água</option>
+                    <option value="Adm. Condominio">Adm. Condominio</option>
+                    <option value="Eletricidade">Eletricidade</option>
+                    <option value="Segurança">Segurança</option>
+                    <option value="Manutenção Elevador">Manutenção Elevador</option>
+                  </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label for="valor">Valor *</label>
+                  <input style="width: 100%" type="number" id="valor">
+                </div>
+
+                <div class="form-group col-md-12">
+                  <label>Descrição *</label>
+                  <input style="width: 100%" type="text" id="descricao">
+                </div>
+
+              </div>
+            </div>
+            <!--/.modal-body-->
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
               <button type="button" class="btn btn-primary" id="adicionar-item">Adicionar</button>
-              
-            </div><!--/.modal-footer-->
-          </div><!--/.modal-content-->
-        </div><!--/modal-dialog-->
+
+            </div>
+            <!--/.modal-footer-->
+          </div>
+          <!--/.modal-content-->
+        </div>
+        <!--/modal-dialog-->
       </div>
     </div><!-- /.box-header -->
+
+
 
 
     <!--Tabela-->
@@ -129,105 +175,178 @@
           <thead>
             <tr>
               <th>#</th>
-               <th>Despesa</th>
-               <th>Valor</th>
-               <th>Descrição</th>
-               <th></th>
-            </tr> 
+              <th>Despesa</th>
+              <th>Valor</th>
+              <th>Descrição</th>
+              <th></th>
+            </tr>
           </thead>
           <tbody id="bodyTable">
 
           </tbody>
           <tfoot id="footTable">
-              <tr>
-                  <th colspan="2">Sub-Total</td>
-                  <th id="subTotal"></th>
-                  <th colspan="2"></th>
-                </tr>
-                <tr>
-                  <th colspan="2">Fundo de Reserva</th>
-                  <th id="fundoReserva"></th>
-                  <th colspan="2"></th>
-                </tr>
-                <tr>
-                  <th colspan="2">Total</th>
-                  <th id="total"></th>
-                  <th colspan="2"></th>
-                </tr>
+            <tr>
+              <th colspan="2">Sub-Total</td>
+              <th id="subTotal"></th>
+              <th colspan="2"></th>
+            </tr>
+            <tr>
+              <th colspan="2">Fundo de Reserva</th>
+              <th id="fundoReserva"></th>
+              <th colspan="2"></th>
+            </tr>
+            <tr>
+              <th colspan="2">Total</th>
+              <th id="total"></th>
+              <th colspan="2"></th>
+            </tr>
           </tfoot>
-        </table><!-- /.table .table-striped -->       
+        </table><!-- /.table .table-striped -->
       </div><!-- /.table-responsive -->
       <!--Salvar Previsão-->
-        <button type="button" class="glyphicon glyphicon-floppy-disk btn btn-primary" data-toggle="modal" data-target="#save-despesa"></button>
-          <!-- Modal -->
-          <div class="modal fade" id="save-despesa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <!--Botão para fechar tela Modal-->
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <h4 class="modal-title" id="myModalLabel">Salvar</h4>
-                </div><!--/.modal-header-->
-                <div class="modal-body">
-                  Se você optar por salvar está previsão orçamentária ela não poderá mais ser editada, caso seu documento ainda não esteja pronto, salve como rascunho.    
-                </div><!--/.modal-body-->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                  <button type="button" class="btn btn-info" id="bot">Salvar como Rascunho</button><!--id adicionar-item-->
-                  <button type="button" class="btn btn-primary" id="bot">Salvar</button>
-                </div><!--/.modal-footer-->
-              </div><!--/.modal-content-->
-            </div><!--/modal-dialog-->
+      <button type="button" class="glyphicon glyphicon-floppy-disk btn btn-primary" data-toggle="modal" data-target="#save-despesa"></button>
+      <!-- Modal -->
+      <div class="modal fade" id="save-despesa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!--Botão para fechar tela Modal-->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Salvar</h4>
+            </div>
+            <!--/.modal-header-->
+            <div class="modal-body">
+              Se você optar por salvar está previsão orçamentária ela não poderá mais ser editada, caso seu documento
+              ainda não esteja pronto, salve como rascunho.
+            </div>
+            <!--/.modal-body-->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+              <button type="button" class="btn btn-info" id="bot">Salvar como Rascunho</button>
+              <!--id adicionar-item-->
+              <button type="button" class="btn btn-primary" id="bot">Salvar</button>
+            </div>
+            <!--/.modal-footer-->
           </div>
+          <!--/.modal-content-->
+        </div>
+        <!--/modal-dialog-->
+      </div>
     </div><!-- /.box-body -->
   </div><!-- /.box -->
 
+  <td><input type="checkbox" id="select_all"></td>
 
-
-
-  <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Validando formulários com JQuery Validation</title>
-<!-- Inclusão do jQuery-->
-<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-<!-- Inclusão do Plugin jQuery Validation-->
-<script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
-</head>
-<body>
- 
 </section>
 
 <script>
-//mascara inputmask, ERRO= não muda dinamicamente quando add outros
-$(document).ready(function() {
+  //mascara inputmask, ERRO= não muda dinamicamente quando add outros
+  $(document).ready(function () {
     $("#valor").inputmask({
-    'alias': 'decimal',
-    'groupSeparator': '',
-    'digits': 2,
-    'autoGroup': true,
-    'digitsOptional': false,
-    rightAlign: true,
-    numericInput: true 
-    }); 
-    
+      'alias': 'decimal',
+      'groupSeparator': '',
+      'digits': 2,
+      'autoGroup': true,
+      'digitsOptional': false,
+      rightAlign: true,
+      numericInput: true
+    });
+
     //valor invalido na mascara
     Inputmask.extendDefaults({
-      onKeyValidation: function(key, result){
-          if (!result)alert('Valor inválido');
+      onKeyValidation: function (key, result) {
+        if (!result) alert('Valor inválido');
       }
-      });
+    });
 
-       $('.combobox').combobox();
-  });   
+    $('.combobox').combobox();
+  });
 
   //iCheck for checkbox and radio inputs
   $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-      checkboxClass: 'icheckbox_minimal-blue',
-      radioClass   : 'iradio_minimal-blue'
-    })	
+    checkboxClass: 'icheckbox_minimal-blue',
+    radioClass: 'iradio_minimal-blue'
+  })
 
+  $('#select_all').click(function (event) {
+    if (this.checked) {
+      // Iterate each checkbox
+      $(':checkbox').each(function () {
+        this.checked = true;
+      });
+    }
+    else {
+      $(':checkbox').each(function () {
+        this.checked = false;
+      });
+    }
+  });
+
+  $('#adicionar-item').click(function () {
+    var valorDespesa = $('#valor').val();
+    var desc = $('#descricao').val();
+    var comboBox;
+    var novoID;
+    var subTotal = 0;
+    var inputFundoReserva = $('#inputValorFdReserva').val();
+    var fundoReserva;
+
+    $("#combo option:selected").each(function () {
+      comboBox = $(this).val();
+    });
+
+    if (!$('#bodyTable tr:last td').length) novoID = 1;
+    else novoID = parseFloat($('#bodyTable tr:last td').html()) + 1;
+
+    //adicionando linha na tabela
+    $('#bodyTable').append(
+      '<tr class="demo" id="tr_' + novoID + '">' +
+      '   <td>' + novoID + '<input type="checkbox"></td>' +
+      '   <td>' + comboBox + '</td>' +
+      '   <td class="valor-unit-desp">' + valorDespesa + '</td>' +
+      '   <td>' + desc + '</td>' +
+      '   <td>' +
+      '       <i class="glyphicon glyphicon-pencil"></i>' +
+      '       <button type="button" class="btn btn-default btn-linha" style="padding: 0;" data-toggle="modal" data-target="#myConfig' + novoID + '">' +
+      '           <i class="glyphicon glyphicon-trash"></i>' +
+      '       </button>' +
+      '   </td>' +
+      '</tr>');
+
+    $('<div class="modal fade" id="myConfig' + novoID + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+      '<div class="modal-dialog" role="document">' +
+      '  <div class="modal-content">' +
+      '    <div class="modal-body">' +
+      '       <p>Tem certeza que deseja excluir este item?</p>' +
+      '    </div>' +
+      '    <div class="modal-footer">' +
+      '      <button id="lixo_' + novoID + '" type="button" onClick="excluirLinha(\'#tr_' + novoID + ', #myConfig' + novoID + ', .in\');" class="btn btn-danger" data-dismiss="modal" >' +
+      '        Sim' +
+      '      </button>' +
+      '      <button type="button" data-dismiss="modal" class="btn btn-default">' +
+      '         Não' +
+      '      </button>' +
+      '    </div>' +
+      '  </div>' +
+      '</div>' +
+      '</div>' +
+      '</div>').insertBefore('table');
+
+    $('#footTable').css("visibility", "visible");
+    $('.demo td:first-child input[type="checkbox"]').css("visibility", $("#select-itens").val()); //Só Exibe o checkbox quando clicar no iconeFixar
+
+    //Atualiza Valores SubTotal, Fundo reserva e Total
+    calcularValores();
+  });
+
+
+  //Quando clicar no botao select-itens Mostra/Esconde o checkbox
+  $('#select-itens').click(function () {
+    if ($("#select-itens").val() == "visible") $("#select-itens").val("hidden");
+    else $("#select-itens").val("visible");
+
+    $('.demo td:first-child input[type="checkbox"]').css("visibility", $("#select-itens").val()); //Só Exibe o checkbox quando clicar no iconeFixar
+  });
 </script>
