@@ -72,3 +72,8 @@ function formatReal( int )
 
         return tmp;
 }
+/*taxa de condominio */
+$(document).on('click', '#buscarPrevisao', function(){
+    $('#encontrarPrevisao').css("display", "block");
+ 
+  });
