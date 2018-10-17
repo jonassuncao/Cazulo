@@ -141,35 +141,28 @@ width: 100px;
 margin-right: 15pt; 
 font-size: 14pt;
 }
-<<<<<<< HEAD
 
 #box{
   background-color:rgb(205, 217, 221);
   border-radius: 10px;
   padding: 10px;  
-=======
-
-
-/*Fim previsão despesa*/
-
-/*<<<<<<< HEAD*/
-
-#box{
-
-background-color:rgb(205, 217, 221);
-border-radius: 10px;
-padding: 10px
-}
-
-button{
-background: white;
->>>>>>> 153e8da3daf5037446bf45c0023bcd02f319984d
 }
 
 #btn-Banco{
-<<<<<<< HEAD
   background: rgb(18, 142, 184);
-=======
-background: rgb(18, 142, 184);
->>>>>>> 153e8da3daf5037446bf45c0023bcd02f319984d
+}
+
+.selecEmpresa {
+  padding: 10px;
+  height: 100%;
+  min-height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.selecEmpresa input{
+  width: 100%;
 }

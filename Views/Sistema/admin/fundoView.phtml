@@ -1,8 +1,8 @@
 <?php
     //Pega as variáveis para renderizar a página
     $valores = $this->getHTMLValores();
-    $contatos = $valores['user'];        
-    $pag      = $valores['pag'];  
+    $contatos = $valores['user'];  
+    $condominio = $valores['cond'];  
 ?>
 <!DOCTYPE html>
 <html>
@@ -78,6 +78,17 @@
           <span class="sr-only">Toggle navigation</span>
         </a>
 
+        <div style="float: left; margin-left:20px; min-width: 30vw;" >
+          <ul class="nav navbar-nav " style="width: 100%;">
+            <div class="input-group input-group-sm selecEmpresa">
+              <input type="text" class="form-control" id="selectCond" placeholder="Condomínio" disabled value="Condomínio Residencial Liberty IV (<?= $condominio?>)">              
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-primary btn-flat" onClick='Envio_Ajax("POST", "modal_resposta", "load_div", "Home", "exibir","opc=condominios&act=selecionar&desc=Condomínios"); return false;'><i class="fa fa-building"></i></button>
+              </span>
+            </div>
+          </ul>
+        </div>
+
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
 
@@ -129,39 +140,38 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MENU</li>
-          <?php foreach ($pag as $value) {?>
-            <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=<?= $value?>&desc=<?= $value?>"); return false;'><span><?= $value?></span></a></li>
-          <?php }?>
-          <!--
-          <?php //if(in_array("PrestacaoContas",$valores['user']['permissao'])){?>      <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=prestacaoContas&desc=Prestação de Contas"); return false;'><i class="fa fa-book"></i> <span>Prestação de Contas</span></a></li>                 <?php //}?>
-          <?php //if(in_array("PrevisaoDespesas",$valores['user']['permissao'])){?>     <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=previsaoDespesas&desc=Previsão de Despesas"); return false;'><i class="fa fa-file-powerpoint-o"></i> <span>Previsão de Despesas</span></a></li>  <?php //}?>          
-          <?php //if(in_array("TaxaCondominio",$valores['user']['permissao'])){?>       <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=taxaCondominio&desc=Taxa de Condomínio"); return false;'><i class="fa fa-barcode"></i> <span>Taxa de Condomínio</span></a></li>                <?php// }?>
-          <?php //if(in_array("ControleAdimplencia",$valores['user']['permissao'])){?>  <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=controleAdimplencia&desc=Controle de Adimplência"); return false;'><i class="fa fa-money"></i> <span>Controle de Adimplência</span></a></li>        <?php// }?>
+ 
+          <?php if(in_array("PrestacaoContas",$valores['user']['permissao'])){?>      <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=prestacaoContas&act=listar&desc=Prestação de Contas"); return false;'><i class="fa fa-book"></i> <span>Prestação de Contas</span></a></li>                  <?php }?>
+          <?php if(in_array("PrevisaoDespesas",$valores['user']['permissao'])){?>     <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=previsaoDespesas&act=listar&desc=Previsão de Despesas"); return false;'><i class="fa fa-file-powerpoint-o"></i> <span>Previsão de Despesas</span></a></li>  <?php }?>          
+          <?php if(in_array("TaxaCondominio",$valores['user']['permissao'])){?>       <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=taxaCondominio&act=listar&desc=Taxa de Condomínio"); return false;'><i class="fa fa-barcode"></i> <span>Taxa de Condomínio</span></a></li>                  <?php }?>
+          <?php if(in_array("ControleAdimplencia",$valores['user']['permissao'])){?>  <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=controleAdimplencia&act=listar&desc=Controle de Adimplência"); return false;'><i class="fa fa-money"></i> <span>Controle de Adimplência</span></a></li>     <?php }?>
 
           <li class="header">Configuração</li>
           <li class="treeview">
-          <?php //if(in_array("Parametros",$valores['user']['permissao'])){?>
+          <?php if(in_array("Parametros",$valores['user']['permissao'])){?>
             <a href="/" >
               <i class="fa fa-gears"></i> <span>Parâmetros</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
-          <?php //}?>
+          <?php }?>
             <ul class="treeview-menu">
-              <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&desc=Condomínios"); return false;'><i class="fa fa-building-o"></i> Condomínios</a></li> 
-              <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=unidades&desc=Unidades"); return false;'><i class="fa fa-map-o"></i> Unidades</a></li>         
-              <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=categoria&desc=Categoria"); return false;'><i class="fa fa-folder-open-o"></i> Categoria</a></li>
+              <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&act=listar&desc=Condomínios"); return false;'><i class="fa fa-building-o"></i> Condomínios</a></li>          
+              <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=categoria&act=listar&desc=Categoria"); return false;'><i class="fa fa-folder-open-o"></i> Categoria</a></li>
             </ul>
           </li>
-          <?php //if(in_array("Usuarios",$valores['user']['permissao'])){?> <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=usuarios&desc=Usuários"); return false;'><i class="fa fa-users"></i> <span>Usuários</span></a></li> <?php //}?>
-          -->
+          <?php if(in_array("Usuarios",$valores['user']['permissao'])){?> <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=usuarios&desc=Usuários"); return false;'><i class="fa fa-users"></i> <span>Usuários</span></a></li> <?php }?>
+          
         </ul>
       </section>
       <!-- /.sidebar -->
     </aside>
 
-    <!-- Content Wrapper. Contains page content -->
+    <!-- Div resposta modal-->            
+    <div id="modal_resposta"></div> 
+
+    <!-- Div resposta corpo página -->            
     <div class="content-wrapper" id="body_resposta">
       <!-- Content Wrapper. Contains page content -->            
       <!-- Content Header (Page header) -->

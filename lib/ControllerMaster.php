@@ -63,7 +63,7 @@ class ControllerMaster{
      * Modifica os valores do Request
      * Essa função é utilizada para modificar o controler;
      */
-    static function setRequest($controller = 'Login', $action= 'exibir'){
+    static function setRequest($controller = 'Login', $action = 'exibir'){
         //Salva os valores no REQUEST
         $_REQUEST['controller'] = $controller;
         $_REQUEST['action']     = $action;
@@ -103,7 +103,7 @@ class ControllerMaster{
         $controller_class = $this->controller.'Controller';        
 
         if(class_exists($controller_class)) $controller_class = new $controller_class;
-        else throw new Exception("'".$controller_class."' não é uma classe do controlador '".$controller_file."' válido!");
+        else throw new Exception("'".$this->controller."' não é uma classe do controlador '".$controller_file."' válido!");
 
         /**
          * Verifica se o metodo existe
@@ -113,7 +113,7 @@ class ControllerMaster{
          */        
         $controller_method = $this->action.'Action';        
         if(method_exists($controller_class, $controller_method)) $controller_class->$controller_method();
-        else throw new Exception("'".$controller_method."' não é um método válido para classe '".$controller_class."' no controlador '".$controller_file."'");
+        else throw new Exception("'".$controller_method."' não é um método válido para classe '".$this->controller."' no controlador '".$controller_file."'");
     }
 
 

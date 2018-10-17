@@ -1,0 +1,53 @@
+<?php
+    //Pega as variáveis para renderizar a página
+    $valores = $this->getHTMLValores();       
+?>
+<div class="modal modal-default fade" id="modal-default" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span></button>
+        <h4 class="modal-title"><?= $valores['header']?></h4>
+      </div>
+      <div class="modal-body">
+        <div id="box">
+          <div class="form-group col-md-12">
+
+            <div style="width: 20vw;" class="input-group input-group-sm">
+              <input type="text" class="form-control" placeholder="Informe o CNPJ/Nome Condomínio">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-success btn-flat"><i class="fa fa-filter"></i></button>
+              </span>
+            </div>
+
+            <hr />
+
+            <select multiple class="form-control" id="listaCond">
+              <option selected>19.494.332/0001-06 | Condomínio Residencial Liberty II </option>
+              <option>00.234.456/0001-06 | Condomínio Residencial Liberty IV </option>
+            </select>
+
+            <hr />
+
+            <div id="actions" class="row">
+              <div class="col-md-12">
+                <a href="/" data-dismiss="modal" onClick='Envio_Ajax("POST", "modal_resposta", "load_div", "Home", "exibir","opc=condominios&act=mudarCond&cond="+$("#listaCond option:selected").text()); $(".in").remove(); return false; ' class="btn btn-primary">Escolher</a>
+              </div>
+            </div>
+            
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>        
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<script>
+  $('#modal-default').modal();
+</script>

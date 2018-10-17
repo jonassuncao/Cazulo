@@ -1,8 +1,8 @@
-<!--?php
+<?php
     //Pega as variáveis para renderizar a página
     $valores = $this->getHTMLValores();       
-?-->
-<div class="modal modal-danger fade" id="modal-danger" style="display: none;">
+?>
+<div class="modal modal-warning fade" id="modal-warning" style="display: none;">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -14,7 +14,7 @@
         <p><?= $valores['body']?></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline" data-dismiss="modal">Fechar</button>        
+        <button type="button" class="btn btn-outline" data-dismiss="modal">Fechar</button>
       </div>
     </div>
     <!-- /.modal-content -->
@@ -22,5 +22,5 @@
   <!-- /.modal-dialog -->
 </div>
 <script>
-  $('#modal-danger').modal();
+  $('#modal-warning').modal();
 </script>
