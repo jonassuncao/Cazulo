@@ -8,207 +8,141 @@
     Previsão de Despesas
   </h1>
 </section>
-<section class="content">
 
-  <div class="box">
-    <div class="box-header with-border">
-      <div class="box-body">
-        <div class="col-md-16">
+<section class="content">
+  <div class="row"> 
+    <!-- Início Período-->
+    <div class="col-xs-4" style="min-width: 400px;">
+      <div class="box box-default">
+        <div class="box-header with-border">
+          <h3 class="box-title">Período</h3>                      
+        </div>
+
+        <div class="box-body">
+          <div class="col-md-16">
 
           <!-- Início Ano-->
-          <div class="form-group" style="width: 100px; float:left; margin-right:10px;">
-            <label>Ano</label>
-            <select class="form-control select2">
-              <option selected="selected">2018</option>
-              <option>2017</option>
-              <option>2016</option>
-              <option>2015</option>
-            </select>
-          </div>
-          <!-- Fim Ano-->
-          <!-- Início Mês-->
-          <div class="form-group" style="width: 100px; float:left;">
-            <label>Mês</label>
-            <select class="form-control select2">
-              <option selected="selected">12</option>
-              <option>11</option>
-              <option>10</option>
-              <option>09</option>
-              <option>08</option>
-              <option>07</option>
-              <option>06</option>
-              <option>05</option>
-              <option>04</option>
-              <option>03</option>
-              <option>02</option>
-              <option>01</option>
-            </select>
-          </div>
-          <!-- Fim Mês-->
-          <!-- Início Botões-->
-          <div class="row" style="width: 40px; float:left; margin-left:10px;">
-            <button type="button" title="Iniciar Nova Previsão" class="btn btn-block btn-success"><i class="fa fa-plus"></i></button>
-            <button type="button" title="Buscar Previsão" class="btn btn-block btn-info"><i class="fa fa-search"></i></button>
-          </div>
-          <div class="row" style="width: 40px; float:left; margin-left:25px;">
-            <button type="button" title="Imprimir Previsão" class="btn btn-block btn-primary"><i class="fa fa-print"></i></button>
-          </div>
-          <!-- Fim Botões-->
+            <div class="form-group" style="width: 100px; float:left; margin-right:10px;">
+              <label>Ano</label>
+              <select class="form-control select2">
+                <option selected="selected">2018</option>
+                <option>2017</option>
+                <option>2016</option>
+                <option>2015</option>
+              </select>
+            </div>
+           <!-- Fim Ano--> 
+           <!-- Início Mês-->
+            <div class="form-group" style="width: 100px; float:left;">
+              <label>Mês</label>
+              <select class="form-control select2">
+                <option selected="selected">12</option>
+                <option>11</option>
+                <option>10</option>
+                <option>09</option>
+                <option>08</option>
+                <option>07</option>
+                <option>06</option>
+                <option>05</option>
+                <option>04</option>
+                <option>03</option>
+                <option>02</option>
+                <option>01</option>
+              </select>
+            </div>
+            <!-- Fim Mês-->
+            <!-- Início Botões-->
+            <div class="row" style="width: 40px; float:left; margin-left:10px;">
+              <button type="button" title="Iniciar Nova Previsão" class="btn btn-block btn-success"><i class="fa fa-plus"></i></button>
+              <button type="button" title="Buscar Previsão" class="btn btn-block btn-info"><i class="fa fa-search"></i></button>
+            </div>
+            <div class="row" style="width: 40px; float:left; margin-left:25px;">
+              <button type="button" title="Imprimir Previsão" class="btn btn-block btn-primary"><i class="fa fa-print"></i></button>
+            </div>
+            <!-- Fim Botões-->
 
+          </div>
         </div>
       </div>
-      <hr />
-      <!--Calendario-->
-      <div class="form-group calendar">
+    </div>
+    <!-- Fim Período-->
+  </div> 
 
-        <div class="icone-desp">
-          <button type="button" id="select-itens" class="btn btn-default">
-            <i class="glyphicon glyphicon-th-list"></i>
-          </button>
-          <!--Botão de fixar-->
-          <button type="button" class="btn btn-default">
-            <i class="glyphicon glyphicon-pushpin"></i>
-          </button>
-          <!--Botão de Configuração-->
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myConfig">
-            <i class="glyphicon glyphicon-cog"></i>
+  <div class="row"> 
+    <!-- Início Previsão Despesas-->
+    <div class="col-xs-12">
+      <div class="box box-default">
+
+        <!-- Início Botões Adicionar, Mostrar CheckBox, Fixar e configurar Fundo Reserva-->
+        <div class="box-header">
+          <button type="button" class="fa fa-plus btn btn-primary" data-toggle="modal" data-target="#myModal">
+            Adicionar item
           </button>
 
-          <!-- Modal de config -->
-          <div class="modal fade" id="myConfig" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <!--Botão para fechar tela Modal-->
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <h4 class="modal-title" id="myModalLabel">Configuração</h4>
-                </div>
-                <!--/.modal-header-->
-                <div class="modal-body">
-                  <form class="form-inline">
-                    <label>Fundo de reserva*</label>
-                    <input type="text" class="form-control" placeholder="10" id="inputValorFdReserva">
-                    <label>%</label>
-                  </form>
-                </div>
-                <!--/.modal-body-->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" id="salvarConfFdReserva">Salvar</button>
-                </div>
-                <!--/.modal-footer-->
-              </div>
-              <!--/.modal-content-->
-            </div>
-            <!--/.modal-dialog-->
+          <div class="icone-desp">
+            <!--Botão de Exibir Checkbox-->
+            <button type="button" id="select-itens" class="btn btn-default"><i class="glyphicon glyphicon-th-list"></i></button>
+            <!--Botão de fixar-->
+            <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-pushpin"></i></button>
+            <!--Botão de Configuração-->
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myConfig"><i class="glyphicon glyphicon-cog"></i></button>
           </div>
-          <!--/.modal-->
         </div>
+        <!-- Fim Botões Adicionar, Mostrar CheckBox, Fixar e configurar Fundo Reserva-->
 
-      </div>
+        <!-- Início Tabela Previsão de Despesas-->
+        <div class="box-body">
+          <div class="col-md-16">
 
-      <!-- Botão para chamar tela Modal de seleção de despesas-->
-      <button type="button" class="fa fa-plus btn btn-primary" data-toggle="modal" data-target="#myModal">
-        Adicionar item
-      </button>
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <!--Botão para fechar tela Modal-->
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <h4 class="modal-title" id="myModalLabel">Despesas</h4>
-            </div>
-            <!--/.modal-header-->
-            <div class="modal-body">
-              <div class="row">
+            <div id="encontrarPrevisao" >
+              <!--Tabela-->
+              <div class="table-responsive">
+                <table class="table table-striped no-margin">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Despesa</th>
+                    <th>Valor</th>
+                    <th>Descrição</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="bodyTable">
 
-                <div class="form-group col-md-8">
-                  <label for="combo">Tipo *</label>
-                  <select style="width: 100%" class="combobox form-control" id="combo">
-                    <option value="Água" selected="selected">Água</option>
-                    <option value="Adm. Condominio">Adm. Condominio</option>
-                    <option value="Eletricidade">Eletricidade</option>
-                    <option value="Segurança">Segurança</option>
-                    <option value="Manutenção Elevador">Manutenção Elevador</option>
-                  </select>
-                </div>
-
-                <div class="form-group col-md-4">
-                  <label for="valor">Valor *</label>
-                  <input style="width: 100%" type="number" id="valor">
-                </div>
-
-                <div class="form-group col-md-12">
-                  <label>Descrição *</label>
-                  <input style="width: 100%" type="text" id="descricao">
-                </div>
-
+                </tbody>
+                <tfoot id="footTable">
+                  <tr>
+                    <th colspan="2">Sub-Total</td>
+                    <th id="subTotal"></th>
+                    <th colspan="2"></th>
+                  </tr>
+                  <tr>
+                    <th colspan="2">Fundo de Reserva</th>
+                    <th id="fundoReserva"></th>
+                    <th colspan="2"></th>
+                  </tr>
+                  <tr>
+                    <th colspan="2">Total</th>
+                    <th id="total"></th>
+                    <th colspan="2"></th>
+                  </tr>
+                </tfoot>              
+                </table>
               </div>
             </div>
-            <!--/.modal-body-->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-primary" id="adicionar-item">Adicionar</button>
-
-            </div>
-            <!--/.modal-footer-->
           </div>
-          <!--/.modal-content-->
+
+          <hr/>
+
+          <div class="row" style="width: 40px; float:right; margin-right:25px;">
+            <button type="button" title="Emitir Taxa de Condomínio" class="btn btn-block btn-danger"><i class="fa fa-save"></i></button>
+          </div>
+
         </div>
-        <!--/modal-dialog-->
       </div>
-    </div><!-- /.box-header -->
-
-
-
-
-    <!--Tabela-->
-    <div class="box-body">
-      <div class="table-responsive">
-        <table class="table table-striped no-margin">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Despesa</th>
-              <th>Valor</th>
-              <th>Descrição</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="bodyTable">
-
-          </tbody>
-          <tfoot id="footTable">
-            <tr>
-              <th colspan="2">Sub-Total</td>
-              <th id="subTotal"></th>
-              <th colspan="2"></th>
-            </tr>
-            <tr>
-              <th colspan="2">Fundo de Reserva</th>
-              <th id="fundoReserva"></th>
-              <th colspan="2"></th>
-            </tr>
-            <tr>
-              <th colspan="2">Total</th>
-              <th id="total"></th>
-              <th colspan="2"></th>
-            </tr>
-          </tfoot>
-        </table><!-- /.table .table-striped -->
-      </div><!-- /.table-responsive -->
-      </div>
-    </div><!-- /.box-body -->
-  </div><!-- /.box -->
-
-  <td><input type="checkbox" id="select_all"></td>
-
+    </div>
+    <!-- Fim Taxa de condominio-->
+  </div>  
 </section>
 
 <script>
