@@ -144,9 +144,6 @@ font-size: 14pt;
 /*Fim previsão despesa*/
 
 /*Taxa de condominio*/
-div#encontrarPrevisao{
-  display: none;
-}
 a#gerarBoleto{
   float: right;
 }

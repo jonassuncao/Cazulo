@@ -9,16 +9,80 @@
   </h1>
 </section>
 <section class="content">
-     
-  <div class="col-md-6">
-    <div class="box box-default">
-      <div class="box-header with-border">
-        <i class="fa fa-gear"></i>
-        <h3 class="box-title">Categorias</h3>
-      </div>
-      
-      
-    </div>    
-  </div>
+  <div class="row"> 
+    <!-- Início Categoria-->
+    <div class="col-xs-2" style="min-width: 200px;">
+      <div class="box box-default">
+        <div class="box-header with-border">
+          <h3 class="box-title">Categoria</h3>                      
+        </div>
 
+        <div class="box-body">
+          <div class="col-md-16">
+            <!-- Início Grupo-->
+            <div class="form-group" style="width: 110px; float:left; margin-right:10px;">
+              <label>Grupo</label>
+              <select class="form-control select2">
+                <option>Receitas</option>
+                <option selected="selected">Despesas</option>
+              </select>
+            </div>
+           <!-- Fim Grupo-->    
+                 
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fim Período-->
+  </div> 
+
+  <div class="row"> 
+    <!-- Início CAtegoria-->
+    <div class="col-xs-12">
+      <div class="box box-default">
+        <div class="box-body">
+          <div class="col-md-16">
+
+            <div id="encontrarPrevisao" >
+              <!--Tabela-->
+              <div class="table-responsive">
+                <table class="table table-striped no-margin">
+                  <thead>
+                  <tr>
+                    <th>Grupo</th>
+                    <th>Descrição</th>
+                    <th><button type="button" title="Novo"     style="padding:5px; width:auto; float: left;" class="btn btn-success"><i class="fa fa-fw fa-plus"></i></button></th>
+                  </tr>
+                </thead>
+                <tbody id="bodyTable">
+                  <tr>
+                    <td>Despesas</td>
+                    <td>Honorário Contábeis</td>
+                    <td><button type="button" title="Detalhar"     style="padding:1px; width:auto; float: left;" class="btn btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td>Despesas</td>
+                    <td>Pro-Lábore Síndico</td>
+                    <td><button type="button" title="Detalhar"     style="padding:1px; width:auto; float: left;" class="btn btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td>Despesas</td>
+                    <td>Energia</td>
+                    <td><button type="button" title="Detalhar"     style="padding:1px; width:auto; float: left;" class="btn btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td>Despesas</td>
+                    <td>Materiais de Limpeza</td>
+                    <td><button type="button" title="Detalhar"     style="padding:1px; width:auto; float: left;" class="btn btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+                  </tr>
+                </tbody>                
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fim Categoria-->
+  </div>  
 </section>

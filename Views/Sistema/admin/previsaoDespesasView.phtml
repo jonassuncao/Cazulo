@@ -48,7 +48,7 @@
           <!-- Início Botões-->
           <div class="row" style="width: 40px; float:left; margin-left:10px;">
             <button type="button" title="Iniciar Nova Previsão" class="btn btn-block btn-success"><i class="fa fa-plus"></i></button>
-            <button type="button" title="Editar Previsão" class="btn btn-block btn-warning"><i class="fa fa-edit"></i></button>
+            <button type="button" title="Buscar Previsão" class="btn btn-block btn-info"><i class="fa fa-search"></i></button>
           </div>
           <div class="row" style="width: 40px; float:left; margin-left:25px;">
             <button type="button" title="Imprimir Previsão" class="btn btn-block btn-primary"><i class="fa fa-print"></i></button>
@@ -203,36 +203,6 @@
           </tfoot>
         </table><!-- /.table .table-striped -->
       </div><!-- /.table-responsive -->
-      <!--Salvar Previsão-->
-      <button type="button" class="glyphicon glyphicon-floppy-disk btn btn-primary" data-toggle="modal" data-target="#save-despesa"></button>
-      <!-- Modal -->
-      <div class="modal fade" id="save-despesa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <!--Botão para fechar tela Modal-->
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <h4 class="modal-title" id="myModalLabel">Salvar</h4>
-            </div>
-            <!--/.modal-header-->
-            <div class="modal-body">
-              Se você optar por salvar está previsão orçamentária ela não poderá mais ser editada, caso seu documento
-              ainda não esteja pronto, salve como rascunho.
-            </div>
-            <!--/.modal-body-->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-              <button type="button" class="btn btn-info" id="bot">Salvar como Rascunho</button>
-              <!--id adicionar-item-->
-              <button type="button" class="btn btn-primary" id="bot">Salvar</button>
-            </div>
-            <!--/.modal-footer-->
-          </div>
-          <!--/.modal-content-->
-        </div>
-        <!--/modal-dialog-->
       </div>
     </div><!-- /.box-body -->
   </div><!-- /.box -->
