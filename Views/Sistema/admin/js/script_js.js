@@ -74,6 +74,26 @@ function formatReal( int )
 }
 /*taxa de condominio */
 $(document).on('click', '#buscarPrevisao', function(){
-    $('#encontrarPrevisao').css("display", "block");
- 
-  });
+    $('#encontrarPrevisao').css("display", "block"); 
+});
+
+ $(document).on('click', '.dropdown-toggle', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).closest(".search-dropdown").toggleClass("open");
+});
+
+$(document).on('click', '.dropdown-menu > li > a', function(e){
+
+    e.preventDefault();
+    
+    var clicked = $(this);
+    
+    clicked.closest(".dropdown-menu").find(".menu-active").removeClass("menu-active");
+    clicked.parent("li").addClass("menu-active");
+    clicked.closest(".search-dropdown").find(".toggle-active").html(clicked.html());
+});
+    
+$(document).click(function() {
+    $(".search-dropdown.open").removeClass("open");
+});
