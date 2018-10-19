@@ -147,7 +147,61 @@
   </div>  
 
   <!-- Inicio Modais -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  
+        <!-- Inicio Modal Adicionar-->   
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <!--Botão para fechar tela Modal-->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Despesas</h4>
+              </div>
+              <!--/.modal-header-->
+              <div class="modal-body">
+                <div class="row">
+
+                  <div class="form-group col-md-8">
+                    <label for="combo">Tipo *</label>
+                    <select style="width: 100%" class="combobox form-control" id="combo">
+                      <option value="Água" selected="selected">Água</option>
+                      <option value="Adm. Condominio">Adm. Condominio</option>
+                      <option value="Eletricidade">Eletricidade</option>
+                      <option value="Segurança">Segurança</option>
+                      <option value="Manutenção Elevador">Manutenção Elevador</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="valor">Valor *</label>
+                    <input style="width: 100%" type="number" id="valor">
+                  </div>
+
+                  <div class="form-group col-md-12">
+                    <label>Descrição *</label>
+                    <input style="width: 100%" type="text" id="descricao">
+                  </div>
+
+                </div>
+              </div>
+              <!--/.modal-body-->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" id="adicionar-item">Adicionar</button>
+
+              </div>
+              <!--/.modal-footer-->
+            </div>
+            <!--/.modal-content-->
+          </div>
+          <!--/modal-dialog-->
+        </div>  
+      <!-- FIM Modal Adicionar-->   
+
+      <!-- Inicio Modal Fundo Reserva-->   
+      <div class="modal fade" id="myConfig" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -155,79 +209,28 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-              <h4 class="modal-title" id="myModalLabel">Despesas</h4>
+              <h4 class="modal-title" id="myModalLabel">Configuração</h4>
             </div>
             <!--/.modal-header-->
             <div class="modal-body">
-              <div class="row">
-
-                <div class="form-group col-md-8">
-                  <label for="combo">Tipo *</label>
-                  <select style="width: 100%" class="combobox form-control" id="combo">
-                    <option value="Água" selected="selected">Água</option>
-                    <option value="Adm. Condominio">Adm. Condominio</option>
-                    <option value="Eletricidade">Eletricidade</option>
-                    <option value="Segurança">Segurança</option>
-                    <option value="Manutenção Elevador">Manutenção Elevador</option>
-                  </select>
-                </div>
-
-                <div class="form-group col-md-4">
-                  <label for="valor">Valor *</label>
-                  <input style="width: 100%" type="number" id="valor">
-                </div>
-
-                <div class="form-group col-md-12">
-                  <label>Descrição *</label>
-                  <input style="width: 100%" type="text" id="descricao">
-                </div>
-
-              </div>
+              <form class="form-inline">
+                <label>Fundo de reserva*</label>
+                <input type="text" class="form-control" placeholder="10" id="inputValorFdReserva">
+                <label>%</label>
+              </form>
             </div>
             <!--/.modal-body-->
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-              <button type="button" class="btn btn-primary" id="adicionar-item">Adicionar</button>
-
+              <button type="button" class="btn btn-primary" data-dismiss="modal" id="salvarConfFdReserva">Salvar</button>
             </div>
             <!--/.modal-footer-->
           </div>
           <!--/.modal-content-->
         </div>
-        <!--/modal-dialog-->
-      </div>  
-
-
-<div class="modal fade" id="myConfig" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <!--Botão para fechar tela Modal-->
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <h4 class="modal-title" id="myModalLabel">Configuração</h4>
-                </div>
-                <!--/.modal-header-->
-                <div class="modal-body">
-                  <form class="form-inline">
-                    <label>Fundo de reserva*</label>
-                    <input type="text" class="form-control" placeholder="10" id="inputValorFdReserva">
-                    <label>%</label>
-                  </form>
-                </div>
-                <!--/.modal-body-->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" id="salvarConfFdReserva">Salvar</button>
-                </div>
-                <!--/.modal-footer-->
-              </div>
-              <!--/.modal-content-->
-            </div>
-            <!--/.modal-dialog-->
-          </div>
-<!--/.modal-->      
+        <!--/.modal-dialog-->
+      </div>   
+      <!-- FIM Modal Fundo Reserva-->   
   <!-- FIM Modais -->
 </section>
 
