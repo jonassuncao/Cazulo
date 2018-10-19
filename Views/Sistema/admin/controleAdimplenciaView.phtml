@@ -17,36 +17,52 @@
   </h1>
 </section>
 <section class="content">
-     
-<div>
+  <div class="row"> 
 
-  <form class="expanding-search-form">
-  <div class="search-dropdown">
-    <button class="button dropdown-toggle" type="button">
-      <span class="toggle-active">Filtro</span>
-      <span class="ion-arrow-down-b"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Unidade(Apto/Bloco)</a></li>
-      <li><a href="#">Período(Mês/Ano)</a></li>
-      <li><a href="#">Código(CódigoBoleto)</a></li>
-    </ul>
-  </div>
-  <input class="search-input" id="global-search" type="search" placeholder="Consulta">
-  <label class="search-label" for="global-search">
-		    <span class="sr-only">Global Search</span>
-	  </label>
-  <button class="button search-button" type="button">
-		    <span class="icon ion-search">
-			      <span class="sr-only">Search</span>
-		    </span>
-	  </button>
-</form>
-</div>
-    
-  
-  
-       
+    <!-- Início Consulta-->
+    <div class="col-xs-2" style="width: 450px;">
+      <div class="box box-default">
+        <div class="box-header with-border">
+          <h3 class="box-title">Pesquisar</h3>                      
+        </div>
+        <div class="box-body">
+          <div class="col-md-16">
+            <!-- Início Grupo-->
+            <div class="form-group consulta-group">
+              <div class="input-group">
+                <!-- Início Filtro-->
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="toggle-active">Unidade</span>
+                    <span class="fa fa-caret-down"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li class="menu-active" ><a href="/" onclick='$("#global-search").attr("placeholder", "AP-Bloco")'>Unidade</a></li>
+                    <li><a href="/" onclick='$("#global-search").attr("placeholder", "Mes/Ano")'>Período</a></li>
+                    <li><a href="/" onclick='$("#global-search").attr("placeholder", "NossoCodigo")'>Código</a></li>
+                  </ul>
+                </div>
+                <!-- Fim Filtro-->
+                <!-- Input consulta-->
+                <input type="text" class="form-control search-input" id="global-search" type="search" placeholder="AP-Bloco">
+                <!-- Botão consulta-->
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-primary" style="border-radius: 0 4px 4px 0;"><i class="fa fa-fw  fa-search"></i></button>
+                </span>
+                <div class="row" style="width: 40px; float:left; margin-left:10px;">
+                  <button type="button" title="Imprimir" class="btn btn-block btn-info"><i class="fa fa-print"></i></button>              
+                </div>     
+              </div>              
+            <!-- Fim Botões-->    
+            </div>
+           <!-- Fim Grupo-->                                
+          </div>          
+          </div>
+        </div>
+      </div>
+      <!-- Fim Consulta-->
+    </div> 
+              
   <div class="box">
     <div class="box-header">
       <h3 class="box-title"></h3>
@@ -76,7 +92,6 @@
                     <td>21/11/2018</td>                    
                     <td>                      
                     <button type="button" title="Editar" style="padding:1px; width:auto; float: left; margin-right:10px;" class="btn btn-primary"><i class="fa fa-fw fa-edit"></i></button>
-                    <button type="button" title="Gerar Boleto" style="padding:1px; width:auto; float: left;" class="btn btn-danger"><i class="fa fa-fw  fa-file-text-o "></i></button>
                     </td>
                   </tr>
                   <tr>
@@ -87,7 +102,6 @@
                     <td>29/11/2018</td> 
                     <td>                      
                       <button type="button" title="Editar" style="padding:1px; width:auto; float: left; margin-right:10px;" class="btn btn-primary"><i class="fa fa-fw fa-edit"></i></button>
-                      <button type="button" title="Gerar Boleto" style="padding:1px; width:auto; float: left;" class="btn btn-danger"><i class="fa fa-fw  fa-file-text-o "></i></button>
                     </td>
                   </tr>
                   <tr>
@@ -97,8 +111,7 @@
                     <td>18/10/2018</td>
                     <td>15/11/2018</td>
                     <td>                      
-                    <button type="button" title="Editar" style="padding:1px; width:auto; float: left; margin-right:10px;" class="btn btn-primary"><i class="fa fa-fw fa-edit"></i></button>
-                    <button type="button" title="Gerar Boleto" style="padding:1px; width:auto; float: left;" class="btn btn-danger"><i class="fa fa-fw  fa-file-text-o "></i></button>
+                    <button type="button" title="Editar" style="padding:1px; width:auto; float: left; margin-right:10px;" class="btn btn-primary"><i class="fa fa-fw fa-edit"></i></button>                    
                     </td>
                     
                   </tr>
@@ -109,8 +122,7 @@
                      <td>18/10/2018</td>
                      <td>26/11/2018</td>
                       <td>                      
-                      <button type="button" title="Editar" style="padding:1px; width:auto; float: left; margin-right:10px;" class="btn btn-primary"><i class="fa fa-fw fa-edit"></i></button>
-                    <button type="button" title="Gerar Boleto" style="padding:1px; width:auto; float: left;" class="btn btn-danger"><i class="fa fa-fw  fa-file-text-o "></i></button>
+                      <button type="button" title="Editar" style="padding:1px; width:auto; float: left; margin-right:10px;" class="btn btn-primary"><i class="fa fa-fw fa-edit"></i></button>                    
                       </td>
                     </tr>
                 </tbody>                

@@ -161,7 +161,7 @@
               <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=categoria&act=listar&desc=Categoria"); return false;'><i class="fa fa-folder-open-o"></i> Categoria</a></li>
             </ul>
           </li>
-          <?php if(in_array("Usuarios",$valores['user']['permissao'])){?> <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=usuarios&desc=Usuários"); return false;'><i class="fa fa-users"></i> <span>Usuários</span></a></li> <?php }?>
+          <?php if(in_array("Usuarios",$valores['user']['permissao'])){?> <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=usuarios&act=listar&desc=Usuários"); return false;'><i class="fa fa-users"></i> <span>Usuários</span></a></li> <?php }?>
           
         </ul>
       </section>

@@ -77,6 +77,7 @@ $(document).on('click', '#buscarPrevisao', function(){
     $('#encontrarPrevisao').css("display", "block"); 
 });
 
+
  $(document).on('click', '.dropdown-toggle', function(e){
     e.preventDefault();
     e.stopPropagation();
@@ -91,9 +92,9 @@ $(document).on('click', '.dropdown-menu > li > a', function(e){
     
     clicked.closest(".dropdown-menu").find(".menu-active").removeClass("menu-active");
     clicked.parent("li").addClass("menu-active");
-    clicked.closest(".search-dropdown").find(".toggle-active").html(clicked.html());
+    clicked.closest(".input-group-btn").find(".toggle-active").html(clicked.html());
 });
     
 $(document).click(function() {
-    $(".search-dropdown.open").removeClass("open");
+    $(".input-group-btn.open").removeClass("open");
 });

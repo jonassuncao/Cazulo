@@ -121,8 +121,7 @@
       <hr />
       <div id="actions" class="row">
         <div class="col-md-12">
-          <a href="#" class="btn btn-default">Voltar</a>
-          <a href="#" class="btn btn-primary">Atualizar</a>
+          <a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&act=editarCondominio&desc=Editar Condomínio"); return false;' class="btn btn-primary">Atualizar</a>
         </div>
       </div>
       <hr />
@@ -149,7 +148,7 @@
   
             <div id="actions" class="row">
               <div class="col-md-12">
-                <a href="#" class="btn btn-primary">Listar</a>
+                <a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominos&act=listar&desc=Condôminos"); return false;' class="btn btn-primary">Listar</a>
               </div>
             </div>
   

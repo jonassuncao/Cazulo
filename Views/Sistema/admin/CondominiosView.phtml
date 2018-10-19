@@ -165,7 +165,7 @@
             <label for="exampleFormControlSelect2">Bancos cadastrados</label>
             <select multiple class="form-control" id="exampleFormControlSelect2">
               <option>Caixa Economica Federal - AG: 1234 C/C: 12345678-1</option>
-              <option>Itau - AG: 1234 C/P: 12345678-1</option>
+              <option>Itau (Encerrada) - AG: 1234 C/P: 12345678-1</option>
             </select>
           </div>
 
@@ -177,8 +177,8 @@
       <hr />
       <div id="actions" class="row">
         <div class="col-md-12">
-          <a href="#" class="btn btn-primary">Salvar</a>
-          <a href="#" class="btn btn-danger">Cancelar</a>
+          <a href="/" class="btn btn-primary" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&act=listar&desc=Condomínios"); return false;'>Salvar</a>
+          <a href="/" class="btn btn-danger" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&act=listar&desc=Condomínios"); return false;'>Cancelar</a>
         </div>
       </div>
 

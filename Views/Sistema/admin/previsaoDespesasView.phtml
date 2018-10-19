@@ -57,7 +57,7 @@
               <button type="button" title="Buscar Previsão" class="btn btn-block btn-info"><i class="fa fa-search"></i></button>
             </div>
             <div class="row" style="width: 40px; float:left; margin-left:25px;">
-              <button type="button" title="Imprimir Previsão" class="btn btn-block btn-primary"><i class="fa fa-print"></i></button>
+              <button type="button" title="Imprimir Previsão" class="btn btn-block btn-info"><i class="fa fa-print"></i></button>
             </div>
             <!-- Fim Botões-->
 
@@ -91,7 +91,7 @@
         <!-- Fim Botões Adicionar, Mostrar CheckBox, Fixar e configurar Fundo Reserva-->
         
         <hr/>
-        
+
         <!-- Início Tabela Previsão de Despesas-->
         <div class="box-body">
           <div class="col-md-16">
@@ -137,7 +137,7 @@
           <hr/>
 
           <div class="row" style="width: 40px; float:right; margin-right:25px;">
-            <button type="button" title="Emitir Taxa de Condomínio" class="btn btn-block btn-warning"><i class="fa fa-link"></i></button>
+            <button type="button" title="Taxa de Condomínio" class="btn btn-block btn-warning" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=taxaCondominio&act=listar&desc=Taxa de Condomínio"); return false;'><i class="fa fa-money"></i></button>
           </div>
 
         </div>
