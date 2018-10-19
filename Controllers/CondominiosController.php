@@ -53,7 +53,7 @@
      * Exibe a tela de Editar condominio
      * 
      */
-    public function editarCondominioAction(){
+    public function condominioAction(){
         //Renderiza a página de Selecionar Condominios
         $view = new ViewMaster('Views/Sistema/admin/CondominiosView.phtml');
         //Retorna para o navegador a página HTML à ser exibida.

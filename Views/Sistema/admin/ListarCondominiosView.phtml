@@ -121,7 +121,7 @@
       <hr />
       <div id="actions" class="row">
         <div class="col-md-12">
-          <a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&act=editarCondominio&desc=Editar Condomínio"); return false;' class="btn btn-primary">Atualizar</a>
+          <a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&act=condominio&desc=Editar Condomínio"); return false;' class="btn btn-primary">Atualizar</a>
         </div>
       </div>
       <hr />
@@ -133,8 +133,9 @@
             <div style="width: 30vw;" class="input-group input-group-sm">
               <input type="text" class="form-control" placeholder="Informe o Apartamento/Torre/Nome Condômino">
               <span class="input-group-btn">
-                <button type="button" class="btn btn-success btn-flat"><i class="fa fa-filter"></i></button>
+                <button type="button" style="border-radius: 0 4px 4px 0;" class="btn btn-success btn-flat"><i class="fa fa-filter"></i></button>
               </span>
+              <a href="/" data-dismiss="modal" style="width: 40px; float:left; margin-left:10px; padding: 4px;" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominos&act=condomino&desc=Adicionar Condômino"); return false;' class="btn btn-info"><i class="fa fa-plus"></i></a>               
             </div>
   
             <hr />

@@ -17,8 +17,9 @@
             <div style="width: 20vw;" class="input-group input-group-sm">
               <input type="text" class="form-control" placeholder="Informe o CNPJ/Nome Condomínio">
               <span class="input-group-btn">
-                <button type="button" class="btn btn-success btn-flat"><i class="fa fa-filter"></i></button>
+                <button type="button" class="btn btn-success btn-flat" style="border-radius: 0 4px 4px 0;"><i class="fa fa-filter"></i></button>
               </span>
+              <a href="/" data-dismiss="modal" style="width: 40px; float:left; margin-left:10px; padding: 4px;" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&act=condominio&desc=Adicionar Condomínio"); return false;' class="btn btn-info"><i class="fa fa-plus"></i></a>               
             </div>
 
             <hr />
