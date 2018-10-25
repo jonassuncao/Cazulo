@@ -1,0 +1,36 @@
+<!--?php
+    //Pega as variáveis para renderizar a página
+    $valores = $this->getHTMLValores();       
+?-->
+<!-- Início conteúdo Extrato-->
+<div class="tab-pane active" id="extrato">
+  <section id="new">
+    <!-- Início Contas-->
+    <div class="nav-tabs-custom">
+      <ul class="nav nav-tabs">
+        <li class=""><a href="#banco" onClick='Envio_Ajax("POST", "banco", "load_div", "Home", "exibir","opc=prestacaoContas&desc=Prestacao de Contas&act=listarEXT&banco=bb&ag=1234&op=003&conta:12345678-9"); return false;' data-toggle="tab">
+          <img style="width: 20px;" src="Views/Sistema/admin/images/caixa.png"alt="caixa"> 
+          <span class="logo-lg">Conta Corrente</span>
+        </a></li>
+        <li class=""><a href="#banco" onClick='Envio_Ajax("POST", "banco", "load_div", "Home", "exibir","opc=prestacaoContas&desc=Prestacao de Contas&act=listarEXT&banco=bb&ag=1234&op=003&conta:12345678-9"); return false;' data-toggle="tab">
+          <img style="width: 20px;" src="Views/Sistema/admin/images/bb.png"alt="bb">
+          <span class="logo-lg">Conta Poupança</span>
+        </a></li>
+      </ul>
+
+      <!-- Início conteúdo Contas-->
+      <div class="tab-content">
+
+        <!-- Início conteúdo Banco-->
+        <div class="tab-pane active" id="banco"></div>
+        <!-- Fim conteúdo Banco-->
+
+        
+      </div>
+      <!-- Fim conteúdo Contas-->
+    </div>
+    <!-- Fim Contas-->
+
+  </section>
+</div>
+<!-- Fim conteúdo Extrato-->

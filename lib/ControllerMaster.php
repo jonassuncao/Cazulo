@@ -56,7 +56,7 @@ class ControllerMaster{
         //Captura valores para o Action
         if(isset($_REQUEST['action']))              $this->action = $_REQUEST['action'];     
         else if(isset($_SESSION['action']))         $this->action = $_SESSION['action'];     
-        else                                        $this->action = 'exibir';        
+        else                                        $this->action = 'exibir';          
     }
 
     /**

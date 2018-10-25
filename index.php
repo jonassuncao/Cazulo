@@ -35,9 +35,10 @@
     //Caso o usuário recarregue a página, Redireciona para o Controller Home e Action listar
     
     if(isset($_SESSION['usuario']) && $_REQUEST['controller'] != 'Home' && $_REQUEST['controller'] != 'Login'){
-      ControllerMaster::setRequest('Home', 'listar'); 
+        ControllerMaster::setRequest('Home', 'listar'); 
+      
     }
-
+    
     $controller = new ControllerMaster();
     $controller->loadController();
   }catch(Exception $e) { //Caso de algum erro, o Controller: HomeController e a Action: listarAction, serão carregadas
