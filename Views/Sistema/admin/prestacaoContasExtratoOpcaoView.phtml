@@ -8,8 +8,8 @@
   <div>
     <h5>Banco: <img style="width: 20px;" src="Views/Sistema/admin/images/<?= $header['Banco-img']?>.png" alt="img-Banco"> 
       <b><?= $header['Banco']?></b></h5>
-      <h5>Cliente: <b><?= var_dump($header)?></b></h5>
-      <h5>Conta:   <b><?= $header['Cliente']?></b></h5>
+      <h5>Cliente: <b><?= $header['Cliente']?></b></h5>
+      <h5>Conta:   <b><?= $header['Conta']?></b></h5>
       <h5>Data:    <b><?= $header['Data']?></b></h5>
       <h5>Período: <b><?= $header['Periodo']?></b></h5>
   </div>
@@ -32,9 +32,9 @@
               <button class="btn btn-info btn-choose" type="button"><i class="fa fa-fw fa-cloud-upload"></i> Selecionar
       Arquivo</button>
         </span>
-        <input type="text" class="form-control" placeholder='Selecionar arquivo...' />
+        <input type="text" class="form-control" id="inputArq" placeholder='Selecionar arquivo...' />
         <span class="input-group-btn">
-              <button class="btn btn-success"  id="enviaArq" type="button"><i class="fa fa-fw fa-flash "></i></button>
+              <button class="btn btn-success" disabled id="enviaArq" type="button"><i class="fa fa-fw fa-flash "></i></button>
         </span>  
       </div>
     </div>
@@ -110,6 +110,7 @@ function bs_input_file() {
 				element.attr("name",$(this).attr("name"));
 				element.change(function(){
 					element.next(element).find('input').val((element.val()).split('\\').pop());
+          $("#enviaArq").removeAttr('disabled');
 				});
 				$(this).find("button.btn-choose").click(function(){
 					element.click();
@@ -125,9 +126,7 @@ function bs_input_file() {
 	);
 }
 
-$(function() {
-	bs_input_file();
-});  
+bs_input_file();
 
 $('#enviaArq').click(function () {
     var form = new FormData(salvarDoc);

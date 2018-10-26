@@ -92,7 +92,7 @@
         
         $header = Array("Banco-img"=> "bradesco",
                         "Banco"=> "-",
-                        "qCliente"=> "-",
+                        "Cliente"=> "-",
                         "Conta"=> "- / - / -",
                         "Data"=> "- ",
                         "Periodo"=> "-/-");                        
@@ -101,7 +101,9 @@
         //Carrega dados do header do array
         if($extrato != null){
             $obj = new ExtratoModel($extrato);
-            $header = $obj->getHeader();            
+            $header = $obj->getHeader();  
+            $header["Banco-img"] = "bradesco";          
+            $header["Banco"] = "Bradesco";
         }
 
         $view = new ViewMaster('Views/Sistema/admin/prestacaoContasExtratoOpcaoView.phtml', Array("header"=> $header));
