@@ -18,6 +18,7 @@
  
  //Inclui a classe model de negócio
  require_once 'Models/PrestacaoContasModel.php';
+ require_once 'Models/ExtratoModel.php';
 
  class PrestacaoContasController{
 
@@ -88,7 +89,22 @@
         $conta    = $_POST['conta']; // Pega número da Conta
         $extrato  = isset($_FILES['ext'])? $_FILES['ext']: null;   // Pega o arquivo do extrato
         //Renderiza a página 
-        $view = new ViewMaster('Views/Sistema/admin/prestacaoContasExtratoOpcaoView.phtml', Array("header"=> "Nome: ".$extrato['name']));
+        
+        $header = Array("Banco-img"=> "bradesco",
+                        "Banco"=> "-",
+                        "qCliente"=> "-",
+                        "Conta"=> "- / - / -",
+                        "Data"=> "- ",
+                        "Periodo"=> "-/-");                        
+                        
+                        
+        //Carrega dados do header do array
+        if($extrato != null){
+            $obj = new ExtratoModel($extrato);
+            $header = $obj->getHeader();            
+        }
+
+        $view = new ViewMaster('Views/Sistema/admin/prestacaoContasExtratoOpcaoView.phtml', Array("header"=> $header));
         //Retorna para o navegador a página HTML à ser exibida.                
         $view->showHTMLPag();
         

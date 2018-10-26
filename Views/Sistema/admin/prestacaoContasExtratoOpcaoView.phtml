@@ -1,16 +1,17 @@
 <?php
     //Pega as variáveis para renderizar a página
-    $valores = $this->getHTMLValores();       
+    $valores = $this->getHTMLValores();  
+    $header = $valores['header'];     
 ?>
 
 <section id="new">
   <div>
-    <h5>Banco: <img style="width: 20px;" src="Views/Sistema/admin/images/caixa.png" alt="caixa"> <b>Caixa
-        Econômica Federal</b></h6>
-      <h5>Cliente: <b>Condomínio Residencial AAAAAA</b></h5>
-      <h5>Conta: <b>1234 / 003 / 12345678-9</b></h5>
-      <h5>Data: <b>01/10/2017 - 12:03</b></h5>
-      <h5>Mês: <b>Setembro/2017</b></h5>
+    <h5>Banco: <img style="width: 20px;" src="Views/Sistema/admin/images/<?= $header['Banco-img']?>.png" alt="img-Banco"> 
+      <b><?= $header['Banco']?></b></h5>
+      <h5>Cliente: <b><?= var_dump($header)?></b></h5>
+      <h5>Conta:   <b><?= $header['Cliente']?></b></h5>
+      <h5>Data:    <b><?= $header['Data']?></b></h5>
+      <h5>Período: <b><?= $header['Periodo']?></b></h5>
   </div>
 
   <!-- Inicio Importar arquivo Extrato -->
@@ -42,7 +43,7 @@
 
   <table class="table table-striped">
     <tr>
-      <th>Data (<?=  $valores['header']?>)</th>
+      <th>Data</th>
       <th>Num. Doc.</th>
       <th>Descrição</th>
       <th>Valor</th>
