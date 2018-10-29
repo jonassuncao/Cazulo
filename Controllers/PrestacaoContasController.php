@@ -91,26 +91,27 @@
         
         
         //Inicializa as variaveis de retorno
-        $header = Array("Banco-img"=> "bradesco",
-                        "Banco"=> "-",
-                        "Cliente"=> "-",
+        $header = Array("Cliente"=> "-",
                         "Conta"=> "- / - / -",
                         "Data"=> "- ",
                         "Periodo"=> "-/-");                        
         $lancamento = Array();                
+        $saldo = Array("Inicial"=> "-",
+                       "Final"=> "-");  
                         
         //Caso tenha enviado o arquivo para o servidor, carrega o arquivo e preenche os dados.
         if($extrato != null){
-            $obj = new ExtratoModel($extrato);
-            $header = $obj->getHeader();  
+            $obj        = new ExtratoModel($extrato);
+            $header     = $obj->getHeader();  
             $lancamento = $obj->getExtrato();  
-            $header["Banco-img"] = "bradesco";          
-            $header["Banco"] = "Bradesco";
+            $saldo      = $obj->getSaldo(); 
         }
-
+        
+        $header["Banco-img"] = "bradesco";          
+        $header["Banco"]     = "Bradesco";
 
         //Renderiza a página 
-        $view = new ViewMaster('Views/Sistema/admin/prestacaoContasExtratoOpcaoView.phtml', Array("header"=> $header, "extrato"=> $lancamento));
+        $view = new ViewMaster('Views/Sistema/admin/prestacaoContasExtratoOpcaoView.phtml', Array("header"=> $header, "extrato"=> $lancamento, "saldo"=> $saldo));
         //Retorna para o navegador a página HTML à ser exibida.                
         $view->showHTMLPag();
         

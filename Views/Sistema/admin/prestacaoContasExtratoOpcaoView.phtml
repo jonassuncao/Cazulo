@@ -3,6 +3,7 @@
     $valores = $this->getHTMLValores();  
     $header  = $valores['header'];     
     $extrato = $valores['extrato'];  
+    $saldo   = $valores['saldo'];  
 ?>
 
 <section id="new">
@@ -57,7 +58,7 @@
       <td></td>
       <td style="font-weight: bold;">SALDO ANTERIOR</td>
       <td>=====</td>
-      <td style="font-weight: bold;">R$ <?php echo ($extrato[0]['Saldo'] == null)? '-': $extrato[0]['Saldo'];?></td>
+      <td style="font-weight: bold;">R$ <?= $saldo['Inicial'];?></td>
       <td></td>
     </tr>
     
@@ -77,7 +78,7 @@
       <td></td>
       <td style="font-weight: bold;">SALDO FINAL</td>
       <td>=====</td>
-      <td style="font-weight: bold;">R$ <?php echo ($extrato[count($extrato)-1]['Saldo'] == null)? '-': $extrato[count($extrato)-1]['Saldo'];?></td>
+      <td style="font-weight: bold;">R$ <?= $saldo['Final']; ?></td>
       <td></td>
     </tr>
   </table>

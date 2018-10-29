@@ -23,6 +23,7 @@ class ExtratoModel{
 
     private $header;
     private $extrato;
+    private $saldo;
     
     
     //Construtor
@@ -38,6 +39,7 @@ class ExtratoModel{
         
         $this->header = Array();
         $this->extrato = Array();
+        $this->saldo = Array();
         $this->fileArquivo = $file;
 
         $this->setDados();
@@ -103,10 +105,10 @@ class ExtratoModel{
 
                 $lancamento["Desc"] = $linha;
                 //Pega valor
-                $lancamento["Valor"] = ($valores[$count-3] == 'C')? "+ ".$valores[$count-4] : "- ".$valores[$count-4];
+                $lancamento["Valor"] = ($valores[$count-3] == 'C')? "+".$valores[$count-4] : "-".$valores[$count-4];
                 $lancamento["ValorCor"] = ($valores[$count-3] == 'C')? "green" : "red";
                 //Pega Saldo
-                $lancamento["Saldo"] = ($valores[$count-1] == 'C')? $valores[$count-2] : "- ".$valores[$count-2];
+                $lancamento["Saldo"] = ($valores[$count-1] == 'C')? $valores[$count-2] : "-".$valores[$count-2];
                 
                 array_push($this->extrato, $lancamento);
             }                                                  
@@ -115,7 +117,14 @@ class ExtratoModel{
         //Fecha o arquivo.
         fclose($arquivo);
         $this->limpaDir(__DIR__.'/../temp/');
-
+        
+        //Calcula vares dos saldos
+        $saldo =  str_replace("." , "" ,  str_replace("," , "" , $this->extrato[0]['Saldo'] ))/100;
+        $valor =  str_replace("." , "" ,  str_replace("," , "" , $this->extrato[0]['Valor'] ))/100;
+        $this->saldo['Inicial'] = number_format(($saldo - $valor),2,",",".");;
+        
+        number_format($this->extrato[0]['Saldo']);// + floatval($this->extrato[0]['Valor']);
+        $this->saldo['Final'] = $this->extrato[count($this->extrato)-1]['Saldo'];
     }
 
     //Retorna os dados do Header
@@ -127,6 +136,11 @@ class ExtratoModel{
     public function getExtrato(){      
         return $this->extrato;
     }
+
+    //Retorna os dados do saldo
+    public function getSaldo(){      
+        return $this->saldo;
+    }    
 
     private function limpaDir($dir){
         $itens = glob(__DIR__.'/../temp/*.*'); 
