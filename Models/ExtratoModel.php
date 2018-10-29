@@ -17,10 +17,13 @@
  */
 
 class ExtratoModel{
-    private $header;
+    
     private $fileArquivo;
-    private $matrizConteudo;
     private $periodo;
+
+    private $header;
+    private $extrato;
+    
     
     //Construtor
     function __construct($file) {      
@@ -34,8 +37,10 @@ class ExtratoModel{
         if (!move_uploaded_file($file['tmp_name'], __DIR__.'/../temp/'.basename($file['name']))) throw new Exception("Erro ao salvar arquivo!");
         
         $this->header = Array();
-        $this->matrizConteudo = Array();
+        $this->extrato = Array();
         $this->fileArquivo = $file;
+
+        $this->setDados();
     }
     
     private function setDados(){
@@ -85,27 +90,42 @@ class ExtratoModel{
             //Tenta pegar o lançamento do Condominio
 
             if(strpos($linha, $this->periodo) === 3){  
+                $lancamento=Array();              
                 //Pega Data
-                $this->header["Periodo"] = substr($linha, 0, 10);
+                $lancamento["Data"] = substr($linha, 0, 10);
                 //Pega NumDoc
+                $lancamento["NumDoc"] = substr($linha, 11, 6);
                 //Pega Desc
+                $linha   = trim(substr($linha, 18));
+                $valores = preg_split('/\s+/', $linha);
+                $count   = count($valores);
+                $linha   = substr($linha, 0, strpos($linha, $valores[$count-4]));
+
+                $lancamento["Desc"] = $linha;
                 //Pega valor
+                $lancamento["Valor"] = ($valores[$count-3] == 'C')? "+ ".$valores[$count-4] : "- ".$valores[$count-4];
+                $lancamento["ValorCor"] = ($valores[$count-3] == 'C')? "green" : "red";
                 //Pega Saldo
-                /*$lancamento;              
-                $this->header["Periodo"] = str_replace('Mês:', '', $linha);
-                array_push($cesta, $lancamento);                */
+                $lancamento["Saldo"] = ($valores[$count-1] == 'C')? $valores[$count-2] : "- ".$valores[$count-2];
+                
+                array_push($this->extrato, $lancamento);
             }                                                  
         }
-
+        
         //Fecha o arquivo.
         fclose($arquivo);
         $this->limpaDir(__DIR__.'/../temp/');
+
     }
 
     //Retorna os dados do Header
-    public function getHeader(){
-        $this->setDados();
+    public function getHeader(){      
         return $this->header;
+    }
+
+    //Retorna os dados do extrato
+    public function getExtrato(){      
+        return $this->extrato;
     }
 
     private function limpaDir($dir){

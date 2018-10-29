@@ -94,7 +94,38 @@ $(document).on('click', '.dropdown-menu > li > a', function(e){
     clicked.parent("li").addClass("menu-active");
     clicked.closest(".input-group-btn").find(".toggle-active").html(clicked.html());
 });
-    
+
+function bs_input_file() {
+	$(".input-file").before(
+		function() {
+			if ( ! $(this).prev().hasClass('input-ghost') ) {
+				var element = $("<input type='file' accept='.txt' id='inp_extrato' nome='ext' class='input-ghost' style='visibility:hidden; height:0'>");
+				element.attr("name",$(this).attr("name"));
+				element.change(function(){
+					element.next(element).find('input').val((element.val()).split('\\').pop());
+          $("#enviaArq").removeAttr('disabled');
+				});
+				$(this).find("button.btn-choose").click(function(){
+					element.click();
+				});
+				$(this).find('input').css("cursor","pointer");
+				$(this).find('input').mousedown(function() {
+					$(this).parents('.input-file').prev().click();
+					return false;
+				});
+				return element;
+			}
+		}
+	);
+}
+
+$(document).on('click', '#enviaArq', function(e){
+
+    var form = new FormData(salvarDoc);
+    form.append('ext', $('#inp_extrato').get(0).files[0]); // para apenas 1 arquivo
+    Envio_Ajax('POST', 'banco', '', '', '', form);
+});
+
 $(document).click(function() {
     $(".input-group-btn.open").removeClass("open");
 });

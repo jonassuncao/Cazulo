@@ -1,7 +1,8 @@
 <?php
     //Pega as variáveis para renderizar a página
     $valores = $this->getHTMLValores();  
-    $header = $valores['header'];     
+    $header  = $valores['header'];     
+    $extrato = $valores['extrato'];  
 ?>
 
 <section id="new">
@@ -34,12 +35,13 @@
         </span>
         <input type="text" class="form-control" id="inputArq" placeholder='Selecionar arquivo...' />
         <span class="input-group-btn">
-              <button class="btn btn-success" disabled id="enviaArq" type="button"><i class="fa fa-fw fa-flash "></i></button>
+          <button class="btn btn-success" disabled id="enviaArq" type="button"><i class="fa fa-fw fa-flash "></i></button>              
         </span>  
-      </div>
+      </div>      
     </div>
   </form>
-	<!-- FIM Importar arquivo Extrato -->
+</div>  
+<div style="clear: both;"></div>
 
   <table class="table table-striped">
     <tr>
@@ -51,87 +53,37 @@
       <th style="width: 10px"></th>
     </tr>
     <tr>
-      <td style="font-weight: bold;">01/09/2017</td>
+      <td></td>
       <td></td>
       <td style="font-weight: bold;">SALDO ANTERIOR</td>
       <td>=====</td>
-      <td style="font-weight: bold;">R$ 15.151,95</td>
+      <td style="font-weight: bold;">R$ <?php echo ($extrato[0]['Saldo'] == null)? '-': $extrato[0]['Saldo'];?></td>
       <td></td>
     </tr>
-    <tr>
-      <td>04/09/2017</td>
-      <td>291712</td>
-      <td>PAG BOLETO</td>
-      <td style="color: red">- 7.143,14</td>
-      <td>8.008,81</td>
-      <td><button type="button" title="Detalhar" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
-    </tr>
-    <tr>
-      <td>08/09/2017</td>
-      <td>040817</td>
-      <td>COB LOT DH</td>
-      <td style="color: green">+ 1.428,09</td>
-      <td>9.436,90</td>
-      <td><button type="button" title="Detalhar" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
-    </tr>
-    <tr>
-      <td>10/09/2017</td>
-      <td>097301</td>
-      <td>ENVIO TEV</td>
-      <td style="color: red">- 3.375,41</td>
-      <td>6.061,49</td>
-      <td><button type="button" title="Detalhar" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
-    </tr>
-    <tr>
-      <td>15/09/2017</td>
-      <td>902108</td>
-      <td>CHEQUE SAC</td>
-      <td style="color: red">- 2.365,23</td>
-      <td>3.696,26</td>
-      <td><button type="button" title="Detalhar" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
-    </tr>
-    <tr>
-      <td style="font-weight: bold;">30/09/2017</td>
+    
+    <?php foreach ($extrato as $key => $lancamento) { ?>    
+      <tr>
+        <td><?= $lancamento['Data']?></td>
+        <td><?= $lancamento['NumDoc']?></td>
+        <td><?= $lancamento['Desc']?></td>
+        <td style="color: <?= $lancamento['ValorCor']?>"><?= $lancamento['Valor']?></td>
+        <td><?= $lancamento['Saldo']?></td>
+        <td><button type="button" title="Detalhar" class="btn btn-block btn-primary"><i class="fa fa-fw fa-info"></i></button></td>
+      </tr>
+    <?php }?>
+
+    <tr>      
+      <td></td>
       <td></td>
       <td style="font-weight: bold;">SALDO FINAL</td>
       <td>=====</td>
-      <td style="font-weight: bold;">R$ 3.696,26</td>
+      <td style="font-weight: bold;">R$ <?php echo ($extrato[count($extrato)-1]['Saldo'] == null)? '-': $extrato[count($extrato)-1]['Saldo'];?></td>
       <td></td>
     </tr>
   </table>
+
 </section>
 
 <script>
-function bs_input_file() {
-	$(".input-file").before(
-		function() {
-			if ( ! $(this).prev().hasClass('input-ghost') ) {
-				var element = $("<input type='file' accept='.txt' id='inp_extrato' nome='ext' class='input-ghost' style='visibility:hidden; height:0'>");
-				element.attr("name",$(this).attr("name"));
-				element.change(function(){
-					element.next(element).find('input').val((element.val()).split('\\').pop());
-          $("#enviaArq").removeAttr('disabled');
-				});
-				$(this).find("button.btn-choose").click(function(){
-					element.click();
-				});
-				$(this).find('input').css("cursor","pointer");
-				$(this).find('input').mousedown(function() {
-					$(this).parents('.input-file').prev().click();
-					return false;
-				});
-				return element;
-			}
-		}
-	);
-}
-
 bs_input_file();
-
-$('#enviaArq').click(function () {
-    var form = new FormData(salvarDoc);
-    form.append('ext', $('#inp_extrato').get(0).files[0]); // para apenas 1 arquivo
-    Envio_Ajax('POST', 'banco', '', '', '', form);
-});
-
 </script>
