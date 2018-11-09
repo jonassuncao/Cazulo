@@ -26,8 +26,7 @@
   <link rel="stylesheet" href="Views/Sistema/admin/bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="Views/Sistema/admin/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
+  <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="Views/Sistema/admin/dist/css/skins/_all-skins.min.css">
   <!-- Morris chart -->
   <link rel="stylesheet" href="Views/Sistema/admin/bower_components/morris.js/morris.css">
@@ -48,11 +47,11 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
+  
   <!--===============================================================================================-->
   <script src="Views/Sistema/admin/bower_components/jquery/dist/jquery.min.js"></script>
   <!--===============================================================================================-->
-
+   
 </head>
 
 <body class="hold-transition skin-black sidebar-mini">
@@ -61,7 +60,7 @@
     <header class="main-header">
 
       <!-- Logo -->
-      <a class="logo">
+      <a class="logo" href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=inicio&act=listar&desc=inicio"); return false;'>
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>C<span style="color:#0f8cd6">A</span>O</b></span>
         <!-- logo for regular state and mobile devices -->
@@ -142,21 +141,10 @@
           <?php if(in_array("TaxaCondominio",$valores['user']['permissao'])){?>       <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=taxaCondominio&act=listar&desc=Taxa de Condomínio"); return false;'><i class="fa fa-barcode"></i> <span>Taxa de Condomínio</span></a></li>                  <?php }?>
           <?php if(in_array("ControleAdimplencia",$valores['user']['permissao'])){?>  <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=controleAdimplencia&act=listar&desc=Controle de Adimplência"); return false;'><i class="fa fa-money"></i> <span>Controle de Adimplência</span></a></li>     <?php }?>
 
-          <li class="header">Configuração</li>
-          <li class="treeview">
-          <?php if(in_array("Parametros",$valores['user']['permissao'])){?>
-            <a href="/" >
-              <i class="fa fa-gears"></i> <span>Parâmetros</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-          <?php }?>
-            <ul class="treeview-menu">
-              <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&act=listar&desc=Condomínios"); return false;'><i class="fa fa-building-o"></i> Condomínios</a></li>          
-              <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=categoria&act=listar&desc=Categoria"); return false;'><i class="fa fa-folder-open-o"></i> Categoria</a></li>
-            </ul>
-          </li>
+          <li class="header">Extras</li>
+          
+          <?php if(in_array("Condominio",$valores['user']['permissao'])){?><li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&act=listar&desc=Condomínio"); return false;'><i class="fa fa-building-o"></i> Condomínio</a></li>  <?php }?>         
+          <?php if(in_array("Categoria",$valores['user']['permissao'])){?><li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=categoria&act=listar&desc=Categoria"); return false;'><i class="fa fa-folder-open-o"></i> Categoria</a></li> <?php }?>
           <?php if(in_array("Usuarios",$valores['user']['permissao'])){?> <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=usuarios&act=listar&desc=Usuários"); return false;'><i class="fa fa-users"></i> <span>Usuários</span></a></li> <?php }?>
           
         </ul>
@@ -168,16 +156,7 @@
     <div id="modal_resposta"></div> 
 
     <!-- Div resposta corpo página -->            
-    <div class="content-wrapper" id="body_resposta">
-      <!-- Content Wrapper. Contains page content -->            
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h1>
-          Início
-          <small>Pagina Inicial</small>
-        </h1>
-      </section>
-    </div>
+    <div class="content-wrapper" id="body_resposta"></div>
     <div id="load_div"></div>
     
 

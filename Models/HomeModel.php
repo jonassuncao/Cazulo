@@ -33,7 +33,8 @@ class HomeModel{
                                         "PrevisaoDespesas", 
                                         "TaxaCondominio", 
                                         "ControleAdimplencia", 
-                                        "Parametros",
+                                        "Condominio",
+                                        "Categoria",
                                         "Usuarios");
     }
 

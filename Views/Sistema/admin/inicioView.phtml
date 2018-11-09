@@ -1,0 +1,129 @@
+<?php
+    //Pega as variáveis para renderizar a página
+    $valores = $this->getHTMLValores();       
+?>
+<section class="content-header">
+  <!-- Inicio small-box-->
+  <div class="row">
+
+    <!-- Inicio small-box Prestação Contas-->
+    <div class="col-lg-3 col-xs-12">
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3>R$ 64.958,32</h3>
+          <h4>10/2018</h4>
+          <br/>
+          <p>Saldo bancário: <b>R$ 43.413,64</b></p>
+          <p><b>Prestação de Contas</b></p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-bookmark"></i>
+        </div>
+        <a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=prestacaoContas&act=listar&desc=Prestação de Contas"); return false;' class="small-box-footer">ir para Prestação de Contas <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- Fim small-box Prestação Contas-->
+
+    <!-- Inicio small-box Previsão de Despesas-->
+    <div class="col-lg-3 col-xs-12">
+      <div class="small-box bg-green">
+        <div class="inner">
+         <h3>R$ 19.300,65</h3>
+          <h4>11/2018</h4>
+          <br/>
+          <p><b>200</b> Unidades</p>
+          <p><b>Previsão de Despesas</b></p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-calculator"></i>
+        </div>
+        <a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=previsaoDespesas&act=listar&desc=Previsão de Despesas"); return false;' class="small-box-footer">ir para Previsão de Despesas <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- Fim small-box Previsão de Despesas-->
+
+    <!-- Inicio small-box Taxa de Condominio-->
+    <div class="col-lg-3 col-xs-12">
+      <!-- small box -->
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3>R$ 20.758,32</h3>
+          <h4>11/2018</h4>
+          <br/>
+          <p><b>200</b> Boletos</p>
+          <p><b>Taxas de Condomínio</b></p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-pricetag"></i>
+        </div>
+        <a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=taxaCondominio&act=listar&desc=Taxa de Condomínio"); return false;' class="small-box-footer">ir para Taxa de Condomínio <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- Fim small-box Taxa de Condominio-->
+    
+    <!-- Inicio small-box Controle de Adimplência-->
+    <div class="col-lg-3 col-xs-12">
+      <div class="small-box bg-red">
+        <div class="inner">
+        <h3>R$ 15.456,43</h3>
+          <h4>11/2018</h4>
+          <br/>
+          <p><b>160/200</b> Boletos pagos</p>
+          <p><b>Controle de Adimplência</b></p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-pie-graph"></i>
+        </div>
+        <a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=controleAdimplencia&act=listar&desc=Controle de Adimplência"); return false;' class="small-box-footer">ir para Controle de Adimplência <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+  </div>
+  <!-- Inicio small-box Controle de Adimplência-->
+  <!-- Fim small-box-->
+
+  <!-- Inicio Grafico Adimplência/Inadimplência dos ultimos 12 meses-->
+  <div class="row">
+    <section class="col-lg-12 col-xs-12">
+      <div id="graficoAdimplencia" ></div>
+    </section>
+  </div>  
+  <!-- Inicio Grafico Adimplência/Inadimplência do ultimo ano-->
+
+</section>
+<section class="content">
+ 
+</section>
+<script>
+new Morris.Line({  
+  element: 'graficoAdimplencia',
+  data: [    
+    { y: '2018-10', a: 100, b: 90, c: 10},
+    { y: '2018-09', a: 60, b: 12, c: 48},
+    { y: '2018-08', a: 70, b: 45, c: 25},
+    { y: '2018-07', a: 90, b: 23, c: 67},
+    { y: '2018-06', a: 56, b: 34, c: 16},
+    { y: '2018-05', a: 85, b: 56, c: 24},
+    { y: '2018-04', a: 130, b: 98, c: 32},
+    { y: '2018-03', a: 45, b: 34, c: 11},
+    { y: '2018-02', a: 23, b: 12, c: 11},
+    { y: '2018-01', a: 67, b: 34, c: 33},
+    { y: '2017-12', a: 67, b: 45, c: 22},
+    { y: '2017-11', a: 117, b: 97, c: 20}
+  ],
+  xkey: 'y',
+  ykeys: ['a', 'b', 'c'],
+  xLabelFormat: function (x) {
+    var IndexToMonth = [ "Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez" ];
+    var month = IndexToMonth[ x.getMonth() ];
+    var year = x.getFullYear();
+    return month+ '/' +year;
+  },
+  dateFormat: function (x) {
+    var IndexToMonth = [ "Jan", "Feb", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez" ];  
+    var month = IndexToMonth[ new Date(x).getMonth() ];
+    var year = new Date(x).getFullYear();
+    return month+ '/' +year;
+  },
+  labels: ['Previsão', 'Recebidos', 'Restante']
+});
+</script>
