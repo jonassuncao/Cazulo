@@ -42,8 +42,21 @@
      * 
      */
     public function selecionarAction(){
-        //Renderiza a página de Selecionar Condominios
-        $view = new ViewMaster('Views/Sistema/admin/SelecionarView.phtml', Array("header"=> "Escolha um Condomínio!"));
+        
+        $view  = null; //Variavel que será usada para definir qual view o controller deve exibir
+        $dados = null; //Variavel que será usada para receber os dados do model
+
+        //Instancia a classe model, para pegar os dados para serem exibidos
+        $cond = new CondominioModel();
+        $dados = $cond->getCondominios($view); //$view é tratado por referencia
+
+        //Verifica qual view deve exibir e Renderiza a página de Selecionar Condominios
+        if($view){ //Caso $view seja TRUE, exibe view de listar os condominios e passa os dados para a listagem
+            $view = new ViewMaster('Views/Sistema/admin/SelecionarView.phtml', Array("header"=> "Escolha um Condomínio!", "dados"=> $dados));
+        }else{ //Caso $view seja FALSE, exibe view de erro e passa os dados do erro
+            $view = new ViewMaster('Views/Sistema/admin/modalErroView.phtml', Array("header"=> "Erro ao listar Condomínios","body"=> $dados));
+        }
+        
         //Retorna para o navegador a página HTML à ser exibida.
         $view->showHTMLPag();
         
@@ -67,7 +80,8 @@
      */
     public function mudarCondAction(){
         //Salva o condominio na session        
-        $condominio = substr($_POST['cond'], 0, 18);
+        $cnpj = substr($_POST['cond'], 0, 18);
+        $cond = substr($_POST['cond'], 20);
         $login = new LoginModel(); //Instancia uma classe Login
 
         //Verifica se o usuário que está logado tem permissão para acessar o controller e Action solicitado
@@ -76,7 +90,8 @@
              * Agora modifica os parametros da Requisição e tenta importar o controller, e chamar a função Action solicitada
             */
             //Recarrega a página
-            $_SESSION['cond'] = $condominio;
+            $_SESSION['cnpj'] = $cnpj;
+            $_SESSION['cond'] = $cond.' ( '.$cnpj.' )';
             ControllerMaster::setRequest('Home', 'listar');  
             ControllerMaster::redirect(); 
         }else{ 

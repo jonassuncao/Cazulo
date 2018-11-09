@@ -13,10 +13,6 @@
   <title>Sistema de Administração de Condomínios</title>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-
-
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="icon" type="image/png" href="Views/Sistema/admin/images/icons/favicon.ico" />
@@ -81,7 +77,7 @@
         <div style="float: left; margin-left:20px; min-width: 30vw;" >
           <ul class="nav navbar-nav " style="width: 100%;">
             <div class="input-group input-group-sm selecEmpresa">
-              <input type="text" class="form-control" id="selectCond" placeholder="Condomínio" disabled value="Condomínio Residencial Liberty IV (<?= $condominio?>)">              
+              <input type="text" class="form-control" id="selectCond" placeholder="Selecione um Condomínio" disabled value="<?= $condominio?>">              
               <span class="input-group-btn">
                 <button type="button" class="btn btn-primary btn-flat" onClick='Envio_Ajax("POST", "modal_resposta", "load_div", "Home", "exibir","opc=condominios&act=selecionar&desc=Condomínios"); return false;'><i class="fa fa-building"></i></button>
               </span>
@@ -114,7 +110,7 @@
                     <a href="#" class="btn btn-default btn-flat">Alterar Senha</a>
                   </div>
                   <div class="pull-right">
-                    <a onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Login", "logoff"); return false;' class="btn btn-default btn-flat">Sair</a>
+                    <a onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Login", "logoff", ""); return false;' class="btn btn-default btn-flat">Sair</a>
                   </div>
                 </li>
               </ul>

@@ -25,8 +25,10 @@
             <hr />
 
             <select multiple class="form-control" id="listaCond">
-              <option selected>19.494.332/0001-06 | Condomínio Residencial Liberty II </option>
-              <option>00.234.456/0001-06 | Condomínio Residencial Liberty IV </option>
+              <?php foreach ($valores['dados'] as $key => $condominio) { ?>    
+                <option><?= $condominio['cnpj']?> | <?= $condominio['nome']?></option>
+              <?}?>             
+              
             </select>
 
             <hr />

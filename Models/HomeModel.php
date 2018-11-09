@@ -48,7 +48,7 @@ class HomeModel{
     //=========================================================================
 
     /**
-     * REtorna os valores do usuário
+     * Retorna os valores do usuário
      */ 
     public function toValores(){            
         return Array("usuario"=>        $this->getUsuario(),
