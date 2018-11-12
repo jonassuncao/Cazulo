@@ -52,16 +52,16 @@
         <div class="form-group col-md-2">
           <label for="campo2">CEP</label>
           <div class="input-group input-group-sm">
-            <input type="text" class="form-control" placeholder="Ex.: 00000-000">
+            <input type="text" id="cep" class="form-control" placeholder="Ex.: 00000-000">
             <span class="input-group-btn">
-              <button type="button" class="btn btn-success btn-flat"><i class="fa fa-search"></i></button>
+              <button type="button" id="btnPesquisar" onClick="buscaCEP($('input#cep').val()); return false;" class="btn btn-success btn-flat"><i class="fa fa-search"></i></button>
             </span>
           </div>
         </div>
 
         <div class="form-group col-md-4">
           <label for="inputState">Rua</label>
-          <input type="text" class="form-control phone-mask" placeholder="Rua x">
+          <input type="text" id="endereco" class="form-control phone-mask" placeholder="Rua x">
         </div>
 
         <div class="form-group col-md-1">
@@ -71,7 +71,7 @@
 
         <div class="form-group col-md-4">
           <label for="inputState">Setor</label>
-          <input type="text" class="form-control phone-mask" placeholder="Rua x">
+          <input type="text" id="bairro" class="form-control phone-mask" placeholder="Rua x">
         </div>
 
         <div class="form-group col-md-5">
@@ -81,7 +81,7 @@
 
         <div class="form-group col-md-4">
           <label for="inputState">Município</label>
-          <input type="text" class="form-control phone-mask" placeholder="Goiânia">
+          <input type="text" id="cidade" class="form-control phone-mask" placeholder="Goiânia">
         </div>
 
         <div class="form-group col-md-2">
@@ -95,7 +95,7 @@
             <option value="CE">Ceará</option>
             <option value="DF">Distrito Federal</option>
             <option value="ES">Espirito Santo</option>
-            <option value="GO" selected>Goiás</option>
+            <option value="GO">Goiás</option>
             <option value="MA">Maranhão</option>
             <option value="MS">Mato Grosso do Sul</option>
             <option value="MT">Mato Grosso</option>
@@ -188,3 +188,50 @@
 
 
 </section>
+<script>
+
+//Função Js que busca o endereço pelo CEP, usando API
+
+function buscaCEP(cep){
+
+  //Verifica se cep possui tamanho válido
+  if (cep.length > 9 || cep.length < 8 ){ alert('CEP Inválido'); return;} //CEP não tem tamanho válido (Sào 8 digitos sem carcter especial)
+
+  //Faz uma requisição AJAX (GET) para a API
+  $.get({
+      url: "http://apps.widenet.com.br/busca-cep/api/cep.json",
+      dataType: "json",
+      data: { code: cep },
+      beforeSend: function( result ) {
+          $("button#btnPesquisar").html('<img src="Views\\img\\load.gif" alt="Buscando" height="20" width="20">');
+          $("input#cep").attr('disabled','disabled');
+          $("select#inputState").attr('disabled','disabled');
+          $("input#cidade").attr('disabled','disabled');
+          $("input#bairro").attr('disabled','disabled');
+          $("input#endereco").attr('disabled','disabled');
+      }
+  })
+  .done(function( result ) {
+    if( result.status!=1 ){
+        alert(result.message || "Houve um erro desconhecido");
+        return;
+    }
+    $("input#cep").val( result.code );
+    $("select#inputState option[value='"+result.state+"']").attr({ selected : "selected" });
+    $("input#cidade").val( result.city );
+    $("input#bairro").val( result.district );
+    $("input#endereco").val( result.address );
+  })
+  .fail(function( result ) {
+    alert("Houve um erro desconhecido ao buscar o CEP");
+  })
+  .always(function( result ) {
+    $("button#btnPesquisar").html('<i class="fa fa-search"></i>');
+    $("input#cep").removeAttr('disabled');
+    $("select#inputState").removeAttr('disabled');
+    $("input#cidade").removeAttr('disabled');
+    $("input#bairro").removeAttr('disabled');
+    $("input#endereco").removeAttr('disabled');
+  });
+}
+</script>
