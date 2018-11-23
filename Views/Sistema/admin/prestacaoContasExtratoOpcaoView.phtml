@@ -18,11 +18,9 @@
 
   <!-- Inicio Importar arquivo Extrato -->
   <form id="salvarDoc" enctype="multipart/form-data">
-    <input type="hidden" name="controller" value="Home" />
-    <input type="hidden" name="action" value="exibir" />
-    <input type="hidden" name="opc" value="prestacaoContas" />
-    <input type="hidden" name="desc" value="Prestacao de Contas" />
-    <input type="hidden" name="act" value="listarEXT" />
+    <input type="hidden" name="rota" value="PrestacaoContas" />
+    <input type="hidden" name="acao" value="listarEXT" />
+    <input type="hidden" name="titulo" value="Prestacao de Contas" />
     <input type="hidden" name="banco" value="bb" />
     <input type="hidden" name="ag" value="1234" />
     <input type="hidden" name="op" value="003" />
@@ -87,4 +85,10 @@
 
 <script>
 bs_input_file();
+
+$(document).on('click', '#enviaArq', function(e){
+  var form = new FormData(salvarDoc);
+  form.append('ext', $('#inp_extrato').get(0).files[0]); // para apenas 1 arquivo
+  requisitarServidor("index.php", "", form, "banco");
+});
 </script>

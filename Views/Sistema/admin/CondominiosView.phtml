@@ -177,8 +177,8 @@
       <hr />
       <div id="actions" class="row">
         <div class="col-md-12">
-          <a href="/" class="btn btn-primary" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&act=listar&desc=Condomínios"); return false;'>Salvar</a>
-          <a href="/" class="btn btn-danger" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&act=listar&desc=Condomínios"); return false;'>Cancelar</a>
+          <a href="/" class="btn btn-primary" onClick='requisitarServidor("index.php", "Condominios.listar", "titulo=Condomínios", "body_resposta"); return false;'>Salvar</a>
+          <a href="/" class="btn btn-danger" onClick='requisitarServidor("index.php", "Condominios.listar", "titulo=Condomínios", "body_resposta"); return false;'>Cancelar</a>
         </div>
       </div>
 

@@ -18,16 +18,26 @@
 
 //Importas as libs que serão utilizadas
 require_once 'lib/BancoDados.php'; //Lib que realiza operação no banco de dados
-require_once 'lib/utilitarios.php'; //Lib com funcões utilitarias
+require_once 'lib/Utilitarios.php'; //Lib com funcões utilitarias
+require_once 'lib/Resposta.php'; //Lib com funcões utilitarias
 
 class CondominioModel{
     
+
+    /**
+     *  Verifica se o usuário tem permissão para a rota
+     */
+    public function temPermissaoMudarCondominio($operacao, $CNPJcondominio){                
+        return true;
+    }
+
     /**
      * Metodo busca no banco de dados Nome e CNPJ de todos os condominios cadastrados no sistema
-     * @return Array Nome e CNPJ de todos os condominios
+     * @return (Object)Resposta com os dados e o codigo da resposta
      */
-    public function getCondominios(&$FLAG){
-        $result = null;
+    public function getCondominios(){
+        $resposta = new Resposta();
+        $resultado = null;
 
         try{ //Tenta realizar a consulta no Banco
             $campos = "cnpj, razaoSocial";
@@ -38,26 +48,22 @@ class CondominioModel{
             $queryCondominios->select($campos, $tabela);
                 
             //Monta um Array para resposta
-            $result = Array();
+            $resultado = Array();
             while($linha = $queryCondominios->resultQuery()){                                
-                array_push($result, Array('cnpj' => mascara($linha['cnpj'], '##.###.###/####-##'), 'nome'=> $linha['razaoSocial']));
+                array_push($resultado, Array('cnpj' => mascara($linha['cnpj'], '##.###.###/####-##'), 'nome'=> $linha['razaoSocial']));
             } 
             
-            /*Atribui a variavel $FLAG = TRUE, ou seja, 
-                a operação foi realizada com sucesso, o controller pode encaminhar os dados para a view de listagem            
-            */            
-            $FLAG = TRUE; 
+            //Armazena o resultado em um objeto
+            $resposta->setCodigoResposta(TRUE);
+            $resposta->setMensagem($resultado);
         }catch(Exception $e){
-            //Caso de alguma exceção, monta a resposta
-            $result = "Erro ao obter listagem dos condominios!".$e->getMessage();
-
-            /*Atribui a variavel $FLAG = FALSE, ou seja, 
-                a operação não foi realizada com sucesso, o controller deve encaminhar os dados para a view de erros            
-            */                        
-            $FLAG = FALSE;
+            
+            //Armazena o erro em um objeto
+            $resposta->setCodigoResposta(FALSE);
+            $resposta->setMensagem("Erro ao obter listagem dos condominios!".$e->getMessage());            
         }
 
-        return $result;
+        return $resposta;
     }
 }
 

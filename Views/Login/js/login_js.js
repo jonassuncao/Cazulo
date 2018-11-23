@@ -1,50 +1,44 @@
-$('#btLogar').click(function(){
-    //Valida se os campos estão preenchidos
-    if($('#usuario').val().length == 0) return;
-    if($('#senha').val().length == 0)   return;
-    
-    //Envia os dados para o servidor    
-    Ajax_Login("POST", "body_res", "load_div", "Login", "login", $("form").serialize());
-    return false;
-});
-
 /**
-* Função que usa o Ajax para enviar dados para o servidor
+* Função que usa o Ajax para requisitar dados para o servidor
+* @param urlServidor 			// Url do servidor
+* @param rota 					//Qual é a rota que o servidor vai processar essas informações
+* @param parametros				//Todos os dados a ser enviados para o servidor
+* @param retornoHTML			//Id de uma tag que receberá a resposta do servidor
 *
 */
-function Ajax_Login(metodo, div_retorno, divLoad, controller, action, param){
+
+function requisitarServidorLogin(urlServidor, rota, parametros, retornoHTML){
 	
 	$.ajax({ 
-		url: 'index.php', //Pagina destino 
-		type: metodo,//metodo GET ou POST	
-		data: "controller="+controller+"&action="+action+"&"+param, //Parametros a serem enviados
+		url: urlServidor, //Pagina destino 
+		type: "POST",//metodo GET ou POST	
+		data: "rota="+rota.substr(0, rota.indexOf('.'))+"&acao="+rota.substr(rota.indexOf('.')+1)+"&"+parametros, //Parametros a serem enviados
         
-        beforeSend : function(result){		
+        beforeSend : function(){		
 			
-			//Limpa a cor e o conteudo dos box
-			$("#"+div_retorno).html("");
-			$("#"+div_retorno).removeClass("back-success");
-			$("#"+div_retorno).removeClass("back-warning");
-			$("#"+div_retorno).removeClass("back-error");
+			//Limpa a cor e o conteudo dos box			
+			$("#"+retornoHTML).html("");
+			$("#"+retornoHTML).removeClass("back-success");
+			$("#"+retornoHTML).removeClass("back-warning");
+			$("#"+retornoHTML).removeClass("back-error");
 
-            carregar_load('#'+divLoad, true);
+            carregar_load('#load_div', true);
 		},
-		success: function(result){
-			
+		success: function(result){			
 			//Caso o usuário consiga logar, exibe um box Success
 			//Caso nãoconsiga logar, exibe um box com Warning
-			if(result.indexOf("Logado") > -1) $("#"+div_retorno).addClass("back-success");
-			else 						      $("#"+div_retorno).addClass("back-warning");
+			if(result.indexOf("Logado") > -1) $("#"+retornoHTML).addClass("back-success");
+			else 						      $("#"+retornoHTML).addClass("back-warning");
 
-			$("#"+div_retorno).html(result);
+			$("#"+retornoHTML).html(result);
 		},
-		error: function(result){			
-			$("#"+div_retorno).addClass("back-error");
-			$("#"+div_retorno).html('Sem resposta do Servidor! Verifique sua conexão...');			
+		error: function(){			
+			$("#"+retornoHTML).addClass("back-error");
+			$("#"+retornoHTML).html('Sem resposta do Servidor! Verifique sua conexão...');			
 		},			
-		complete: function(result){
-			$("#"+div_retorno).addClass("login-msg");
-			carregar_load('#'+divLoad, false);
+		complete: function(){
+			$("#"+retornoHTML).addClass("login-msg");
+			carregar_load('#load_div', false);
 		}			
 	});	
 }

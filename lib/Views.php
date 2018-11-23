@@ -4,8 +4,12 @@
  * 
  * 
  * @author Jonathas Assunçào
- * @version 0.0.1
+ * @version 0.0.2
  * 
+ *  * =================================================================
+ * date - 23/10/2018 - @version 0.0.2
+ * description: Alterado o nome da Função de 'showHTMLPag' para 'imprimirHTML',
+ *              Alteração no nome da classe para 'Views'
  * =================================================================
  * date - 02/10/2018 - @version 0.0.1
  * description: Versão inicial do arquivo, 
@@ -14,9 +18,9 @@
  * =================================================================
  * 
  * Dir  - lib
- * File - ViewMaster.php
+ * File - Views.php
  */
-class ViewMaster{
+class Views{
 
     /**
      * Armazena a página HTML
@@ -87,18 +91,17 @@ class ViewMaster{
      * Retorna a página como uma 'String'
      */
     public function getHTMLPag(){
-        ob_start();
+        ob_start();        
         if(isset($this->html_nome)) require_once $this->html_nome; /*Carrega a página HTML*/
         $this->html_pag = ob_get_contents();
-        ob_end_clean();
-
+        ob_end_clean();        
         return $this->html_pag;
     }
 
     /**
      * Exibe a página HTML no navegador
      */
-    public function showHTMLPag(){
+    public function imprimirHTML(){        
         echo $this->getHTMLPag();
         exit;
     }

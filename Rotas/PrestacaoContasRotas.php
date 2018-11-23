@@ -3,8 +3,11 @@
  * Controlador da Prestação de Contas
  * 
  * @author Jonathas Assunção
- * @version 0.0.1
+ * @version 0.0.2
  * 
+ * =================================================================
+ * date - 23/11/2018 - @version 0.0.2
+ * description: Muda chamada da view
  * =================================================================
  * date - 02/10/2018 - @version 0.0.1
  * description: Versão inicial do arquivo, 
@@ -12,15 +15,15 @@
  *              exibe a página HTML no navegador referente a Prestação de Contas
  * =================================================================
  * 
- * Dir  - Controllers
- * File - PrestacaoContasController.php
+ * Dir  - Rotas
+ * File - PrestacaoContasRotas.php
  */
  
  //Inclui a classe model de negócio
  require_once 'Models/PrestacaoContasModel.php';
  require_once 'Models/ExtratoModel.php';
 
- class PrestacaoContasController{
+ class PrestacaoContasRotas{
 
     /**
      * Exibe a tela de Prestação de Contas
@@ -28,9 +31,9 @@
      */
     public function listarAction(){
         //Renderiza a página 
-        $view = new ViewMaster('Views/Sistema/admin/PrestacaoContasView.phtml');
+        $view = new Views('Views/Sistema/admin/PrestacaoContasView.phtml');
         //Retorna para o navegador a página HTML à ser exibida.
-        $view->showHTMLPag();
+        $view->imprimirHTML();
         
     }
   
@@ -44,37 +47,37 @@
         switch ($tela) {
             case 'pc': //Exibir o Resumo da Prestação de Contas
                 //Renderiza a página 
-                $view = new ViewMaster('Views/Sistema/admin/prestacaoContasPCView.phtml');
+                $view = new Views('Views/Sistema/admin/prestacaoContasPCView.phtml');
                 break;
 
             case 'doc': //Exibir o Resumo dos Documentos
                 //Renderiza a página 
-                $view = new ViewMaster('Views/Sistema/admin/prestacaoContasDocumentosView.phtml');
+                $view = new Views('Views/Sistema/admin/prestacaoContasDocumentosView.phtml');
                 break;                
 
             case 'ext': //Exibir Extrato
                 //Renderiza a página 
-                $view = new ViewMaster('Views/Sistema/admin/prestacaoContasExtratoMenuView.phtml');
+                $view = new Views('Views/Sistema/admin/prestacaoContasExtratoMenuView.phtml');
                 break;
             
             case 'rdef': //Exibir o Resumo do Reconhecimento das Despesas de Exercícios Futuros
                 //Renderiza a página 
-                $view = new ViewMaster('Views/Sistema/admin/prestacaoContasRDEFView.phtml');
+                $view = new Views('Views/Sistema/admin/prestacaoContasRDEFView.phtml');
                 break;
             
             case 'rref': //Exibir o Resumo do Reconhecimento das Receitas de Exercícios Futuros
                 //Renderiza a página 
-                $view = new ViewMaster('Views/Sistema/admin/prestacaoContasRREFView.phtml');
+                $view = new Views('Views/Sistema/admin/prestacaoContasRREFView.phtml');
                 break; 
 
             default: // Opção inválida exibe erro
                 //Renderiza a página 
-                $view = new ViewMaster('Views/Sistema/admin/modalErroView.phtml', Array("header"=> "Erro ao carregar opção: ".$tela,"body"=> "Motivo: Opção inválida ou não existe! <br/>Entre em contato com o suporte."));
+                $view = new Views('Views/Sistema/admin/modalErroView.phtml', Array("header"=> "Erro ao carregar opção: ".$tela,"body"=> "Motivo: Opção inválida ou não existe! <br/>Entre em contato com o suporte."));
                 break;            
         }
         
         //Retorna para o navegador a página HTML à ser exibida.                
-        $view->showHTMLPag();
+        $view->imprimirHTML();
         
     }    
 
@@ -111,9 +114,9 @@
         $header["Banco"]     = "Bradesco";
 
         //Renderiza a página 
-        $view = new ViewMaster('Views/Sistema/admin/prestacaoContasExtratoOpcaoView.phtml', Array("header"=> $header, "extrato"=> $lancamento, "saldo"=> $saldo));
+        $view = new Views('Views/Sistema/admin/prestacaoContasExtratoOpcaoView.phtml', Array("header"=> $header, "extrato"=> $lancamento, "saldo"=> $saldo));
         //Retorna para o navegador a página HTML à ser exibida.                
-        $view->showHTMLPag();
+        $view->imprimirHTML();
         
     }    
     

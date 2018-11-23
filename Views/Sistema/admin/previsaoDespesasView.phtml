@@ -137,7 +137,7 @@
           <hr/>
 
           <div class="row" style="width: 40px; float:right; margin-right:25px;">
-            <button type="button" title="Taxa de Condomínio" class="btn btn-block btn-warning" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=taxaCondominio&act=listar&desc=Taxa de Condomínio"); return false;'><i class="fa fa-money"></i></button>
+            <button type="button" title="Taxa de Condomínio" class="btn btn-block btn-warning" onClick='requisitarServidor("index.php", "TaxaCondominio.listar", "titulo=Taxa de Condomínio", "body_resposta"); return false;'><i class="fa fa-money"></i></button>
           </div>
 
         </div>

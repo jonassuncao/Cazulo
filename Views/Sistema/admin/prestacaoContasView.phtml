@@ -72,11 +72,11 @@
    <div class="col-xs-12">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class=""><a href="#resumo"     onClick='Envio_Ajax("POST", "tabelaPC", "load_div", "Home", "exibir","opc=prestacaoContas&act=listarOPC&tela=pc&desc=Prestacao de Contas");   return false;' data-toggle="tab">Prestação de Contas</a></li>
-          <li class=""><a href="#documentos" onClick='Envio_Ajax("POST", "tabelaPC", "load_div", "Home", "exibir","opc=prestacaoContas&act=listarOPC&tela=doc&desc=Prestacao de Contas");  return false;' data-toggle="tab">Documentos</a></li>
-          <li class=""><a href="#extrato"    onClick='Envio_Ajax("POST", "tabelaPC", "load_div", "Home", "exibir","opc=prestacaoContas&act=listarOPC&tela=ext&desc=Prestacao de Contas");  return false;' data-toggle="tab">Extrato</a></li>
-          <li class=""><a href="#despesas"   onClick='Envio_Ajax("POST", "tabelaPC", "load_div", "Home", "exibir","opc=prestacaoContas&act=listarOPC&tela=rdef&desc=Prestacao de Contas"); return false;' data-toggle="tab">Reconhecimento das Despesas de Exercícios Futuros</a></li>
-          <li class=""><a href="#carteira"   onClick='Envio_Ajax("POST", "tabelaPC", "load_div", "Home", "exibir","opc=prestacaoContas&act=listarOPC&tela=rref&desc=Prestacao de Contas"); return false;' data-toggle="tab">Reconhecimento das Receitas de Exercícios Futuros</a></li>
+          <li class=""><a href="#resumo"     onClick='requisitarServidor("index.php", "PrestacaoContas.listarOPC", "tela=pc&titulo=Prestacao de Contas", "tabelaPC"); return false;' data-toggle="tab">Prestação de Contas</a></li>
+          <li class=""><a href="#documentos" onClick='requisitarServidor("index.php", "PrestacaoContas.listarOPC", "tela=doc&titulo=Prestacao de Contas", "tabelaPC"); return false;' data-toggle="tab">Documentos</a></li>
+          <li class=""><a href="#extrato"    onClick='requisitarServidor("index.php", "PrestacaoContas.listarOPC", "tela=ext&titulo=Prestacao de Contas", "tabelaPC"); return false;' data-toggle="tab">Extrato</a></li>
+          <li class=""><a href="#despesas"   onClick='requisitarServidor("index.php", "PrestacaoContas.listarOPC", "tela=rdef&titulo=Prestacao de Contas", "tabelaPC"); return false;' data-toggle="tab">Reconhecimento das Despesas de Exercícios Futuros</a></li>
+          <li class=""><a href="#carteira"   onClick='requisitarServidor("index.php", "PrestacaoContas.listarOPC", "tela=rref&titulo=Prestacao de Contas", "tabelaPC"); return false;' data-toggle="tab">Reconhecimento das Receitas de Exercícios Futuros</a></li>
         </ul>
       
         <!-- Início conteúdo-->

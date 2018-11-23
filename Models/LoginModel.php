@@ -4,8 +4,11 @@
  * 
  * 
  * @author Jonathas Assunção
- * @version 0.0.1
- * 
+ * @version 0.0.2
+ ** =================================================================
+ * date - 23/11/2018 - @version 0.0.2
+ * description: Alterado as referências de 'controller' para 'rotas',
+ *              Criado função que verifica se usuário está logado
  * =================================================================
  * date - 02/10/2018 - @version 0.0.1
  * description: Versão inicial do arquivo, 
@@ -42,13 +45,13 @@ class LoginModel{
     /**
      * Verifica se o usuário pode ser autenticado
      */ 
-    public function isAutenticado(){            
+    public function autenticaUsuario(){            
         if($this->usuario == "ADMIN"){ 
             //Se o usuário está autenticado
             //Cria duas seções: Armazenar o nome do usuário e a data que foi autenticado
             $_SESSION['usuario'] = $this->usuario;
             $_SESSION['data']   = date('Y-m-d H:i');
-            
+            $this->mensagem = "Logado com sucesso. <br/>Redirecionando...";
             return true;
         }else{
             $this->mensagem = "Usuário/Senha incorreto!";
@@ -58,22 +61,20 @@ class LoginModel{
     }
 
     /**
-     *  Verifica se o usuário tem permissão para essa página
+     *  Verifica se o usuário tem permissão para a rota
      */
-    public function isPermissao($controller, $action){
-        //Caso esteja tentando acessar a página de login, o usuário tem permissão
-        if($controller == 'Login' & $action == 'exibir') return true;
-
-        //Verifica se a seção do usuário ainda é válido
-        if(!isset($_SESSION['usuario'])){ $this->mensagem="Seção expirada... Logue novamente"; return false;} //Usuário não está logado
-
-        //Verifica se a seção expirou
-        //-------------------------
-        
-        //Consulta no Banco para verificar se usuário tem permissão para acessar o Controller/Action
-        //----------------------------------
-        
+    public function temPermissao($rota){                
         return true;
+    }
+    
+    /**
+     * Verifica se tem algum usuário salvo na seção
+     * @return boolean Caso TRUE (Usuário logado)|| Caso FALSE (Usuário não está logado)
+     */
+    public function temUsuarioLogado(){
+         if(isset($_SESSION['usuario'])) return TRUE;
+        
+        return false;
     }
 
     /**
@@ -85,11 +86,11 @@ class LoginModel{
         unset($_SESSION);        
         $_REQUEST = null;
         $_SESSION = null;
-        session_destroy();
-        ControllerMaster::setRequest(null, null);        
+        Roteador::definirRotas(null);    
+        session_destroy();            
 
         //Redireciona para página inicial
-        ControllerMaster::redirect(); 
+        Roteador::recarregarClient(); 
     }
 }
 

@@ -11,7 +11,7 @@
         <h4 class="modal-title"><?= $valores['header']?></h4>
       </div>
       <div class="modal-body">
-        <p><?= $valores['body']?></p>
+        <p style="color: black" ><?= $valores['body']?></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline" data-dismiss="modal">Fechar</button>        
@@ -21,6 +21,12 @@
   </div>
   <!-- /.modal-dialog -->
 </div>
+
+<link rel="stylesheet" href="Views/Sistema/admin/bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="Views/Sistema/admin/dist/css/AdminLTE.min.css">  
+
+<script src="Views/Sistema/admin/bower_components/jquery/dist/jquery.min.js"></script>    
+<script src="Views/Sistema/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script>
   $('#modal-danger').modal();
 </script>

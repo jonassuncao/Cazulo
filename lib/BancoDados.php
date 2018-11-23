@@ -66,11 +66,14 @@ class BancoDados{
      * @param where   Condição
      * @param order   Nome dos campos para serem ordenados
      */
-    public function select($campos = "*", $tabelas = "", $where = "", $order = ""){
+    public function select($campos = "*", $tabelas = "", $where = "", $order = "", $inicio = "0", $limit = "10"){
+        if($limit > 100) $limit = 100; // Definindo o limite de consulta para 100 registros por consuta
+
         $query  = " select ".$campos;                       //Inclui os campos na consulta
         $query .= " from ".$tabelas;                        //Inclui as tabelas
         $query .= ($where != "")? " where ".$where : "";     //Inclui a condição
         $query .= ($order != "")? " order by ".$order : "";  //Inlcui a ordenação
+        $query .= " limit ".$inicio.", "($inicio+$limit);
 
         $query = mysql_query($query, $this->BD_conexao);
 
@@ -82,7 +85,83 @@ class BancoDados{
         $this->Array_fetch = $query;
     }
 
-   /** 
+    /** 
+     * Metodo executa uma query 
+     * @param Array campos campos  Nome dos campos,  por padrão "*" 
+     * @param Array valores Condição
+     * @param tabelas Nome das tabelas
+     */
+    public function insert($campos = "*", $valores = "", $tabelas = "",){
+		$SQL_valores = '';
+		
+		foreach ($valores as $rows ){	
+			if(($rows == "NULL") ||(strstr($rows,"to_date('")))
+				$SQL_valores .= " ".$rows.",";
+			else 
+				$SQL_valores .= " '".$rows."',";
+		}//fim foreach	
+
+		$SQL_valores = substr($SQL_valores, 0, strrpos($SQL_valores,","));	//Exclui a ultima virgula									
+        
+        $query = "insert into $tabela ($campos) values ($SQL_valores)";	
+			
+        $query = mysql_query($query, $this->BD_conexao);
+
+        //Verifica se conseguiu realizar a query
+        if($query === false)
+            throw new Exception("<br/><br/>Não foi possível inserir no Banco Dados! <br/>Motivo: ".utf8_encode(mysql_error()));         
+
+    }
+    
+        /** 
+     * Metodo executa uma query 
+     * @param Array campos campos  Nome dos campos,  por padrão "*" 
+     * @param Array valores Condição
+     * @param tabelas Nome das tabelas
+     */
+    public function update($campos = "*", $valores = "", $tabelas = "",){
+        $SQL_campos = "";
+        $cont = 0;
+        
+		//converte o array de campos recebido
+        $array_campos = explode(",", $campos);
+        
+		//verifica a lista do array recebido
+		foreach ($array_campos as $rows ){	
+			if($cont){ $SQL_campos .= ", "; }						
+			if(($valores["$cont"] == "NULL") ||(strstr($valores["$cont"],"to_date('"))){ $SQL_campos .= $rows." = ".$valores["$cont"]; }else{ $SQL_campos .= $rows." = '".$valores["$cont"]."'"; }
+			$cont++;
+		}//fim foreach		
+	
+		$update = "update $tabela set $SQL_campos where $condicao";
+
+        $query = mysql_query($query, $this->BD_conexao);
+
+        //Verifica se conseguiu realizar a query
+        if($query === false)
+            throw new Exception("<br/><br/>Não foi possível alterar no Banco Dados! <br/>Motivo: ".utf8_encode(mysql_error()));         
+    }
+    
+    /** 
+     * Metodo executa uma query 
+     * @param tabelas Nome das tabelas
+     * @param where   Condição
+     */
+    public function delete($tabelas = "", $where = ""){
+        if($where == "") throw new Exception("<br/><br/>Não foi possível deletar no Banco Dados! <br/>Motivo: Falta informar condição!");         
+
+        $query  = " delete from $tabela";
+        $query .= " where ".$where;
+
+
+        $query = mysql_query($query, $this->BD_conexao);
+
+        //Verifica se conseguiu realizar a query
+        if($query === false)
+            throw new Exception("<br/><br/>Não foi possível deletar no Banco Dados! <br/>Motivo: ".utf8_encode(mysql_error()));         
+    }    
+   
+    /** 
      * Metodo percorre a query armazenada na variavel fetch
      * Caso termine de percorrer, limpa a query
      * Caso não tenha terminado retorna uma linha de resultado da query

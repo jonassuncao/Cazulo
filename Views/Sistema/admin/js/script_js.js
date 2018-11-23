@@ -119,18 +119,9 @@ function bs_input_file() {
 	);
 }
 
-$(document).on('click', '#enviaArq', function(e){
-
-    var form = new FormData(salvarDoc);
-    form.append('ext', $('#inp_extrato').get(0).files[0]); // para apenas 1 arquivo
-    Envio_Ajax('POST', 'banco', '', '', '', form);
-});
-
 $(document).click(function() {
     $(".input-group-btn.open").removeClass("open");
 });
 
-//Verifica se o #body_resposta está vazio, caso esteja vazio... Coloca  apágina inicial
-if($('#body_resposta').html() == '') Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=inicio&act=listar&desc=inicio");
 
   

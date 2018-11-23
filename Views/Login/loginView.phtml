@@ -99,5 +99,17 @@
 	<script src="Views/Login/js/main.js"></script>
 	<script src="Views/js/global_js.js"></script>
 	<script src="Views/Login/js/login_js.js"></script>
+	<script>
+		//Evento cinvulado ao click do botao
+		$('#btLogar').click(function(){
+			//Valida se os campos estão preenchidos
+			if($('#usuario').val().length == 0) return;
+			if($('#senha').val().length == 0)   return;
+			
+			//Envia os dados para o servidor    
+			requisitarServidorLogin("index.php", "Login.login", $("form").serialize(), "body_res")    
+			return false;
+		});	
+	</script>
 </body>
 </html>

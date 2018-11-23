@@ -12,44 +12,48 @@ function carregar_load(divI, loadP = false) {
 }
 
 /**
-* Função que usa o Ajax para enviar dados para o servidor
+* Função que usa o Ajax para requisitar dados para o servidor
+* @param urlServidor 			// Url do servidor
+* @param rota 					//Qual é a rota que o servidor vai processar essas informações
+* @param parametros				//Todos os dados a ser enviados para o servidor
+* @param retornoHTML			//Id de uma tag que receberá a resposta do servidor
 *
 */
-function Envio_Ajax(metodo, div_retorno, divLoad, controller, action, param) {
-	//Verifica se está passando um objeto
-	if (param.constructor.name == 'FormData') {
+function requisitarServidor(urlServidor, rota, parametros, retornoHTML) {
+	//Verifica se está passando um objeto como parametro
+	if (parametros.constructor.name == 'FormData') {
 		$.ajax({
-			url: 'index.php', // Url do lado server que vai receber o arquivo
-			data: param,
+			url: urlServidor, 
+			data: parametros,
 			processData: false,
 			contentType: false,
-			type: metodo,
+			type: "POST",
 			success: function (result) {
-				$("#" + div_retorno).html(result);
+				$("#" + retornoHTML).html(result);
 			},
-			error: function (result) {
-				$("#" + div_retorno).html('Erro interno, Contacte adminitrador do sistema!');
+			error: function () {
+				$("#" + retornoHTML).html('Erro interno, Contacte adminitrador do sistema!');
 			}
 		});
 	} else {
 		$.ajax({
-			url: 'index.php', //Pagina destino 
-			type: metodo,//metodo GET ou POST		
-			data: "controller=" + controller + "&action=" + action + "&" + param, //Parametros a serem enviados   		    
-			beforeSend: function (result) {
+			url: urlServidor, //Pagina destino 
+			type: "POST",//metodo GET ou POST		
+			data: "rota="+rota.substr(0, rota.indexOf('.'))+"&acao="+rota.substr(rota.indexOf('.')+1)+"&"+parametros, //Parametros a serem enviados
+			beforeSend: function () {
 
 				//Limpa o conteudo do box			
-				$("#" + div_retorno).html("");
-				carregar_load('#' + divLoad, true);
+				$("#" + retornoHTML).html("");
+				carregar_load('#load_div', true);
 			},
 			success: function (result) {
-				$("#" + div_retorno).html(result);
+				$("#" + retornoHTML).html(result);
 			},
-			error: function (result) {
-				$("#" + div_retorno).html('Erro interno, Contacte adminitrador do sistema!');
+			error: function () {
+				$("#" + retornoHTML).html('Erro interno, Contacte adminitrador do sistema!');
 			},
-			complete: function (result) {
-				carregar_load('#' + divLoad, false);
+			complete: function () {
+				carregar_load('#load_div', false);
 			}
 		});
 	};

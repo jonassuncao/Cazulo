@@ -4,7 +4,9 @@
  * 
  * @author Jonathas Assunção
  * @version 0.0.2
- * 
+  * =================================================================
+ * date - 23/11/2018 - @version 0.0.2
+ * description: Muda chamada da view
  * =================================================================
  * date - 19/10/2018 - @version 0.0.1
  * description: Versão inicial do arquivo, 
@@ -12,14 +14,14 @@
  *              exibe a página HTML no navegador referente ao condomino
  * =================================================================
  * 
- * Dir  - Controllers
- * File - CondominosController.php
+ * Dir  - Rotas
+ * File - CondominosRotas.php
  */
  
  //Inclui a classe model de negócio
  require_once 'Models/CondominosModel.php';
 
- class CondominosController{
+ class CondominosRotas{
 
     /**
      * Exibe a tela de Condomino
@@ -27,9 +29,9 @@
      */
     public function listarAction(){
         //Renderiza a página de Listar Condominios
-        $view = new ViewMaster('Views/Sistema/admin/ListarCondominosView.phtml');
+        $view = new Views('Views/Sistema/admin/ListarCondominosView.phtml');
         //Retorna para o navegador a página HTML à ser exibida.
-        $view->showHTMLPag();
+        $view->imprimirHTML();
         
     }
 
@@ -39,9 +41,9 @@
      */
     public function condominoAction(){
         //Renderiza a página de Selecionar Condominios
-        $view = new ViewMaster('Views/Sistema/admin/CondominosView.phtml');
+        $view = new Views('Views/Sistema/admin/CondominosView.phtml');
         //Retorna para o navegador a página HTML à ser exibida.
-        $view->showHTMLPag();
+        $view->imprimirHTML();
         
     }  
         

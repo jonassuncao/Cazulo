@@ -47,7 +47,7 @@
     <header class="main-header">
 
       <!-- Logo -->
-      <a class="logo" href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=inicio&act=listar&desc=inicio"); return false;'>
+      <a class="logo" href="/" onClick='requisitarServidor("index.php", "Inicio.listar", "", "body_resposta"); return false;'>
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>C<span style="color:#0f8cd6">A</span>O</b></span>
         <!-- logo for regular state and mobile devices -->
@@ -65,7 +65,7 @@
             <div class="input-group input-group-sm selecEmpresa">
               <input type="text" class="form-control" id="selectCond" placeholder="Selecione um Condomínio" disabled value="<?= $condominio?>">              
               <span class="input-group-btn">
-                <button type="button" class="btn btn-primary btn-flat" onClick='Envio_Ajax("POST", "modal_resposta", "load_div", "Home", "exibir","opc=condominios&act=selecionar&desc=Condomínios"); return false;'><i class="fa fa-building"></i></button>
+                <button type="button" class="btn btn-primary btn-flat" onClick='requisitarServidor("index.php", "Condominios.selecionar", "", "modal_resposta"); return false;'><i class="fa fa-building"></i></button>
               </span>
             </div>
           </ul>
@@ -96,7 +96,7 @@
                     <a href="#" class="btn btn-default btn-flat">Alterar Senha</a>
                   </div>
                   <div class="pull-right">
-                    <a onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Login", "logoff", ""); return false;' class="btn btn-default btn-flat">Sair</a>
+                    <a onClick='requisitarServidor("index.php", "Login.logoff", "", "body_resposta"); return false;' class="btn btn-default btn-flat">Sair</a>
                   </div>
                 </li>
               </ul>
@@ -123,16 +123,16 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MENU</li>
  
-          <?php if(in_array("PrestacaoContas",$valores['user']['permissao'])){?>      <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=prestacaoContas&act=listar&desc=Prestação de Contas"); return false;'><i class="fa fa-book"></i> <span>Prestação de Contas</span></a></li>                  <?php }?>
-          <?php if(in_array("PrevisaoDespesas",$valores['user']['permissao'])){?>     <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=previsaoDespesas&act=listar&desc=Previsão de Despesas"); return false;'><i class="fa fa-file-powerpoint-o"></i> <span>Previsão de Despesas</span></a></li>  <?php }?>          
-          <?php if(in_array("TaxaCondominio",$valores['user']['permissao'])){?>       <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=taxaCondominio&act=listar&desc=Taxa de Condomínio"); return false;'><i class="fa fa-barcode"></i> <span>Taxa de Condomínio</span></a></li>                  <?php }?>
-          <?php if(in_array("ControleAdimplencia",$valores['user']['permissao'])){?>  <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=controleAdimplencia&act=listar&desc=Controle de Adimplência"); return false;'><i class="fa fa-money"></i> <span>Controle de Adimplência</span></a></li>     <?php }?>
+          <?php if(in_array("PrestacaoContas",$valores['user']['permissao'])){?>      <li><a href="/" onClick='requisitarServidor("index.php", "PrestacaoContas.listar", "titulo=Prestação de Contas", "body_resposta"); return false;'><i class="fa fa-book"></i> <span>Prestação de Contas</span></a></li>                  <?php }?>
+          <?php if(in_array("PrevisaoDespesas",$valores['user']['permissao'])){?>     <li><a href="/" onClick='requisitarServidor("index.php", "PrevisaoDespesas.listar", "titulo=Previsão de Despesas", "body_resposta"); return false;'><i class="fa fa-file-powerpoint-o"></i> <span>Previsão de Despesas</span></a></li>  <?php }?>          
+          <?php if(in_array("TaxaCondominio",$valores['user']['permissao'])){?>       <li><a href="/" onClick='requisitarServidor("index.php", "TaxaCondominio.listar", "titulo=Taxa de Condomínio", "body_resposta"); return false;'><i class="fa fa-barcode"></i> <span>Taxa de Condomínio</span></a></li>                  <?php }?>
+          <?php if(in_array("ControleAdimplencia",$valores['user']['permissao'])){?>  <li><a href="/" onClick='requisitarServidor("index.php", "ControleAdimplencia.listar", "titulo=Controle de Adimplência", "body_resposta"); return false;'><i class="fa fa-money"></i> <span>Controle de Adimplência</span></a></li>     <?php }?>
 
           <li class="header">Extras</li>
           
-          <?php if(in_array("Condominio",$valores['user']['permissao'])){?><li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&act=listar&desc=Condomínio"); return false;'><i class="fa fa-building-o"></i> Condomínio</a></li>  <?php }?>         
-          <?php if(in_array("Categoria",$valores['user']['permissao'])){?><li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=categoria&act=listar&desc=Categoria"); return false;'><i class="fa fa-folder-open-o"></i> Categoria</a></li> <?php }?>
-          <?php if(in_array("Usuarios",$valores['user']['permissao'])){?> <li><a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=usuarios&act=listar&desc=Usuários"); return false;'><i class="fa fa-users"></i> <span>Usuários</span></a></li> <?php }?>
+          <?php if(in_array("Condominio",$valores['user']['permissao'])){?><li><a href="/" onClick='requisitarServidor("index.php", "Condominios.listar", "titulo=Condomínio", "body_resposta"); return false;'><i class="fa fa-building-o"></i> Condomínio</a></li>  <?php }?>         
+          <?php if(in_array("Categoria",$valores['user']['permissao'])){?><li><a href="/" onClick='requisitarServidor("index.php", "Categoria.listar", "titulo=Categoria", "body_resposta"); return false;'><i class="fa fa-folder-open-o"></i> Categoria</a></li> <?php }?>
+          <?php if(in_array("Usuarios",$valores['user']['permissao'])){?> <li><a href="/" onClick='requisitarServidor("index.php", "Usuarios.listar", "titulo=Usuários", "body_resposta"); return false;'><i class="fa fa-users"></i> <span>Usuários</span></a></li> <?php }?>
           
         </ul>
       </section>
@@ -150,7 +150,7 @@
     <!-- /.content-wrapper -->
     <footer class="main-footer">
       <div class="pull-right hidden-xs">
-        <b>Versão</b> 1.0.0
+        <b>Versão</b> 1.0.2
       </div>
       <strong>Copyright &copy; 2018 <a target="_blank" href="https://jonassuncao.github.io/">@Jônathas Assunção</a> | <a target="_blank" href="https://dominicrp.github.io/">@Dominic Rocha</a> | <a target="_blank" href="https://davidbarros.github.io/">@David
           Antônio</a> | <a target="_blank" href="https://jaderhfa.github.io/">@Jader Henrique</a>.</strong> All rights
@@ -177,7 +177,10 @@
   <script src="Views/js/global_js.js"></script>
   <script src="Views/Sistema/admin/js/login_js.js"></script>
   <script src="Views/Sistema/admin/js/script_js.js"></script>
-  
+  <script>
+    //Verifica se o #body_resposta está vazio, caso esteja vazio... Coloca a página inicial
+    if($('#body_resposta').html() == '') requisitarServidor("index.php", "Inicio.listar", "titulo=Início", "body_resposta");
+  </script>
   <!--===============================================================================================-->  
   
 </body>

@@ -19,7 +19,7 @@
               <span class="input-group-btn">
                 <button type="button" class="btn btn-success btn-flat" style="border-radius: 0 4px 4px 0;"><i class="fa fa-filter"></i></button>
               </span>
-              <a href="/" data-dismiss="modal" style="width: 40px; float:left; margin-left:10px; padding: 4px;" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=condominios&act=condominio&desc=Adicionar Condomínio"); return false;' class="btn btn-info"><i class="fa fa-plus"></i></a>               
+              <a href="/" data-dismiss="modal" style="width: 40px; float:left; margin-left:10px; padding: 4px;" onClick='requisitarServidor("index.php", "Condominios.condominio", "titulo=Adicionar Condomínio", "body_resposta"); return false;' class="btn btn-info"><i class="fa fa-plus"></i></a>               
             </div>
 
             <hr />
@@ -35,7 +35,7 @@
 
             <div id="actions" class="row">
               <div class="col-md-12">
-                <a href="/" data-dismiss="modal" onClick='Envio_Ajax("POST", "modal_resposta", "load_div", "Home", "exibir","opc=condominios&act=mudarCond&cond="+$("#listaCond option:selected").text()); $(".in").remove(); return false; ' class="btn btn-primary">Escolher</a>
+                <a href="/" data-dismiss="modal" onClick='requisitarServidor("index.php", "Condominios.mudarCond", "cond="+$("#listaCond option:selected").text(), "modal_resposta"); $(".in").remove(); return false; ' class="btn btn-primary">Escolher</a>
               </div>
             </div>
             

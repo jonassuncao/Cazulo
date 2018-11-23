@@ -19,7 +19,7 @@
         <div class="icon">
           <i class="ion ion-bookmark"></i>
         </div>
-        <a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=prestacaoContas&act=listar&desc=Prestação de Contas"); return false;' class="small-box-footer">ir para Prestação de Contas <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="/" onClick='requisitarServidor("index.php", "PrestacaoContas.listar", "titulo=Prestação de Contas", "body_resposta"); return false;' class="small-box-footer">ir para Prestação de Contas <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- Fim small-box Prestação Contas-->
@@ -37,7 +37,7 @@
         <div class="icon">
           <i class="ion ion-calculator"></i>
         </div>
-        <a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=previsaoDespesas&act=listar&desc=Previsão de Despesas"); return false;' class="small-box-footer">ir para Previsão de Despesas <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="/" onClick='requisitarServidor("index.php", "PrevisaoDespesas.listar", "titulo=Previsão de Despesas", "body_resposta"); return false;' class="small-box-footer">ir para Previsão de Despesas <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- Fim small-box Previsão de Despesas-->
@@ -56,7 +56,7 @@
         <div class="icon">
           <i class="ion ion-pricetag"></i>
         </div>
-        <a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=taxaCondominio&act=listar&desc=Taxa de Condomínio"); return false;' class="small-box-footer">ir para Taxa de Condomínio <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="/" onClick='requisitarServidor("index.php", "TaxaCondominio.listar", "titulo=Taxa de Condomínio", "body_resposta"); return false;' class="small-box-footer">ir para Taxa de Condomínio <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- Fim small-box Taxa de Condominio-->
@@ -74,7 +74,7 @@
         <div class="icon">
           <i class="ion ion-pie-graph"></i>
         </div>
-        <a href="/" onClick='Envio_Ajax("POST", "body_resposta", "load_div", "Home", "exibir","opc=controleAdimplencia&act=listar&desc=Controle de Adimplência"); return false;' class="small-box-footer">ir para Controle de Adimplência <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="/" onClick='requisitarServidor("index.php", "ControleAdimplencia.listar", "titulo=Controle de Adimplência", "body_resposta"); return false;' class="small-box-footer">ir para Controle de Adimplência <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
   </div>
