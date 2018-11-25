@@ -75,7 +75,7 @@ class BancoDados{
         $query .= ($order != "")? " order by ".$order : "";  //Inlcui a ordenação
         $query .= " limit ".$pagina.", ".($pagina+$limit);
 
-        $query = mysqli_query($query, $this->BD_conexao);
+        $query = mysqli_query($this->BD_conexao, $query);
 
         //Verifica se conseguiu realizar a query
         if($query === false)
@@ -105,7 +105,7 @@ class BancoDados{
         
         $query = "insert into $tabela ($campos) values ($SQL_valores)";	
 			
-        $query = mysql_query($query, $this->BD_conexao);
+        $query = mysqli_query($this->BD_conexao, $query);
 
         //Verifica se conseguiu realizar a query
         if($query === false)
@@ -135,7 +135,7 @@ class BancoDados{
 	
 		$update = "update $tabela set $SQL_campos where $condicao";
 
-        $query = mysql_query($query, $this->BD_conexao);
+        $query = mysqli_query($this->BD_conexao, $query);
 
         //Verifica se conseguiu realizar a query
         if($query === false)
@@ -154,7 +154,7 @@ class BancoDados{
         $query .= " where ".$where;
 
 
-        $query = mysql_query($query, $this->BD_conexao);
+        $query = mysqli_query($this->BD_conexao, $query);
 
         //Verifica se conseguiu realizar a query
         if($query === false)
@@ -168,8 +168,8 @@ class BancoDados{
      */
     public function resultQuery(){
         //Caso chegue no fi
-        if($this->Array_fetch === false || $this->Array_fetch === null){ mysql_free_result($this->Array_fetch); return false;}
-        return mysql_fetch_array($this->Array_fetch, MYSQL_ASSOC);
+        if($this->Array_fetch === false || $this->Array_fetch === null){ mysqli_free_result($this->Array_fetch); return false;}
+        return mysqli_fetch_array ($this->Array_fetch, MYSQLI_ASSOC);
     }        
 }
 
