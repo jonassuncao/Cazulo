@@ -45,17 +45,15 @@ class BancoDados{
          * Senão abre uma nova conexão
          */
         
-        $this->BD_conexao = mysql_pconnect($this->BD_host, $this->BD_login, $this->BD_senha);
+        $this->BD_conexao = mysqli_connect($this->BD_host, $this->BD_login, $this->BD_senha, $this->BD_nome);
         
-        //Tenta selecionar a BaseDados $this->BD_nome
-        mysql_select_db($this->BD_nome);
 
         //Moda o encoding da conexão para UTF-8
-        mysql_set_charset('utf8',$this->BD_conexao);
+        mysqli_set_charset($this->BD_conexao, "utf8");
 
         //Verifica se conseguiu estabelecer a conexão
-        if($this->DB_conexao === false)
-            throw new Exception("<br/><br/>Não foi possível conectar com o Banco de Dados! <br/>Motivo: ".utf8_encode(mysql_error())); 
+        if(mysqli_connect_errno())
+            throw new Exception("<br/><br/>Não foi possível conectar com o Banco de Dados! <br/>Motivo: ".utf8_encode(mysqli_connect_error())); 
                                 
     }
 
@@ -77,7 +75,7 @@ class BancoDados{
         $query .= ($order != "")? " order by ".$order : "";  //Inlcui a ordenação
         $query .= " limit ".$pagina.", ".($pagina+$limit);
 
-        $query = mysql_query($query, $this->BD_conexao);
+        $query = mysqli_query($query, $this->BD_conexao);
 
         //Verifica se conseguiu realizar a query
         if($query === false)
