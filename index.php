@@ -25,9 +25,9 @@
  */
 
  // PHP mostra os erros na tela
- ini_set('display_errors', 1);
- //error_reporting(0);
- //ini_set('display_errors', FALSE);
+ //ini_set('display_errors', 1);
+ error_reporting(0);
+ ini_set('display_errors', FALSE);
  
  //Inicia as seçoes
  session_start();
