@@ -65,15 +65,17 @@ class BancoDados{
      * @param tabelas Nome das tabelas
      * @param where   Condição
      * @param order   Nome dos campos para serem ordenados
+     * @param pagina  Qual a página
+     * @param limit   Quantidade de registros por página (MAX == 100)
      */
-    public function select($campos = "*", $tabelas = "", $where = "", $order = "", $inicio = 0, $limit = 10){
+    public function select($campos = "*", $tabelas = "", $where = "", $order = "", $pagina = 0, $limit = 10){
         if($limit > 100) $limit = 100; // Definindo o limite de consulta para 100 registros por consuta
 
         $query  = " select ".$campos;                       //Inclui os campos na consulta
         $query .= " from ".$tabelas;                        //Inclui as tabelas
         $query .= ($where != "")? " where ".$where : "";     //Inclui a condição
         $query .= ($order != "")? " order by ".$order : "";  //Inlcui a ordenação
-        $query .= " limit ".$inicio.", ".($inicio+$limit);
+        $query .= " limit ".$pagina.", ".($pagina+$limit);
 
         $query = mysql_query($query, $this->BD_conexao);
 
