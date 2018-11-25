@@ -46,8 +46,8 @@
         $dados = null; //Variavel que será usada para receber os dados do model
 
         //Instancia a classe model, para pegar os dados para serem exibidos
-        $cond = new CondominioModel();
-        $dados = (object) $cond->getCondominios(); //$view é tratado por referencia
+        $cond = new CondominioModel();        
+        $dados = (object) $cond->getCondominios(); 
 
         //Verifica qual view deve exibir e Renderiza a página de Selecionar Condominios
         if($dados->getCodigoResposta()){ //Caso $view seja TRUE, exibe view de listar os condominios e passa os dados para a listagem

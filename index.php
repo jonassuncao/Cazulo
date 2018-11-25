@@ -35,7 +35,7 @@
   //Importa as classes do Roteador, Renderizar Página HTML e do Login
   require_once 'lib/Roteador.php';
   require_once 'Models/LoginModel.php';
-  
+
   /**
    *  Realiza algumas validações antes de encaminhar para a rota requisitada
    */
@@ -45,14 +45,16 @@
     $usuario = new LoginModel(); //Classe responsável por verificar se o usuário está logado e se possui acesso
     $rota = new Roteador();      //Classe responsável por validar e encaminhas as rotas
     //=======================================================
-    
+
+    $rota->baixarRotasRequisicao(); //Pega a rota solicitada na requisição
+
     /*=========== O usuário está logado? ==================*/
     if($usuario->temUsuarioLogado()){
       //Está logado       
+      
     }else{
       //usuário não está logado, verifica se quer logar...
-      /*=========== O usuário quer logar? ==================*/
-      $rota->baixarRotasRequisicao(); //Pega a rota solicitada na requisição
+      /*=========== O usuário quer logar? ==================*/    
       if($rota->getRotas() == 'Login.login' ){
           //Usuário quer logar
       }else{
@@ -64,10 +66,10 @@
     //=======================================================
     
     /*=========== A rota solicitada existe? ==================*/
-    $rota->baixarRotasRequisicao(); //Pega a rota solicitada na requisição
     
+     
     if($rota->rotaExiste()){
-      //Rota existe
+     //Rota existe     
     }else{
       //Rota não existe      
       throw new Exception("Rota solicitada não existe..."); //Rota não existe, gera uma exceção

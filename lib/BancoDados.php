@@ -58,22 +58,22 @@ class BancoDados{
             throw new Exception("<br/><br/>Não foi possível conectar com o Banco de Dados! <br/>Motivo: ".utf8_encode(mysql_error())); 
                                 
     }
-        
-    /** 
+
+ /** 
      * Metodo executa uma query 
      * @param campos  Nome dos campos,  por padrão "*" 
      * @param tabelas Nome das tabelas
      * @param where   Condição
      * @param order   Nome dos campos para serem ordenados
      */
-    public function select($campos = "*", $tabelas = "", $where = "", $order = "", $inicio = "0", $limit = "10"){
+    public function select($campos = "*", $tabelas = "", $where = "", $order = "", $inicio = 0, $limit = 10){
         if($limit > 100) $limit = 100; // Definindo o limite de consulta para 100 registros por consuta
 
         $query  = " select ".$campos;                       //Inclui os campos na consulta
         $query .= " from ".$tabelas;                        //Inclui as tabelas
         $query .= ($where != "")? " where ".$where : "";     //Inclui a condição
         $query .= ($order != "")? " order by ".$order : "";  //Inlcui a ordenação
-        $query .= " limit ".$inicio.", "($inicio+$limit);
+        $query .= " limit ".$inicio.", ".($inicio+$limit);
 
         $query = mysql_query($query, $this->BD_conexao);
 
@@ -85,13 +85,13 @@ class BancoDados{
         $this->Array_fetch = $query;
     }
 
-    /** 
+   /** 
      * Metodo executa uma query 
      * @param Array campos campos  Nome dos campos,  por padrão "*" 
      * @param Array valores Condição
      * @param tabelas Nome das tabelas
      */
-    public function insert($campos = "*", $valores = "", $tabelas = "",){
+    public function insert($campos = "*", $valores = "", $tabelas = ""){
 		$SQL_valores = '';
 		
 		foreach ($valores as $rows ){	
@@ -112,14 +112,14 @@ class BancoDados{
             throw new Exception("<br/><br/>Não foi possível inserir no Banco Dados! <br/>Motivo: ".utf8_encode(mysql_error()));         
 
     }
-    
-        /** 
+
+    /** 
      * Metodo executa uma query 
      * @param Array campos campos  Nome dos campos,  por padrão "*" 
      * @param Array valores Condição
      * @param tabelas Nome das tabelas
      */
-    public function update($campos = "*", $valores = "", $tabelas = "",){
+    public function update($campos = "*", $valores = "", $tabelas = ""){
         $SQL_campos = "";
         $cont = 0;
         
@@ -140,8 +140,8 @@ class BancoDados{
         //Verifica se conseguiu realizar a query
         if($query === false)
             throw new Exception("<br/><br/>Não foi possível alterar no Banco Dados! <br/>Motivo: ".utf8_encode(mysql_error()));         
-    }
-    
+    }    
+
     /** 
      * Metodo executa uma query 
      * @param tabelas Nome das tabelas
@@ -159,8 +159,8 @@ class BancoDados{
         //Verifica se conseguiu realizar a query
         if($query === false)
             throw new Exception("<br/><br/>Não foi possível deletar no Banco Dados! <br/>Motivo: ".utf8_encode(mysql_error()));         
-    }    
-   
+    }   
+
     /** 
      * Metodo percorre a query armazenada na variavel fetch
      * Caso termine de percorrer, limpa a query
@@ -170,7 +170,7 @@ class BancoDados{
         //Caso chegue no fi
         if($this->Array_fetch === false || $this->Array_fetch === null){ mysql_free_result($this->Array_fetch); return false;}
         return mysql_fetch_array($this->Array_fetch, MYSQL_ASSOC);
-    }    
+    }        
 }
 
 ?>

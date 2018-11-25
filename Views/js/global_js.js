@@ -35,7 +35,7 @@ function requisitarServidor(urlServidor, rota, parametros, retornoHTML) {
 				$("#" + retornoHTML).html('Erro interno, Contacte adminitrador do sistema!');
 			}
 		});
-	} else {
+	} else {		
 		$.ajax({
 			url: urlServidor, //Pagina destino 
 			type: "POST",//metodo GET ou POST		

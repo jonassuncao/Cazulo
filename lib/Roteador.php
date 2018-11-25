@@ -149,7 +149,7 @@ class Roteador{
      * @return boolean // TRUE - Rota existe | FALSE - Rota não existe
      */
     public function rotaExiste(){
-
+        
         //Rota não informada
         if($this->rota == "" || $this->acao == "") return false;
         
@@ -157,9 +157,9 @@ class Roteador{
          * Verifica se o arquivo da rota existe
          */
         $rota_file = 'Rotas/'.$this->rota.'Rotas.php';        
-
-        if(file_exists($rota_file)){
-            require_once $rota_file; //Importa o arquivo
+        
+        if(file_exists($rota_file)){            
+            require_once $rota_file; //Importa o arquivo            
         } else return false; //Arquivo não existe
         
 

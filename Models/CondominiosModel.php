@@ -17,15 +17,14 @@
  */
 
 //Importas as libs que serão utilizadas
-require_once 'lib/BancoDados.php'; //Lib que realiza operação no banco de dados
-require_once 'lib/Utilitarios.php'; //Lib com funcões utilitarias
-require_once 'lib/Resposta.php'; //Lib com funcões utilitarias
+require_once 'lib/Utilitarios.php';
 
 class CondominioModel{
     
 
     /**
-     *  Verifica se o usuário tem permissão para a rota
+     *  Verifica se o 
+     * usuário tem permissão para a rota
      */
     public function temPermissaoMudarCondominio($operacao, $CNPJcondominio){                
         return true;
@@ -36,15 +35,17 @@ class CondominioModel{
      * @return (Object)Resposta com os dados e o codigo da resposta
      */
     public function getCondominios(){
+    
         $resposta = new Resposta();
         $resultado = null;
 
         try{ //Tenta realizar a consulta no Banco
             $campos = "cnpj, razaoSocial";
             $tabela = "condominio";
-
+           
+            
             //Cria conexão com o Banco, passa as variaveis como parametros e armazena o resultado em um Array
-            $queryCondominios = new BancoDados();            
+            $queryCondominios = new BancoDados();                    
             $queryCondominios->select($campos, $tabela);
                 
             //Monta um Array para resposta
