@@ -45,7 +45,7 @@ class BancoDados{
          * Senão abre uma nova conexão
          */
         
-        $this->BD_conexao = mysqli_connect($this->BD_host, $this->BD_login, $this->BD_senha, $this->BD_nome);
+        $this->BD_conexao = mysqli_connect('p:'.$this->BD_host, $this->BD_login, $this->BD_senha, $this->BD_nome);
         
 
         //Moda o encoding da conexão para UTF-8
