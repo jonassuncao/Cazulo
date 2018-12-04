@@ -235,27 +235,6 @@
 </section>
 
 <script>
-  //mascara inputmask, ERRO= não muda dinamicamente quando add outros
-  $(document).ready(function () {
-    $("#valor").inputmask({
-      'alias': 'decimal',
-      'groupSeparator': '',
-      'digits': 2,
-      'autoGroup': true,
-      'digitsOptional': false,
-      rightAlign: true,
-      numericInput: true
-    });
-
-    //valor invalido na mascara
-    Inputmask.extendDefaults({
-      onKeyValidation: function (key, result) {
-        if (!result) alert('Valor inválido');
-      }
-    });
-
-    $('.combobox').combobox();
-  });
 
   //iCheck for checkbox and radio inputs
   $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({

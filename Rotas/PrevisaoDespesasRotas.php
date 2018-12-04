@@ -30,7 +30,7 @@
      */
     public function listarAction(){
         //Renderiza a página de Login
-        $view = new Views('Views/Sistema/admin/PrevisaoDespesasView.phtml');
+        $view = new Views('Views/Sistema/Admin/previsaoDespesasView.phtml');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         

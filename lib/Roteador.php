@@ -31,8 +31,8 @@
 *  //A pasta lib contém todas as classes genéricas que serão usadas no projeto
 */
 spl_autoload_register(function($st_class){
-    if(file_exists('lib/'.$st_class.'.php'))
-        require_once 'lib/'.$st_class.'.php';
+    if(file_exists('Lib/'.$st_class.'.php'))
+        require_once 'Lib/'.$st_class.'.php';
 });
 
 class Roteador{

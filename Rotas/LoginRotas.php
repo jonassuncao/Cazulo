@@ -49,12 +49,13 @@
         //Tenta autenticar o usuário
         if($usuario->autenticaUsuario()){ //Tenta
               //Usuário autenticado com sucesso
+              
               //Redireciona para próxima página
               echo $usuario->getMensagem(); 
               
               //O usuário está autenticado... Usa o roteador para encaminhar a requisição para o Home.Listar
               Roteador::definirRotas('Home.listar'); //Redireciona a rota para a página de principal do sistema
-              Roteador::recarregarClient();          //Usuario não está logado, redireciona para tela de login 
+              Roteador::recarregarClient();          //Redireciona para a página Home
 
         }else{ //Não está autenticado
             //Pega a mensagem de Erro e Executa o exibirAction            

@@ -29,7 +29,7 @@
      */
     public function listarAction(){
         //Renderiza a página de Login
-        $view = new Views('Views/Sistema/admin/ControleAdimplenciaView.phtml');
+        $view = new Views('Views/Sistema/Admin/controleAdimplenciaView.phtml');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         

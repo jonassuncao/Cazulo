@@ -17,7 +17,7 @@
  */
 
 //Importas as libs que serão utilizadas
-require_once 'lib/Utilitarios.php';
+require_once 'Lib/Utilitarios.php';
 
 class CondominioModel{
     
@@ -65,6 +65,61 @@ class CondominioModel{
         }
 
         return $resposta;
+    }
+
+    /**
+     * Exclui todos os dados de um condomínio e o condomínio
+     * 
+     * Caso dê erro gera exceção
+     * 
+     */
+    public function deletarCondominio($cnpj){                
+        /**
+         * O cnpj passadi no parâmetro está no formato: <nome Condominio> (99.999.999/9999-99)
+         * o Banco de dados está parametrizado para aceitar apenas o formato: 99999999999999
+         * 
+         * Para o banco de dados aceitar o cnpj, é necessário extrair apenas os números
+         */
+        
+
+        //-----Inicío da extração dos números do CNPJ
+        $cnpj = substr($cnpj, strpos($cnpj, '(')+2, 18);     //O CNPJ foi convertido para o formato: 99.999.999/9999-99
+        
+        //Verifica se CNPJ salvo na Seção == O cnpj passado no parâmetro, Se for diferente... gera Exceção
+        if($_SESSION['cnpj'] != $cnpj) throw new Exception("CNPJ do condomínio não é esse!");
+
+        $cnpj = str_replace(array('.','/','-'), "", $cnpj);  //O CNPJ foi convertido para o formato: 99999999999999
+        //----Fim da extração dos números do CNPJ
+        
+
+        //Verifica se CNPJ o cnpj está no formato: 99999999999999 e se possui 14 digítos
+        if(!is_int($cnpj) || strlen($cnpj) != 14) throw new Exception("CNPJ do condomínio inválido!");
+
+        /**
+         * Se chegou até aqui, então o CNPJ está ok.
+         * 
+         * Agora serão excluidos todos os dados desse condomínio em todas as tabelas do sistema
+         * (Nesse caso será excluído apenas da tabela dos Bancos)
+         * 
+         * Depois será excluído o cadastro do condomínio
+         */
+
+         //Define as varíaveis para realizar a exclusão do condomínio na Tabela Banco         
+         $tabela = "banco";        
+         $where = "cnpj = '$cnpj'";
+
+         //Cria conexão com o Banco, passa as variáveis como parâmetro 
+         $queryCondominios = new BancoDados();                    
+         $queryCondominios->delete($tabela, $where);
+        
+         //====Se chegou aqui, excluiu oas contas bancárias do condomínio
+
+         //Define as varíaveis para realizar a exclusão do condomínio na Tabela Condomínio
+         $tabela = "banco";        
+           
+         $queryCondominios->delete($tabela, $where);
+
+         //====Se chegou aqui, excluiu o condomínio
     }
 }
 

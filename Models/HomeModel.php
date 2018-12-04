@@ -28,7 +28,7 @@ class HomeModel{
         $this->usuario          = $usuario;        
         $this->perfilAcesso     = "Administrador";
         $this->nome             = "Jônathas Assunção";
-        $this->imagem           = "Views\Sistema\admin\images\icons\\favicon.ico";
+        $this->imagem           = "Views\Sistema\Admin\images\icons\\favicon.ico";
         $this->permissao        = Array("PrestacaoContas", 
                                         "PrevisaoDespesas", 
                                         "TaxaCondominio", 

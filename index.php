@@ -28,13 +28,13 @@
  //ini_set('display_errors', 1);
  error_reporting(0);
  ini_set('display_errors', FALSE);
- 
+
  //Inicia as seçoes
  session_start();
 
   //Importa as classes do Roteador, Renderizar Página HTML e do Login
-  require_once 'lib/Roteador.php';
-  require_once 'Models/LoginModel.php';
+  require_once './Lib/Roteador.php';
+  require_once './Models/LoginModel.php';
 
   /**
    *  Realiza algumas validações antes de encaminhar para a rota requisitada
@@ -95,7 +95,7 @@
     
   }catch(Exception $e) {     
     //Monta uma página HTML com o erro
-    $view = new Views('Views/Sistema/admin/modalErroView.phtml', Array("header"=> "Erro ao carregar rota: ".$rota->getRotas(),"body"=> "Motivo: ".$e->getMessage()."<br/>Entre em contato com o suporte."));
+    $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=> "Erro ao carregar rota: ".$rota->getRotas(),"body"=> "Motivo: ".$e->getMessage()."<br/>Entre em contato com o suporte."));
     $view->imprimirHTML();
   }
 ?>

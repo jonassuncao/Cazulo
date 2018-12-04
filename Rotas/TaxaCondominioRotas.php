@@ -30,7 +30,7 @@
      */
     public function listarAction(){
         //Renderiza a página de Login
-        $view = new Views('Views/Sistema/admin/TaxaCondominioView.phtml');
+        $view = new Views('Views/Sistema/Admin/taxaCondominioView.phtml');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         
