@@ -103,7 +103,6 @@ class Views{
      */
     public function imprimirHTML(){        
         echo $this->getHTMLPag();
-        exit;
     }
 }
 

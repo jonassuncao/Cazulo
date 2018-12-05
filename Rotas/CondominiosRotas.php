@@ -42,28 +42,28 @@
     
     /**
      * Rota Condominio.selecionar
-     * Exibe a tela de Categoria
+     * Exibe a tela de Selecinar um condomínio
      * 
      */
     public function selecionarAction(){
-        
-        $view  = null; //Variavel que será usada para definir qual view o controller deve exibir
-        $dados = null; //Variavel que será usada para receber os dados do model
 
-        //Instancia a classe model, para pegar os dados para serem exibidos
-        $cond = new CondominioModel();        
-        $dados = (object) $cond->getCondominios(); 
+        //Solicita ao Model os condomínios que podem ser listados, e exibe na tela
+        try{                       
 
-        //Verifica qual view deve exibir e Renderiza a página de Selecionar Condominios
-        if($dados->getCodigoResposta()){ //Caso $view seja TRUE, exibe view de listar os condominios e passa os dados para a listagem
-            $view = new Views('Views/Sistema/Admin/selecionarView.phtml', Array("header"=> "Escolha um Condomínio!", "dados"=> $dados->getMensagem()));
-        }else{ //Caso $view seja FALSE, exibe view de erro e passa os dados do erro
-            $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=> "Erro ao listar Condomínios","body"=> $dados->getMensagem()));
-        }
-        
-        //Retorna para o navegador a página HTML à ser exibida.
-        $view->imprimirHTML();
-        
+            //Instancia a classe model, para pegar os dados para serem exibidos
+            $cond = new CondominioModel();        
+            $dados = $cond->getCondominios();             
+            
+            $view = new Views('Views/Sistema/Admin/selecionarView.phtml', Array("header"=> "Escolha um Condomínio!", "dados"=> $dados));            
+            
+            //Retorna para o navegador a página HTML à ser exibida.
+            $view->imprimirHTML();
+        }catch(Exception $e){//Trata as Exceções geradas
+
+            //Pega a mensagem de erro gerada na exceção e retorna um Modal de erro com a mensagem
+            $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=> "Falha ao Listar os Condomínios!","body"=> "Motivo: ".$e->getMessage()));
+            $view->imprimirHTML();
+        } 
     }    
 
     /**
@@ -114,12 +114,59 @@
     }   
 
 
-   /**
+    /**
      * Rota Condominio.excluir
+     * Exibe a um modal pedindo confirmação para excluir o condomínio
+     * 
+     */
+    public function excluirAction(){
+        
+        //Tenta baixar o condomínio da requisição, e exibe uma janela pedindo confirmação de exclusão.
+        try{
+            /** 
+             * Baixa as variáveis que o HTML enviou na requisição.
+             * 
+             * Para baixar tem 3 formas:
+             * 
+             * $_GET[]  -> Baixa as variaveis passadas na requisição apenas como GET
+             * $_POST[] -> Baixa as variaveis passadas na requisição apenas como POST
+             * $_REQUEST[] -> Baixa as variaveis passadas na requisição pode ser GET, POST, ...
+             */
+            $cond = $_REQUEST['cond']; 
+            
+            /**
+             * Para excluir um condomínio, será necessário informar o cnpj do condomínio a ser excluído.
+             * Verifica se conseguiu baixar o CNPJ da requisição, ou se realmente foi passado o CNPJ na requisição (Se tem algum condomínio selecionado)
+             * 
+             * Caso a $cond == null, então não foi passado um cnpj para a requisição, então gera exceção
+             *
+             */
+            if($cond == null) throw new Exception("Selecione um condomínio primeiro!");
+            
+
+            //Define as variáveis para exibição do modal
+            $titulo = "Confirma excluir o Condomínio?";
+            $mensagem = "Ao confirmar, <b>todos</b> os dados do condomínio: $cond, serão excluído!!! <br/> Confirma?";
+            $acao = 'requisitarServidor("index.php", "Condominios.confirmaExcluir", "cond='.$cond.'", "modal_resposta"); return false;';
+            
+            //Exibe 
+            $view = new Views('Views/Sistema/Admin/modalConfirmaView.phtml', Array("header"=> $titulo,"body"=> $mensagem, "action" =>$acao));        
+            $view->imprimirHTML();
+        }catch(Exception $e){//Trata as Exceções geradas
+
+            //Pega a mensagem de erro gerada na exceção e retorna um Modal de erro com a mensagem
+            $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=> "Falha ao excluir condomínio!","body"=> "Motivo: ".$e->getMessage()));
+            $view->imprimirHTML();
+        }          
+    }  
+
+
+   /**
+     * Rota Condominio.confirmaExcluir
      * 
      * Essa é a rota do condomínio que irá tratar quando for solicitado para um condomínio ser excluído!
      */
-    public function excluirAction(){
+    public function confirmaExcluirAction(){
 
         //Tenta baixar as variáveis da requisição e encaminha para o Model excluir o condomínio
         try{
@@ -132,41 +179,37 @@
              * $_POST[] -> Baixa as variaveis passadas na requisição apenas como POST
              * $_REQUEST[] -> Baixa as variaveis passadas na requisição pode ser GET, POST, ...
              */
-            $cnpj = $_REQUEST['cnpj']; //O CNPJ virá com o formato: <nome Condominio> (99.999.999/9999-99)
+            $cond = $_REQUEST['cond']; //O cond virá com o formato: <nome Condominio> (99.999.999/9999-99)
             
             /**
-             * Para excluir um condomínio, será necessário informar o cnpj do condom;inio a ser excluído
-             * Verifica se conseguiu baixar o CNPJ da requisição, ou se realmente foi passado o CNPJ na requisição
+             * Para excluir um condomínio, será necessário informar o cnpj do condomínio a ser excluído
+             * Verifica se conseguiu baixar o cond da requisição, ou se realmente foi passado o CNPJ na requisição (Se tem algum condomínio selecionado)
              * 
-             * Caso a $cnpj == null, então não foi passado um cnpj para a requisição, então gera exceção
+             * Caso a $cond == null, então não foi passado um condomínio na requisição, então gera exceção
              *
              */
-            if($cnpj == null) throw new Exception("Selecione um condomínio primeiro!");
+            if($cond == null) throw new Exception("Selecione um condomínio primeiro!");
 
 
 
 
-            //=====Caso chegue aqui, então foi passado o CNPJ na requisição, e o servidor conseguiu obter esse cnpj e armazerou na variavel $cnpj
+            //=====Caso chegue aqui, então foi passado o CNPJ na requisição, esse cnpj está na variável $cond, no formato:  <nome Condominio> (99.999.999/9999-99)
             //Agora o condomínio será excluído
 
-            //Instancia a classe Model do Condominio(O Model possui um método para deletar o condomínio)
-
+            //Instancia a classe Model do Condominio (O Model possui um método para deletar o condomínio)
             $condominio = new CondominioModel(); 
-            $condominio->deletarCondominio($cnpj);
+            $condominio->deletarCondominio($cond);
             
 
 
 
 
-            //=====Caso chegue aqui, então o condominío foi excluído    
+        //=====Caso chegue aqui, então o condominío foi excluído    
+            //Limpa o condomínio da seção (Isso vai fazer com que o Desapareça no HTML o: <nome Condominio> (99.999.999/9999-99) que foi excluido)
+            $_SESSION['cnpj'] = null;
+            $_SESSION['cond'] = null;
             
-
-            //Exibe um modal com mensagem de sucesso informando que o condomínio foi excluído com sucesso
-            $view = new Views('Views/Sistema/Admin/modalSuccessView.phtml', Array("header"=> "Condomínio Excluído!","body"=> "Condomínio excluido com sucesso!"));
-            $view->imprimirHTML();
-            
-            sleep(5); //Aguarda 5 segundos
-
+            //Recarrega a página (Isso faz com que o servidor atualize a página, removendo os dados do condomínio no sistema)                       
             Roteador::definirRotas('Home.listar'); //Redireciona para a Rota Home (O usuário vai ter que escolher outro condomínio...)
             Roteador::recarregarClient();          //Recarrega a página para redirecionar para a página Home
 

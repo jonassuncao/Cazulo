@@ -76,10 +76,10 @@ class BancoDados{
         $query .= " limit ".$pagina.", ".($pagina+$limit);
 
         $query = mysqli_query($this->BD_conexao, $query);
-
+                 
         //Verifica se conseguiu realizar a query
-        if($query === false)
-            throw new Exception("<br/><br/>Não foi possível realizar consulta no Banco Dados! <br/>Motivo: ".utf8_encode(mysql_error()));         
+        if(!$query)
+            throw new Exception("<br/><br/>Não foi possível realizar consulta no Banco Dados! <br/>Motivo: ".utf8_encode(mysqli_error($this->BD_conexao)));         
 
         //Armazena a query em uma variavel fetch
         $this->Array_fetch = $query;
@@ -103,13 +103,13 @@ class BancoDados{
 
 		$SQL_valores = substr($SQL_valores, 0, strrpos($SQL_valores,","));	//Exclui a ultima virgula									
         
-        $query = "insert into $tabela ($campos) values ($SQL_valores)";	
+        $query = "insert into $tabelas ($campos) values ($SQL_valores)";	
 			
         $query = mysqli_query($this->BD_conexao, $query);
 
         //Verifica se conseguiu realizar a query
-        if($query === false)
-            throw new Exception("<br/><br/>Não foi possível inserir no Banco Dados! <br/>Motivo: ".utf8_encode(mysql_error()));         
+        if(!$query)
+            throw new Exception("<br/><br/>Não foi possível inserir no Banco Dados! <br/>Motivo: ".utf8_encode(mysqli_error($this->BD_conexao))); 
 
     }
 
@@ -133,13 +133,13 @@ class BancoDados{
 			$cont++;
 		}//fim foreach		
 	
-		$update = "update $tabela set $SQL_campos where $condicao";
+		$update = "update $tabelas set $SQL_campos where $condicao";
 
         $query = mysqli_query($this->BD_conexao, $query);
 
         //Verifica se conseguiu realizar a query
-        if($query === false)
-            throw new Exception("<br/><br/>Não foi possível alterar no Banco Dados! <br/>Motivo: ".utf8_encode(mysql_error()));         
+        if(!$query)
+            throw new Exception("<br/><br/>Não foi possível alterar no Banco Dados! <br/>Motivo: ".utf8_encode(mysqli_error($this->BD_conexao))); 
     }    
 
     /** 
@@ -150,15 +150,14 @@ class BancoDados{
     public function delete($tabelas = "", $where = ""){
         if($where == "") throw new Exception("<br/><br/>Não foi possível deletar no Banco Dados! <br/>Motivo: Falta informar condição!");         
 
-        $query  = " delete from $tabela";
+        $query  = " delete from $tabelas";
         $query .= " where ".$where;
-
 
         $query = mysqli_query($this->BD_conexao, $query);
 
         //Verifica se conseguiu realizar a query
-        if($query === false)
-            throw new Exception("<br/><br/>Não foi possível deletar no Banco Dados! <br/>Motivo: ".utf8_encode(mysql_error()));         
+        if(!$query)
+            throw new Exception("<br/><br/>Não foi possível deletar no Banco Dados! <br/>Motivo: ".utf8_encode(mysqli_error($this->BD_conexao))); 
     }   
 
     /** 

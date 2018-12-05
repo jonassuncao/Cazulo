@@ -31,40 +31,33 @@ class CondominioModel{
     }
 
     /**
-     * Metodo busca no banco de dados Nome e CNPJ de todos os condominios cadastrados no sistema
-     * @return (Object)Resposta com os dados e o codigo da resposta
+     * Metodo que busca no banco de dados Nome e CNPJ de todos os condominios cadastrados no sistema
+     * @return (Array)Resposta com os dados
      */
     public function getCondominios(){
     
-        $resposta = new Resposta();
         $resultado = null;
 
-        try{ //Tenta realizar a consulta no Banco
-            $campos = "cnpj, razaoSocial";
-            $tabela = "condominio";
-           
+        $campos = "cnpj, razaoSocial";
+        $tabela = "condominio";
+        
+        
+        //Cria conexão com o Banco, passa as variaveis como parametros e armazena o resultado em um Array
+        $queryCondominios = new BancoDados();                    
+        $queryCondominios->select($campos, $tabela);
             
-            //Cria conexão com o Banco, passa as variaveis como parametros e armazena o resultado em um Array
-            $queryCondominios = new BancoDados();                    
-            $queryCondominios->select($campos, $tabela);
-                
-            //Monta um Array para resposta
-            $resultado = Array();
-            while($linha = $queryCondominios->resultQuery()){                                
-                array_push($resultado, Array('cnpj' => mascara($linha['cnpj'], '##.###.###/####-##'), 'nome'=> $linha['razaoSocial']));
-            } 
-            
-            //Armazena o resultado em um objeto
-            $resposta->setCodigoResposta(TRUE);
-            $resposta->setMensagem($resultado);
-        }catch(Exception $e){
-            
-            //Armazena o erro em um objeto
-            $resposta->setCodigoResposta(FALSE);
-            $resposta->setMensagem("Erro ao obter listagem dos condominios!".$e->getMessage());            
-        }
+        //Monta um Array para resposta
+        $resultado = Array();
+        while($linha = $queryCondominios->resultQuery()){                                
+            array_push($resultado, Array('cnpj' => mascara($linha['cnpj'], '##.###.###/####-##'), 'nome'=> $linha['razaoSocial']));
+        } 
+        
+        //Caso não retorne nenhum valor, gera uma exceção
+        if(empty($resultado)) throw new Exception("Não há condomínios para ser listado!");
 
-        return $resposta;
+        //Retorna uma lista de Array("cnpj" => 99.999.999/9999-99, "nome"=>"nome")
+        return $resultado;
+
     }
 
     /**
@@ -93,7 +86,7 @@ class CondominioModel{
         
 
         //Verifica se CNPJ o cnpj está no formato: 99999999999999 e se possui 14 digítos
-        if(!is_int($cnpj) || strlen($cnpj) != 14) throw new Exception("CNPJ do condomínio inválido!");
+        if(!is_numeric($cnpj) || strlen($cnpj) != 14) throw new Exception("CNPJ do condomínio inválido!");
 
         /**
          * Se chegou até aqui, então o CNPJ está ok.
@@ -115,7 +108,7 @@ class CondominioModel{
          //====Se chegou aqui, excluiu oas contas bancárias do condomínio
 
          //Define as varíaveis para realizar a exclusão do condomínio na Tabela Condomínio
-         $tabela = "banco";        
+         $tabela = "condominio";        
            
          $queryCondominios->delete($tabela, $where);
 
