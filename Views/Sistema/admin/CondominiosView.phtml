@@ -14,7 +14,7 @@
 
 
     <!--Adcionar botoes-->
-    <form>
+    <form id="formCondominio">
       <!-- area de campos do form -->
       <hr />
 
@@ -22,29 +22,29 @@
       <div class="row">
         <div class="form-group col-md-11">
           <label for="campo1">Razão Social</label>
-          <input type="text" class="form-control" id="campo1">
+          <input type="text" name="razaoSocial"class="form-control" id="campo1">
 
         </div>
 
         <div class="form-group col-md-3">
           <label for="input-CNPJ">CNPJ</label>
-          <input type="text" class="form-control cnpj-mask" id="input-CNPJ" placeholder="Ex.: 00.000.000.0000-00"
+          <input type="text" name="cnpj" class="form-control cnpj-mask" id="input-CNPJ" placeholder="Ex.: 00.000.000.0000-00"
             maxlength="14" autocomplete="off">
         </div>
 
         <div class="form-group col-md-2">
           <label for="campo1">Telefone:</label>
-          <input type="text" class="form-control phone-mask" placeholder="Ex.:(00) 0000-0000">
+          <input type="text" name="telefone"class="form-control phone-mask" placeholder="Ex.:(00) 0000-0000">
         </div>
 
         <div class="form-group col-md-2">
           <label for="campo1">Celular:</label>
-          <input type="text" class="form-control phone-mask" placeholder="Ex.:(00) 9 0000-0000">
+          <input type="text" name="celular" class="form-control phone-mask" placeholder="Ex.:(00) 9 0000-0000">
         </div>
 
         <div class="form-group col-md-4">
           <label for="exampleInputEmail1">Email</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Ex.: seuemail@hotmail.com">
+          <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Ex.: seuemail@hotmail.com">
         </div>
 
         <br />
@@ -52,7 +52,7 @@
         <div class="form-group col-md-2">
           <label for="campo2">CEP</label>
           <div class="input-group input-group-sm">
-            <input type="text" id="cep" class="form-control" placeholder="Ex.: 00000-000">
+            <input type="text" name="cep" id="cep" class="form-control" placeholder="Ex.: 00000-000">
             <span class="input-group-btn">
               <button type="button" id="btnPesquisar" onClick="buscaCEP($('input#cep').val()); return false;" class="btn btn-success btn-flat"><i class="fa fa-search"></i></button>
             </span>
@@ -61,27 +61,27 @@
 
         <div class="form-group col-md-4">
           <label for="inputState">Rua</label>
-          <input type="text" id="endereco" class="form-control phone-mask" placeholder="Rua x">
+          <input type="text" name="rua" id="endereco" class="form-control phone-mask" placeholder="Rua x">
         </div>
 
         <div class="form-group col-md-1">
           <label for="inputState">Numero</label>
-          <input type="text" class="form-control phone-mask" placeholder="123">
+          <input type="text" name="numero"class="form-control phone-mask" placeholder="123">
         </div>
 
         <div class="form-group col-md-4">
           <label for="inputState">Setor</label>
-          <input type="text" id="bairro" class="form-control phone-mask" placeholder="Rua x">
+          <input type="text" name="setor" id="bairro" class="form-control phone-mask" placeholder="Rua x">
         </div>
 
         <div class="form-group col-md-5">
           <label for="inputState">Complemento</label>
-          <input type="text" class="form-control phone-mask" placeholder="Qd. XXX Lt. XXX">
+          <input type="text" name="complemento"class="form-control phone-mask" placeholder="Qd. XXX Lt. XXX">
         </div>
 
         <div class="form-group col-md-4">
           <label for="inputState">Município</label>
-          <input type="text" id="cidade" class="form-control phone-mask" placeholder="Goiânia">
+          <input type="text" name="municipio" id="cidade" class="form-control phone-mask" placeholder="Goiânia">
         </div>
 
         <div class="form-group col-md-2">
@@ -162,8 +162,9 @@
 
 
           <div class="form-group col-md-10">
-            <label for="exampleFormControlSelect2">Bancos cadastrados</label>
-            <select multiple class="form-control" id="exampleFormControlSelect2">
+            <label for="contasCadastradas">Bancos cadastrados</label>
+            <input type="hidden" class="form-control" id="bancos">
+            <select multiple class="form-control" id="contasCadastradas">
               <option>Caixa Economica Federal - AG: 1234 C/C: 12345678-1</option>
               <option>Itau (Encerrada) - AG: 1234 C/P: 12345678-1</option>
             </select>
@@ -177,7 +178,7 @@
       <hr />
       <div id="actions" class="row">
         <div class="col-md-12">
-          <a href="/" class="btn btn-primary" onClick='requisitarServidor("index.php", "Condominios.listar", "titulo=Condomínios", "body_resposta"); return false;'>Salvar</a>
+          <a href="/" class="btn btn-primary" onClick='selectBanco("contasCadastradas", "bancos"); requisitarServidor("index.php", "Condominios.adicionar", $("#formCondominio").serialize()+"&uf="+$("inputState option:selected").val()+"&bancos="+$("#bancos").val(), "body_resposta"); return false;'>Salvar</a>
           <a href="/" class="btn btn-danger" onClick='requisitarServidor("index.php", "Condominios.listar", "titulo=Condomínios", "body_resposta"); return false;'>Cancelar</a>
         </div>
       </div>
@@ -189,6 +190,14 @@
 
 </section>
 <script>
+
+function selectBanco(selectID, input){
+  var banc="";
+  $("#"+selectID+"option").each(function(){
+    banc=banc+'|'+$(this).val();
+  });
+  $("#"+input).val(banc);
+}
 
 //Função Js que busca o endereço pelo CEP, usando API
 
@@ -234,4 +243,11 @@ function buscaCEP(cep){
     $("input#endereco").removeAttr('disabled');
   });
 }
+
+var form = $("form");
+var resultado = $("#body_resposta");
+
+form.on("submit", function(){
+  console.log("teste");
+})
 </script>

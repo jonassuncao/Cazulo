@@ -220,6 +220,39 @@
             $view->imprimirHTML();
         }        
         
-    }      
+    } 
+    
+    public function adicionarAction(){
+        try{
+            $razaoSocial = $_REQUEST['razaoSocial'];
+            $cnpj = $_REQUEST['cnpj'];
+            $telefone = $_REQUEST['telefone'];
+            $celular = $_REQUEST['celular'];
+            $email = $_REQUEST['email'];
+            $cep = $_REQUEST['cep'];
+            $rua = $_REQUEST['rua'];
+            $numero = $_REQUEST['numero'];
+            $setor = $_REQUEST['setor'];
+            $complemento = $_REQUEST['complemento'];
+            $municipio = $_REQUEST['municipio'];
+            $uf = $_REQUEST['uf'];
+            $bancos = $_REQUEST['bancos'];
+
+            if($cnpj == null||$razaoSocial == null||$email == null)throw new Exception("Preecha todos os campos obrigatórios!");
+
+            $condominio = new CondominioModel();
+            $condominio->adicionarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado, $bancos);
+
+            $view = new Views('Views/Sistema/Admin/CondominiosView.phtml');
+            $view->imprimirHTML();
+
+        }catch(Exception $e){
+
+            $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
+            $view -> imprimirHTML();
+
+        }
+
+    }
  }
 ?>
