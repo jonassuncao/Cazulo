@@ -2,12 +2,19 @@
 /**
  * Controlador do Condomínios
  * 
- * @author Jonathas Assunção
- * @version 0.0.3
+ * @author Jônathas Assunção
+ * @version 0.0.5
  *
  * =================================================================
+ * date - 09/12/2018 - @version 0.0.5
+ * description: Muda chamada da view, tem que passar o code_http resposta
+ *              Nome da Views, não precisa mais do caminho absoluto 
+ * =================================================================
+ * date - 08/12/2018 - @version 0.0.4
+ * description: Implementação da rota Condominio.adicionar
+ * =================================================================
  * date - 04/12/2018 - @version 0.0.3
- * description: Implementação da rota Condominio.excluir
+ * description: Implementação da rota Condominio.excluir e Condominio.confirmaExcluir
  * =================================================================
  * date - 23/11/2018 - @version 0.0.2
  * description: Muda a forma da resposta para o HTML 
@@ -34,7 +41,7 @@
      */
     public function listarAction(){
         //Renderiza a página de Listar Condominios
-        $view = new Views('Views/Sistema/Admin/listarCondominiosView.phtml');
+        $view = new Views(200,'listarCondominiosView');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         
@@ -54,14 +61,26 @@
             $cond = new CondominioModel();        
             $dados = $cond->getCondominios();             
             
-            $view = new Views('Views/Sistema/Admin/selecionarView.phtml', Array("header"=> "Escolha um Condomínio!", "dados"=> $dados));            
+            $view = new Views(200,'selecionarView', Array("header"=> "Escolha um Condomínio!", "dados"=> $dados));            
             
             //Retorna para o navegador a página HTML à ser exibida.
+            $view->imprimirHTML();
+            
+        }catch(CondominioVazioException $e){//Trata a Exceção quando não há condomínio a ser exibido
+            //Exibe um modal avisando que não há condomínio e mostra um botão para adicionar
+            
+            //Define as variáveis para exibição do modal
+            $titulo = "Listar Condomínio";
+            $mensagem = "Não há condomínio a ser listado, deseja adicionar um novo condomínio?";
+            $acao = 'requisitarServidor("index.php", "Condominios.condominio", "titulo=Adicionar Condomínio", "body_resposta"); return false;';
+            
+            //Exibe 
+            $view = new Views(200,'modalConfirmaView', Array("header"=> $titulo,"body"=> $mensagem, "action" =>$acao));        
             $view->imprimirHTML();
         }catch(Exception $e){//Trata as Exceções geradas
 
             //Pega a mensagem de erro gerada na exceção e retorna um Modal de erro com a mensagem
-            $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=> "Falha ao Listar os Condomínios!","body"=> "Motivo: ".$e->getMessage()));
+            $view = new Views(200,'modalErroView', Array("header"=> "Falha ao Listar os Condomínios!","body"=> "Motivo: ".$e->getMessage()));
             $view->imprimirHTML();
         } 
     }    
@@ -73,7 +92,7 @@
      */
     public function condominioAction(){
         //Renderiza a página de Selecionar Condominios
-        $view = new Views('Views/Sistema/Admin/condominiosView.phtml');
+        $view = new Views(200,'condominiosView');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         
@@ -90,7 +109,9 @@
         $cnpj = substr($_POST['cond'], 0, 18);
         $cond = substr($_POST['cond'], 20);
         $condominio = new CondominioModel(); 
-
+        
+        if($cnpj == null) throw new Exception("Selecione um condomínio!");
+        
         //Verifica se o usuário que está logado tem permissão para acessar o controller e Action solicitado
         if($condominio->temPermissaoMudarCondominio('acessar', $cnpj)){ 
             /**Se entrou no IF, é porque tem a permissão... 
@@ -106,7 +127,7 @@
              * Se Entrou no ELSE, então o usuário não tem permissão para acessar esse controller e Action
              * Exibe um Modar de Atenção, informando a mensagem retornada pela Class LoginModel()
              */
-            $view = new Views('Views/Sistema/Admin/modalAtencaoView.phtml', Array("header"=> "Esse condomínio não pode ser selecionado!","body"=> "Motivo: ".$login->getMensagem()));
+            $view = new Views(200,'modalAtencaoView', Array("header"=> "Esse condomínio não pode ser selecionado!","body"=> "Motivo: ".$login->getMensagem()));
             $view->imprimirHTML();
         }
 
@@ -150,12 +171,12 @@
             $acao = 'requisitarServidor("index.php", "Condominios.confirmaExcluir", "cond='.$cond.'", "modal_resposta"); return false;';
             
             //Exibe 
-            $view = new Views('Views/Sistema/Admin/modalConfirmaView.phtml', Array("header"=> $titulo,"body"=> $mensagem, "action" =>$acao));        
+            $view = new Views(200,'modalConfirmaView', Array("header"=> $titulo,"body"=> $mensagem, "action" =>$acao));        
             $view->imprimirHTML();
         }catch(Exception $e){//Trata as Exceções geradas
 
             //Pega a mensagem de erro gerada na exceção e retorna um Modal de erro com a mensagem
-            $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=> "Falha ao excluir condomínio!","body"=> "Motivo: ".$e->getMessage()));
+            $view = new Views(200,'modalErroView', Array("header"=> "Falha ao excluir condomínio!","body"=> "Motivo: ".$e->getMessage()));
             $view->imprimirHTML();
         }          
     }  
@@ -216,7 +237,7 @@
         }catch(Exception $e){//Trata as Exceções geradas
 
             //Pega a mensagem de erro gerada na exceção e retorna um Modal de erro com a mensagem
-            $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=> "Falha ao excluir condomínio!","body"=> "Motivo: ".$e->getMessage()));
+            $view = new Views(200,'modalErroView', Array("header"=> "Falha ao excluir condomínio!","body"=> "Motivo: ".$e->getMessage()));
             $view->imprimirHTML();
         }        
         
@@ -238,17 +259,17 @@
             $uf = $_REQUEST['uf'];
             $bancos = $_REQUEST['bancos'];
 
-            if($cnpj == null||$razaoSocial == null||$email == null)throw new Exception("Preecha todos os campos obrigatórios!");
+            if($cnpj == null||$razaoSocial == null||$email == null) throw new Exception("Preecha todos os campos obrigatórios!");
 
             $condominio = new CondominioModel();
             $condominio->adicionarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado, $bancos);
 
-            $view = new Views('Views/Sistema/Admin/CondominiosView.phtml');
+            $view = new Views(200,'CondominiosView');
             $view->imprimirHTML();
 
         }catch(Exception $e){
 
-            $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
+            $view = new Views(201,'modalErroView', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
             $view -> imprimirHTML();
 
         }

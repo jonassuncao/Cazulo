@@ -53,7 +53,7 @@ class CondominioModel{
         } 
         
         //Caso não retorne nenhum valor, gera uma exceção
-        if(empty($resultado)) throw new Exception("Não há condomínios para ser listado!");
+        if(empty($resultado)) throw new CondominioVazioException("Não há condomínios para ser listado!");
 
         //Retorna uma lista de Array("cnpj" => 99.999.999/9999-99, "nome"=>"nome")
         return $resultado;
@@ -116,20 +116,22 @@ class CondominioModel{
     }
 
     public function adicionarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado, $bancos){
-        //inserir na tabela condominio
-        $campos = "cnpj, razaoSocial, telefone, celular, email, cep, rua, numero, setor, complemento, municipio, estado";
-        $valor = Array($cnpj, $razaoSocial, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado);
-        $tabela = "condominio";
-
+        
         $cnpj = str_replace(array('.','/','-'), "", $cnpj);  //O CNPJ foi convertido para o formato: 99999999999999
         //----Fim da extração dos números do CNPJ
 
         //Verifica se CNPJ o cnpj está no formato: 99999999999999 e se possui 14 digítos
         if(!is_numeric($cnpj) || strlen($cnpj) != 14) throw new Exception("CNPJ inválido!");
 
+
+        //inserir na tabela condominio
+        $campos = "cnpj, razaoSocial, telefone, celular, email, cep, rua, numero, setor, complemento, municipio, estado";
+        $valor = Array($cnpj, $razaoSocial, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado);
+        $tabela = "condominio";        
+
         //Cria conexão com o Banco, passa as variáveis como parâmetro 
         $queryCondominios = new BancoDados();                    
-        $queryCondominios->insert($campos, $valores, $tabela);
+        $queryCondominios->insert($campos, $valor, $tabela);
 
     }
 }

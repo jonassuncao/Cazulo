@@ -34,6 +34,10 @@ spl_autoload_register(function($st_class){
     if(file_exists('Lib/'.$st_class.'.php'))
         require_once 'Lib/'.$st_class.'.php';
 });
+spl_autoload_register(function($st_class){
+    if(file_exists('Lib/Exceptions/'.$st_class.'.php'))
+        require_once 'Lib/Exceptions/'.$st_class.'.php';
+});
 
 class Roteador{
 

@@ -2,8 +2,13 @@
 /**
  * Controlador do Condominos
  * 
- * @author Jonathas Assunção
- * @version 0.0.2
+ * @author Jônathas Assunção
+ * @version 0.0.3
+ *
+ * =================================================================
+ * date - 09/12/2018 - @version 0.0.3
+ * description: Muda chamada da view, tem que passar o code_http resposta
+ *              Nome da Views, não precisa mais do caminho absoluto
   * =================================================================
  * date - 23/11/2018 - @version 0.0.2
  * description: Muda chamada da view
@@ -29,7 +34,7 @@
      */
     public function listarAction(){
         //Renderiza a página de Listar Condominios
-        $view = new Views('Views/Sistema/Admin/listarCondominosView.phtml');
+        $view = new Views(200,'listarCondominosView');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         
@@ -41,7 +46,7 @@
      */
     public function condominoAction(){
         //Renderiza a página de Selecionar Condominios
-        $view = new Views('Views/Sistema/Admin/condominosView.phtml');
+        $view = new Views(200,'condominosView');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         

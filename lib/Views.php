@@ -45,9 +45,11 @@ class Views{
      * Armazena o nome do arquivo HTML e os valores que serão enviados ao HTML
      * @param String $html_nome
      * @param Array $html_valores
+     * @param Int $html_code
      */
-    function __construct($html_nome = null, $html_valores = null){
-        if($html_nome != null) $this->setHTMLNome($html_nome);
+    function __construct($html_code = 200, $html_nome = null, $html_valores = null){
+        http_response_code((int)$html_code);
+        if($html_nome != null) $this->setHTMLNome('Views/Sistema/Admin/'.$html_nome.'.phtml');
         $this->html_valores = $html_valores;
     }
 

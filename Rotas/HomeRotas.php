@@ -2,9 +2,13 @@
 /**
  * Controlador da página Home
  * 
- * @author Jonathas Assunção
- * @version 0.0.2
+ * @author Jônathas Assunção
+ * @version 0.0.3
  *
+ * =================================================================
+ * date - 09/12/2018 - @version 0.0.3
+ * description: Muda chamada da view, tem que passar o code_http resposta
+ *              Nome da Views, não precisa mais do caminho absoluto
  * =================================================================
  * date - 23/11/2018 - @version 0.0.2
  * description: Muda chamada da view
@@ -37,7 +41,7 @@
         //Define os parametros a serem enviados para a página HTML
 
         //Renderiza a página de Login
-        $view = new Views('Views/Sistema/Admin/fundoView.phtml', Array("user"=>$usuario->toValores(), "cond"=>$condominio));
+        $view = new Views(200,'fundoView', Array("user"=>$usuario->toValores(), "cond"=>$condominio));
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         
@@ -58,7 +62,7 @@
                 $controller = new ControllerMaster(); //Instancia o Gerenciador de Controllers
                 $controller->loadController(); //Tenta importar o Controller e executar o action solicitado
             }catch(Exception $e) { //Caso dê algum erro, exibe um Modal Erro para o usuário e informa a mensagem de erro
-                $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=> "Erro ao carregar página: ".$descricaoOpcao,"body"=> "Motivo: ".$e->getMessage()."<br/>Entre em contato com o suporte."));
+                $view = new Views(200,'modalErroView', Array("header"=> "Erro ao carregar página: ".$descricaoOpcao,"body"=> "Motivo: ".$e->getMessage()."<br/>Entre em contato com o suporte."));
                 $view->imprimirHTML();
             }
         }else{ 
@@ -66,7 +70,7 @@
              * Se Entrou no ELSE, então o usuário não tem permissão para acessar esse controller e Action
              * Exibe um Modar de Atenção, informando a mensagem retornada pela Class LoginModel()
              */
-            $view = new Views('Views/Sistema/Admin/modalAtencaoView.phtml', Array("header"=> "A página ".$descricaoOpcao." não pode ser carregada","body"=> "Motivo: ".$login->getMensagem()));
+            $view = new Views(200,'modalAtencaoView', Array("header"=> "A página ".$descricaoOpcao." não pode ser carregada","body"=> "Motivo: ".$login->getMensagem()));
             $view->imprimirHTML();
         }
     }

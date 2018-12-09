@@ -100,16 +100,16 @@ class BancoDados{
 			else 
 				$SQL_valores .= " '".$rows."',";
 		}//fim foreach	
-
+        
 		$SQL_valores = substr($SQL_valores, 0, strrpos($SQL_valores,","));	//Exclui a ultima virgula									
         
-        $query = "insert into $tabelas ($campos) values ($SQL_valores)";	
-			
-        $query = mysqli_query($this->BD_conexao, $query);
+        $query = "insert into $tabelas ($campos) values ($SQL_valores)";	                
+
+        $query = mysqli_query($this->BD_conexao, $query);                
 
         //Verifica se conseguiu realizar a query
         if(!$query)
-            throw new Exception("<br/><br/>Não foi possível inserir no Banco Dados! <br/>Motivo: ".utf8_encode(mysqli_error($this->BD_conexao))); 
+            throw new Exception("<br/><br/>Não foi possível inserir no Banco de Dados! <br/>Motivo: ".utf8_encode(mysqli_error($this->BD_conexao))); 
 
     }
 

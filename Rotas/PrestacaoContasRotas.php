@@ -2,9 +2,13 @@
 /**
  * Controlador da Prestação de Contas
  * 
- * @author Jonathas Assunção
- * @version 0.0.2
- * 
+ * @author Jônathas Assunção
+ * @version 0.0.3
+ *
+ * =================================================================
+ * date - 09/12/2018 - @version 0.0.3
+ * description: Muda chamada da view, tem que passar o code_http resposta
+ *              Nome da Views, não precisa mais do caminho absoluto
  * =================================================================
  * date - 23/11/2018 - @version 0.0.2
  * description: Muda chamada da view
@@ -31,7 +35,7 @@
      */
     public function listarAction(){
         //Renderiza a página 
-        $view = new Views('Views/Sistema/Admin/prestacaoContasView.phtml');
+        $view = new Views(200,'prestacaoContasView');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         
@@ -47,32 +51,32 @@
         switch ($tela) {
             case 'pc': //Exibir o Resumo da Prestação de Contas
                 //Renderiza a página 
-                $view = new Views('Views/Sistema/Admin/prestacaoContasPCView.phtml');
+                $view = new Views(200,'prestacaoContasPCView');
                 break;
 
             case 'doc': //Exibir o Resumo dos Documentos
                 //Renderiza a página 
-                $view = new Views('Views/Sistema/Admin/prestacaoContasDocumentosView.phtml');
+                $view = new Views(200,'prestacaoContasDocumentosView');
                 break;                
 
             case 'ext': //Exibir Extrato
                 //Renderiza a página 
-                $view = new Views('Views/Sistema/Admin/prestacaoContasExtratoMenuView.phtml');
+                $view = new Views(200,'prestacaoContasExtratoMenuView');
                 break;
             
             case 'rdef': //Exibir o Resumo do Reconhecimento das Despesas de Exercícios Futuros
                 //Renderiza a página 
-                $view = new Views('Views/Sistema/Admin/prestacaoContasRDEFView.phtml');
+                $view = new Views(200,'prestacaoContasRDEFView');
                 break;
             
             case 'rref': //Exibir o Resumo do Reconhecimento das Receitas de Exercícios Futuros
                 //Renderiza a página 
-                $view = new Views('Views/Sistema/Admin/prestacaoContasRREFView.phtml');
+                $view = new Views(200,'prestacaoContasRREFView');
                 break; 
 
             default: // Opção inválida exibe erro
                 //Renderiza a página 
-                $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=> "Erro ao carregar opção: ".$tela,"body"=> "Motivo: Opção inválida ou não existe! <br/>Entre em contato com o suporte."));
+                $view = new Views(200,'modalErroView', Array("header"=> "Erro ao carregar opção: ".$tela,"body"=> "Motivo: Opção inválida ou não existe! <br/>Entre em contato com o suporte."));
                 break;            
         }
         
@@ -114,7 +118,7 @@
         $header["Banco"]     = "Bradesco";
 
         //Renderiza a página 
-        $view = new Views('Views/Sistema/Admin/prestacaoContasExtratoOpcaoView.phtml', Array("header"=> $header, "extrato"=> $lancamento, "saldo"=> $saldo));
+        $view = new Views(200,'prestacaoContasExtratoOpcaoView', Array("header"=> $header, "extrato"=> $lancamento, "saldo"=> $saldo));
         //Retorna para o navegador a página HTML à ser exibida.                
         $view->imprimirHTML();
         
