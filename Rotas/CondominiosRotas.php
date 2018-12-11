@@ -113,6 +113,47 @@
         
     }   
 
+################################################################################################################################################################################################
+        //recebe o cnpj do html e manda para o Model fazer a busca dos dados  
+        public function buscarCond(){
+      
+           //Tenta baixar o condomínio da requisição, e exibe uma janela pedindo confirmação de exclusão.
+            try{
+            /** 
+             * Baixa as variáveis que o HTML enviou na requisição.
+             * 
+             * Para baixar tem 3 formas:
+             * 
+             * $_GET[]  -> Baixa as variaveis passadas na requisição apenas como GET
+             * $_POST[] -> Baixa as variaveis passadas na requisição apenas como POST
+             * $_REQUEST[] -> Baixa as variaveis passadas na requisição pode ser GET, POST, ...
+             */
+            $cond = $_REQUEST['cond']; 
+            
+            /**
+             * Para excluir um condomínio, será necessário informar o cnpj do condomínio a ser excluído.
+             * Verifica se conseguiu baixar o CNPJ da requisição, ou se realmente foi passado o CNPJ na requisição (Se tem algum condomínio selecionado)
+             * 
+             * Caso a $cond == null, então não foi passado um cnpj para a requisição, então gera exceção
+             *
+             */
+            if($cond == null) throw new Exception("Selecione um condomínio primeiro!");
+            
+            $condominio = new CondominioModel();//Criar conecção com Model
+            $dadosCondominio = new ListarCondominiosView(); //Criar conecção com View
+            $dadosCondominio = $condominio->listarCondominio($cond); //View recebe o retorno da busca do Model
+
+        }catch(Exception $e){//Trata as Exceções geradas
+
+            //Pega a mensagem de erro gerada na exceção e retorna um Modal de erro com a mensagem
+            $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=> "Falha ao buscar condomínio!","body"=> "Motivo: ".$e->getMessage()));
+            $view->imprimirHTML();
+        }
+
+        return $dadosCondominio; // retorno da function  
+    }
+################################################################################################################################################################################################
+
 
     /**
      * Rota Condominio.excluir

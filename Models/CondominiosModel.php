@@ -59,6 +59,38 @@ class CondominioModel{
         return $resultado;
 
     }
+######################################################################################################################################################################    
+    //buscar condominio pelo cnpj e retornar seus dados
+    public function listarCondominio($cnpj){
+
+        //-----Inicío da extração dos números do CNPJ
+        $cnpj = substr($cnpj, strpos($cnpj, '(')+2, 18);     //O CNPJ foi convertido para o formato: 99.999.999/9999-99
+        
+        //Verifica se CNPJ salvo na Seção == O cnpj passado no parâmetro, Se for diferente... gera Exceção
+        if($_SESSION['cnpj'] != $cnpj) throw new Exception("CNPJ do condomínio não é esse!");
+
+        $cnpj = str_replace(array('.','/','-'), "", $cnpj);  //O CNPJ foi convertido para o formato: 99999999999999
+        //----Fim da extração dos números do CNPJ
+        
+
+        //Verifica se CNPJ o cnpj está no formato: 99999999999999 e se possui 14 digítos
+        if(!is_numeric($cnpj) || strlen($cnpj) != 14) throw new Exception("CNPJ do condomínio inválido!");
+
+        /**
+         * Se chegou até aqui, então o CNPJ está ok. 
+         */
+
+         //Define as varíaveis para realizar a busca do condomínio na Tabela Banco         
+         $tabela = "condominio";        
+         $where = "cnpj = '$cnpj'";
+
+         //Cria conexão com o Banco, passa as variáveis como parâmetro 
+         $queryCondominios = new BancoDados();                    
+         $queryCondominios->select("*",$tabela, $where);
+     
+         return $queryCondominios;
+    }
+#######################################################################################################################################################################
 
     /**
      * Exclui todos os dados de um condomínio e o condomínio
