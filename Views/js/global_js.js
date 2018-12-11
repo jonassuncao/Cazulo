@@ -28,7 +28,7 @@ function requisitarServidor(urlServidor, rota, parametros, retornoHTML) {
 			processData: false,
 			contentType: false,
 			type: "POST",
-			success: function (result) {
+			success: function (result) {				
 				$("#" + retornoHTML).html(result);
 			},
 			error: function () {
@@ -46,8 +46,15 @@ function requisitarServidor(urlServidor, rota, parametros, retornoHTML) {
 				$("#" + retornoHTML).html("");
 				carregar_load('#load_div', true);
 			},
-			success: function (result) {
-				$("#" + retornoHTML).html(result);
+			success: function (result, txt, code) {
+				console.log(code.status);
+				if(code.status != 200){					
+					console.log($("#" + retornoHTML).html());
+					$("#" + retornoHTML).html($("#"+ retornoHTML).html() + result);					
+				}else{
+					$("#" + retornoHTML).html(result);
+				}				
+				
 			},
 			error: function () {
 				$("#" + retornoHTML).html('Erro interno, Contacte adminitrador do sistema!');
