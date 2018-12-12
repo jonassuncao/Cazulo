@@ -22,6 +22,74 @@
   </div>
   <!-- /.modal-dialog -->
 </div>
-<script>
-  $('#modal-info').modal();
+<script type="text/javascript">
+//Exibir o modal
+
+/**
+ * Essa função carrega um <script> dinamicamente
+ * @param url --> URL do .js
+ * @param callback --> função do que fazer quando finalizar
+ */
+function loadScript(url, callback){
+  
+  const body = document.getElementsByTagName('body')[0];   
+  let script = document.createElement("script");
+
+  script.src = url;
+  script.type = "text/javascript";
+
+   script.onreadystatechange = callback;
+   script.onload = callback;
+   
+   body.appendChild(script);
+}
+
+
+  //Tenta exibir o modal
+  try {    
+    $('#modal-info').modal();
+  }catch (e) { //Caso não consiga exibir o modal, importa as bibliotecas do modal e tenta novamente
+
+    //Importa os CSS
+    const styles = [
+      "Views/Sistema/Admin/dist/css/AdminLTE.min.css",
+      "Views/Sistema/Admin/bower_components/bootstrap/dist/css/bootstrap.min.css"      
+    ];
+
+    // Objetos de manipulação do DOM:
+    const head = document.getElementsByTagName('head')[0];
+
+    // Insere os arquivos CSS na página:
+    for (let i in styles) {
+      let style = document.createElement("link");
+
+      style.rel = 'stylesheet';
+      style.type = 'text/css';
+      style.href = styles[i];
+
+      head.appendChild(style);
+    }
+
+    let style = document.createElement("link");
+
+    style.rel = 'icon';
+    style.type = 'image/ico';
+    style.href = "Views/Sistema/Admin/images/icons/favicon.ico";
+
+    head.appendChild(style);
+    //Fim Importa CSS
+
+    //Importa os js e exibe o modal
+    const scripts = [
+      "Views/Sistema/Admin/bower_components/jquery/dist/jquery.min.js",
+      "Views/Sistema/Admin/bower_components/bootstrap/dist/js/bootstrap.min.js"
+    ];
+    
+    var boot = function(){
+      loadScript(scripts[1], function(){$('#modal-info').modal();});
+    };
+
+    loadScript(scripts[0], boot);
+    //Fim Importa os js e exibe o modal
+ } 
 </script>
