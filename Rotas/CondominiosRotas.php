@@ -297,14 +297,16 @@
             $condominio = new CondominioModel();
             $condominio->adicionarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado, $bancos);
 
-
+            $view = new Views(200,'Sistema/Admin/modalSuccessView', Array("header"=>"Condomínio inserido com sucesso!", "body"=>"O condomínio foi inserido com sucesso!"));
+            $view -> imprimirHTML();
+            
             //Após incluir o condomínio, redireciona para a listagem             
-
+            /*
             Roteador::atualizaSubRota('Condominios.buscarCond');          //Define a rota que trata a listagem do condomínio
-            Roteador::adicionaParametro("cond=$razaoSocial (".mascara($cnpj, '##.###.###/####-##').")"); //Passa os parâmetros para a rota
+            Roteador::adicionaParametro("cond=$razaoSocial ( ".mascara($cnpj, '##.###.###/####-##')." )"); //Passa os parâmetros para a rota
             Roteador::definirRotas('Home.listar');                        //Define uma rota Master (Pois a página do navegador será recarregada)
             Roteador::recarregarClient();                                 //Recarrega o cliente e executa a rota solicitada.
-
+            */
         }catch(Exception $e){
 
             $view = new Views(201,'Sistema/Admin/modalErroView', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
