@@ -49,7 +49,7 @@ class Views{
      */
     function __construct($html_code = 200, $html_nome = null, $html_valores = null){
         http_response_code((int)$html_code);
-        if($html_nome != null) $this->setHTMLNome('Views/Sistema/Admin/'.$html_nome.'.phtml');
+        if($html_nome != null) $this->setHTMLNome('Views/'.$html_nome.'.phtml');
         $this->html_valores = $html_valores;
     }
 

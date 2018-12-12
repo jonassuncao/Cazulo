@@ -80,15 +80,65 @@ class CondominioModel{
          * Se chegou até aqui, então o CNPJ está ok. 
          */
 
-         //Define as varíaveis para realizar a busca do condomínio na Tabela Banco         
-         $tabela = "condominio";        
-         $where = "cnpj = '$cnpj'";
+        //Define as varíaveis para realizar a busca do condomínio na Tabela Banco         
+        $tabela = "condominio";        
+        $where = "cnpj = '$cnpj'";
 
-         //Cria conexão com o Banco, passa as variáveis como parâmetro 
-         $queryCondominios = new BancoDados();                    
-         $queryCondominios->select("*",$tabela, $where);
+        //Cria conexão com o Banco, passa as variáveis como parâmetro 
+        $queryCondominios = new BancoDados();                    
+        $queryCondominios->select("*",$tabela, $where);
      
-         return $queryCondominios;
+        //Monta um Array para resposta
+        $resultado = Array();        
+        
+        if($query = $queryCondominios->resultQuery()){ //Percorre cada linha da query para pegar o resultado   
+            
+            //Cria um array temporário para armazenar os dados extraidos da query
+            $linha = array();
+
+            //Extrai os dados da query e coloca no array temporário
+            $linha['cnpj']        = mascara($query['cnpj'], '##.###.###/####-##');
+            $linha['nome']        = $query['razaoSocial'];
+            $linha['telefone']    = $query['telefone'];
+            $linha['celular']     = $query['celular'];
+            $linha['email']       = $query['email'];
+            $linha['cep']         = $query['cep'];
+            $linha['rua']         = $query['rua'];
+            $linha['numero']      = $query['numero'];
+            $linha['setor']       = $query['setor'];
+            $linha['complemento'] = $query['complemento'];
+            $linha['municipio']   = $query['municipio'];
+            $linha['estado']      = $query['estado'];
+
+            //Adiciona o array temporário a uma variável que será usada como uma lista de condominio
+            array_push($resultado, $linha);
+        } 
+
+        //Caso a variável $resultado, esteja vazia mesmo após tentar extrair os dados da query... Então a query não retornou nenhum dado
+        if(empty($resultado)) throw new CondominioVazioException("Não há condomínios para ser listado!");
+
+
+        //Consulta dados do banco
+        //Define as varíaveis para realizar a busca do condomínio na Tabela Banco         
+        $tabela = "condominio";       //<<==Coloca a tabela do banco
+        $where = "cnpj = '$cnpj'";     //<<===Arrume o where, para que pegue todos os bancos desse cnj
+
+        //Cria conexão com o Banco, passa as variáveis como parâmetro 
+        //$queryCondominios = new BancoDados();    //<<===não é necessário instanciar novamente a classe de BancoDados, podemos usar a classe que foi instanciada para aconsulta de condominio                
+        $queryCondominios->select("*",$tabela, $where);
+     
+        //Monta um Array para resposta
+        $resultado = Array();        
+        
+        //Use um while, pois essa consulta pode retornar mais de 1 linha
+        while($query = $queryCondominios->resultQuery()){ //Percorre cada linha da query para pegar o resultado   
+            //Crie um array temporário para que você possa extrair os dados de cada linha
+
+            //Após extrair adicione esse array a lista do condomínio
+        }
+
+        //Retorna a lista de condomínio para o model
+        return $resultado;
     }
 #######################################################################################################################################################################
 

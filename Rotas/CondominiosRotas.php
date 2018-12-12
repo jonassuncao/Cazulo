@@ -41,7 +41,7 @@
      */
     public function listarAction(){
         //Renderiza a página de Listar Condominios
-        $view = new Views(200,'listarCondominiosView');
+        $view = new Views(200,'Sistema/Admin/listarCondominiosView');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         
@@ -61,7 +61,7 @@
             $cond = new CondominioModel();        
             $dados = $cond->getCondominios();             
             
-            $view = new Views(200,'selecionarView', Array("header"=> "Escolha um Condomínio!", "dados"=> $dados));            
+            $view = new Views(200,'Sistema/Admin/selecionarView', Array("header"=> "Escolha um Condomínio!", "dados"=> $dados));            
             
             //Retorna para o navegador a página HTML à ser exibida.
             $view->imprimirHTML();
@@ -75,12 +75,12 @@
             $acao = 'requisitarServidor("index.php", "Condominios.condominio", "titulo=Adicionar Condomínio", "body_resposta"); return false;';
             
             //Exibe 
-            $view = new Views(200,'modalConfirmaView', Array("header"=> $titulo,"body"=> $mensagem, "action" =>$acao));        
+            $view = new Views(200,'Sistema/Admin/modalConfirmaView', Array("header"=> $titulo,"body"=> $mensagem, "action" =>$acao));        
             $view->imprimirHTML();
         }catch(Exception $e){//Trata as Exceções geradas
 
             //Pega a mensagem de erro gerada na exceção e retorna um Modal de erro com a mensagem
-            $view = new Views(200,'modalErroView', Array("header"=> "Falha ao Listar os Condomínios!","body"=> "Motivo: ".$e->getMessage()));
+            $view = new Views(200,'Sistema/Admin/modalErroView', Array("header"=> "Falha ao Listar os Condomínios!","body"=> "Motivo: ".$e->getMessage()));
             $view->imprimirHTML();
         } 
     }    
@@ -92,7 +92,7 @@
      */
     public function condominioAction(){
         //Renderiza a página de Selecionar Condominios
-        $view = new Views(200,'condominiosView');
+        $view = new Views(200,'Sistema/Admin/condominiosView');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         
@@ -127,7 +127,7 @@
              * Se Entrou no ELSE, então o usuário não tem permissão para acessar esse controller e Action
              * Exibe um Modar de Atenção, informando a mensagem retornada pela Class LoginModel()
              */
-            $view = new Views(200,'modalAtencaoView', Array("header"=> "Esse condomínio não pode ser selecionado!","body"=> "Motivo: ".$login->getMensagem()));
+            $view = new Views(200,'Sistema/Admin/modalAtencaoView', Array("header"=> "Esse condomínio não pode ser selecionado!","body"=> "Motivo: ".$login->getMensagem()));
             $view->imprimirHTML();
         }
 
@@ -164,10 +164,13 @@
             $dadosCondominio = new ListarCondominiosView(); //Criar conecção com View
             $dadosCondominio = $condominio->listarCondominio($cond); //View recebe o retorno da busca do Model
 
+            $view = new Views($codigo_resposta_http, $caminho_view, $array_dados_para_view);
+            $view->imprimirHTML();
+
         }catch(Exception $e){//Trata as Exceções geradas
 
             //Pega a mensagem de erro gerada na exceção e retorna um Modal de erro com a mensagem
-            $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=> "Falha ao buscar condomínio!","body"=> "Motivo: ".$e->getMessage()));
+            $view = new Views(201, 'Sistema/Admin/modalErroView.phtml', Array("header"=> "Falha ao buscar condomínio!","body"=> "Motivo: ".$e->getMessage()));
             $view->imprimirHTML();
         }
 
@@ -212,12 +215,12 @@
             $acao = 'requisitarServidor("index.php", "Condominios.confirmaExcluir", "cond='.$cond.'", "modal_resposta"); return false;';
             
             //Exibe 
-            $view = new Views(200,'modalConfirmaView', Array("header"=> $titulo,"body"=> $mensagem, "action" =>$acao));        
+            $view = new Views(200,'Sistema/Admin/modalConfirmaView', Array("header"=> $titulo,"body"=> $mensagem, "action" =>$acao));        
             $view->imprimirHTML();
         }catch(Exception $e){//Trata as Exceções geradas
 
             //Pega a mensagem de erro gerada na exceção e retorna um Modal de erro com a mensagem
-            $view = new Views(200,'modalErroView', Array("header"=> "Falha ao excluir condomínio!","body"=> "Motivo: ".$e->getMessage()));
+            $view = new Views(200,'Sistema/Admin/modalErroView', Array("header"=> "Falha ao excluir condomínio!","body"=> "Motivo: ".$e->getMessage()));
             $view->imprimirHTML();
         }          
     }  
@@ -278,7 +281,7 @@
         }catch(Exception $e){//Trata as Exceções geradas
 
             //Pega a mensagem de erro gerada na exceção e retorna um Modal de erro com a mensagem
-            $view = new Views(200,'modalErroView', Array("header"=> "Falha ao excluir condomínio!","body"=> "Motivo: ".$e->getMessage()));
+            $view = new Views(200,'Sistema/Admin/modalErroView', Array("header"=> "Falha ao excluir condomínio!","body"=> "Motivo: ".$e->getMessage()));
             $view->imprimirHTML();
         }        
         
@@ -311,12 +314,12 @@
             $acao = 'requisitarServidor("index.php", "Condominiosview","", "modal_resposta"); return false;';
             
             //Exibe 
-            $view = new Views(200,'modalConfirmaView', Array("header"=> $titulo,"body"=> $mensagem, "action" =>$acao));        
+            $view = new Views(200,'Sistema/Admin/modalConfirmaView', Array("header"=> $titulo,"body"=> $mensagem, "action" =>$acao));        
             $view->imprimirHTML();
 
         }catch(Exception $e){
 
-            $view = new Views(201,'modalErroView', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
+            $view = new Views(201,'Sistema/Admin/modalErroView', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
             $view -> imprimirHTML();
 
         }

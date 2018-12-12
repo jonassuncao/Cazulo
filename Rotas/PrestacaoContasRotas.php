@@ -35,7 +35,7 @@
      */
     public function listarAction(){
         //Renderiza a página 
-        $view = new Views(200,'prestacaoContasView');
+        $view = new Views(200,'Sistema/Admin/prestacaoContasView');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         
@@ -51,32 +51,32 @@
         switch ($tela) {
             case 'pc': //Exibir o Resumo da Prestação de Contas
                 //Renderiza a página 
-                $view = new Views(200,'prestacaoContasPCView');
+                $view = new Views(200,'Sistema/Admin/prestacaoContasPCView');
                 break;
 
             case 'doc': //Exibir o Resumo dos Documentos
                 //Renderiza a página 
-                $view = new Views(200,'prestacaoContasDocumentosView');
+                $view = new Views(200,'Sistema/Admin/prestacaoContasDocumentosView');
                 break;                
 
             case 'ext': //Exibir Extrato
                 //Renderiza a página 
-                $view = new Views(200,'prestacaoContasExtratoMenuView');
+                $view = new Views(200,'Sistema/Admin/prestacaoContasExtratoMenuView');
                 break;
             
             case 'rdef': //Exibir o Resumo do Reconhecimento das Despesas de Exercícios Futuros
                 //Renderiza a página 
-                $view = new Views(200,'prestacaoContasRDEFView');
+                $view = new Views(200,'Sistema/Admin/prestacaoContasRDEFView');
                 break;
             
             case 'rref': //Exibir o Resumo do Reconhecimento das Receitas de Exercícios Futuros
                 //Renderiza a página 
-                $view = new Views(200,'prestacaoContasRREFView');
+                $view = new Views(200,'Sistema/Admin/prestacaoContasRREFView');
                 break; 
 
             default: // Opção inválida exibe erro
                 //Renderiza a página 
-                $view = new Views(200,'modalErroView', Array("header"=> "Erro ao carregar opção: ".$tela,"body"=> "Motivo: Opção inválida ou não existe! <br/>Entre em contato com o suporte."));
+                $view = new Views(200,'Sistema/Admin/modalErroView', Array("header"=> "Erro ao carregar opção: ".$tela,"body"=> "Motivo: Opção inválida ou não existe! <br/>Entre em contato com o suporte."));
                 break;            
         }
         
@@ -118,7 +118,7 @@
         $header["Banco"]     = "Bradesco";
 
         //Renderiza a página 
-        $view = new Views(200,'prestacaoContasExtratoOpcaoView', Array("header"=> $header, "extrato"=> $lancamento, "saldo"=> $saldo));
+        $view = new Views(200,'Sistema/Admin/prestacaoContasExtratoOpcaoView', Array("header"=> $header, "extrato"=> $lancamento, "saldo"=> $saldo));
         //Retorna para o navegador a página HTML à ser exibida.                
         $view->imprimirHTML();
         

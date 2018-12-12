@@ -34,7 +34,7 @@
      */
     public function exibirAction(){
         //Renderiza a página de Login
-        $view = new Views(200,'loginView');
+        $view = new Views(200,'Login/loginView');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         

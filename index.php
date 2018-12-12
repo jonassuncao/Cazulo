@@ -65,9 +65,8 @@
     }
     //=======================================================
     
-    /*=========== A rota solicitada existe? ==================*/
-    
-     
+
+    /*=========== A rota solicitada existe? ==================*/ 
     if($rota->rotaExiste()){
      //Rota existe     
     }else{

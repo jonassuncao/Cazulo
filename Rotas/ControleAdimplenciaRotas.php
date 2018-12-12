@@ -34,7 +34,7 @@
      */
     public function listarAction(){
         //Renderiza a página de Login
-        $view = new Views(200,'controleAdimplenciaView');
+        $view = new Views(200,'Sistema/Admin/controleAdimplenciaView');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         

@@ -34,7 +34,7 @@
      */
     public function listarAction(){
         //Renderiza a página de Listar Condominios
-        $view = new Views(200,'listarCondominosView');
+        $view = new Views(200,'Sistema/Admin/listarCondominosView');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         
@@ -46,7 +46,7 @@
      */
     public function condominoAction(){
         //Renderiza a página de Selecionar Condominios
-        $view = new Views(200,'condominosView');
+        $view = new Views(200,'Sistema/Admin/condominosView');
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         
