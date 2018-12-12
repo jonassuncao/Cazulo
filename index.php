@@ -47,7 +47,7 @@
     //=======================================================
 
     $rota->baixarRotasRequisicao(); //Pega a rota solicitada na requisição
-
+    
     /*=========== O usuário está logado? ==================*/
     if($usuario->temUsuarioLogado()){
       //Está logado       
@@ -94,7 +94,7 @@
     
   }catch(Exception $e) {     
     //Monta uma página HTML com o erro
-    $view = new Views('Views/Sistema/Admin/modalErroView.phtml', Array("header"=> "Erro ao carregar rota: ".$rota->getRotas(),"body"=> "Motivo: ".$e->getMessage()."<br/>Entre em contato com o suporte."));
+    $view = new Views(201,'Sistema/Admin/modalErroView', Array("header"=> "Erro ao carregar rota: ".$rota->getRotas(),"body"=> "Motivo: ".$e->getMessage()."<br/>Entre em contato com o suporte."));
     $view->imprimirHTML();
   }
 ?>

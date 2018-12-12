@@ -46,9 +46,9 @@
         $usuario = new LoginModel();
 
         //Captura as variaveis de login e passa para o Model Tratar
-        $usuario->setUsuario($_POST['usuario']);
-        $usuario->setSenha($_POST['senha']);
-        $usuario->setCaptcha($_POST['g-recaptcha-response']);
+        $usuario->setUsuario(Roteador::baixarParametro('usuario'));
+        $usuario->setSenha(Roteador::baixarParametro('senha'));
+        $usuario->setCaptcha(Roteador::baixarParametro('g-recaptcha-response'));
 
         //Tenta autenticar o usuário
         if($usuario->autenticaUsuario()){ //Tenta

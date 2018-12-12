@@ -3,6 +3,7 @@
     $valores = $this->getHTMLValores();
     $contatos = $valores['user'];  
     $condominio = $valores['cond'];  
+    $rotas      = $valores['rota'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,7 @@
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="icon" type="image/png" href="Views/Sistema/Admin/images/icons/favicon.ico" />
+  <link rel="icon" type="image/ico" href="Views/Sistema/Admin/images/icons/favicon.ico" />
 
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="Views/Sistema/Admin/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -179,7 +180,7 @@
   <script src="Views/Sistema/Admin/js/script_js.js"></script>
   <script>
     //Verifica se o #body_resposta está vazio, caso esteja vazio... Coloca a página inicial
-    if($('#body_resposta').html() == '') requisitarServidor("index.php", "Inicio.listar", "titulo=Início", "body_resposta");
+    if($('#body_resposta').html() == '') requisitarServidor("index.php", "<?= $rotas?>", "", "body_resposta");
   </script>
   <!--===============================================================================================-->  
   

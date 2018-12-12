@@ -35,20 +35,21 @@
      * 
      */
     public function listarAction(){
-        $usuario    = new HomeModel($_SESSION['usuario']);
-        $condominio = isset($_SESSION['cond'])? $_SESSION['cond'] : null;
-
+        $usuario    = new HomeModel(Roteador::baixarParametro('usuario'));
+        $condominio = Roteador::baixarParametro('cond');
+        $rota       = Roteador::getRota();
+        
         //Define os parametros a serem enviados para a página HTML
 
         //Renderiza a página de Login
-        $view = new Views(200,'Sistema/Admin/fundoView', Array("user"=>$usuario->toValores(), "cond"=>$condominio));
+        $view = new Views(200,'Sistema/Admin/fundoView', Array("user"=>$usuario->toValores(), "cond"=>$condominio, 'rota'=>$rota));
         //Retorna para o navegador a página HTML à ser exibida.
         $view->imprimirHTML();
         
     }
 
     public function exibirAction(){ 
-        $descricaoOpcao        = $_POST['titulo'];
+        $descricaoOpcao        = Roteador::baixarParametro('titulo');
 
         $login = new LoginModel(); //Instancia uma classe Login
 

@@ -42,14 +42,11 @@ function requisitarServidor(urlServidor, rota, parametros, retornoHTML) {
 			data: "rota="+rota.substr(0, rota.indexOf('.'))+"&acao="+rota.substr(rota.indexOf('.')+1)+"&"+parametros, //Parametros a serem enviados
 			beforeSend: function () {
 
-				//Limpa o conteudo do box			
-				$("#" + retornoHTML).html("");
+				//Limpa o conteudo do box				
 				carregar_load('#load_div', true);
 			},
-			success: function (result, txt, code) {
-				console.log(code.status);
-				if(code.status != 200){					
-					console.log($("#" + retornoHTML).html());
+			success: function (result, txt, code) {				
+				if(code.status != 200){				
 					$("#" + retornoHTML).html($("#"+ retornoHTML).html() + result);					
 				}else{
 					$("#" + retornoHTML).html(result);
