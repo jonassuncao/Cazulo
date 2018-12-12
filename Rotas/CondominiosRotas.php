@@ -161,10 +161,9 @@
             if($cond == null) throw new Exception("Selecione um condomínio primeiro!");
             
             $condominio = new CondominioModel();//Criar conecção com Model
-            $dadosCondominio = new ListarCondominiosView(); //Criar conecção com View
             $dadosCondominio = $condominio->listarCondominio($cond); //View recebe o retorno da busca do Model
 
-            $view = new Views($codigo_resposta_http, $caminho_view, $array_dados_para_view);
+            $view = new Views(200,'Sistema/Admin/ListarCondominiosView', $dadosCondominio);
             $view->imprimirHTML();
 
         }catch(Exception $e){//Trata as Exceções geradas
@@ -174,7 +173,6 @@
             $view->imprimirHTML();
         }
 
-        return $dadosCondominio; // retorno da function  
     }
 ################################################################################################################################################################################################
 
