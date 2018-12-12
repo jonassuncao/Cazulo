@@ -208,16 +208,22 @@ class CondominioModel{
         //Verifica se CNPJ o cnpj está no formato: 99999999999999 e se possui 14 digítos
         if(!is_numeric($cnpj) || strlen($cnpj) != 14) throw new Exception("CNPJ inválido!");
 
+        $mensagem;
+        try{
+            //inserir na tabela condominio
+            $campos = "cnpj, razaoSocial, telefone, celular, email, cep, rua, numero, setor, complemento, municipio, estado";
+            $valor = Array($cnpj, $razaoSocial, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado);
+            $tabela = "condominio";        
 
-        //inserir na tabela condominio
-        $campos = "cnpj, razaoSocial, telefone, celular, email, cep, rua, numero, setor, complemento, municipio, estado";
-        $valor = Array($cnpj, $razaoSocial, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado);
-        $tabela = "condominio";        
+            //Cria conexão com o Banco, passa as variáveis como parâmetro 
+            $queryCondominios = new BancoDados();                    
+            $queryCondominios->insert($campos, $valor, $tabela);
+            $mensagem = "Condomínio Cadastrado com sucesso";
+        }catch(Exception $e){
+            $mensagem = "Erro no cadastrado do Condomínio, contate o administrador";
+        }
 
-        //Cria conexão com o Banco, passa as variáveis como parâmetro 
-        $queryCondominios = new BancoDados();                    
-        $queryCondominios->insert($campos, $valor, $tabela);
-
+        return $mensagem;
     }
 }
 
