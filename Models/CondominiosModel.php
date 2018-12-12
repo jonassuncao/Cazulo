@@ -64,17 +64,13 @@ class CondominioModel{
     public function listarCondominio($cnpj){
 
         //-----Inicío da extração dos números do CNPJ
-        $cnpj = substr($cnpj, strpos($cnpj, '(')+2, 18);     //O CNPJ foi convertido para o formato: 99.999.999/9999-99
-        
-        //Verifica se CNPJ salvo na Seção == O cnpj passado no parâmetro, Se for diferente... gera Exceção
-        if($_SESSION['cnpj'] != $cnpj) throw new Exception("CNPJ do condomínio não é esse!");
-
+        $cnpj = substr($cnpj, strpos($cnpj, '(')+2, 18);     //O CNPJ foi convertido para o formato: 99.999.999/9999-99        
         $cnpj = str_replace(array('.','/','-'), "", $cnpj);  //O CNPJ foi convertido para o formato: 99999999999999
         //----Fim da extração dos números do CNPJ
         
 
         //Verifica se CNPJ o cnpj está no formato: 99999999999999 e se possui 14 digítos
-        if(!is_numeric($cnpj) || strlen($cnpj) != 14) throw new Exception("CNPJ do condomínio inválido!");
+        if(!is_numeric($cnpj) || strlen($cnpj) != 14) throw new Exception("CNPJ do condomínio inválido!: $cnpj");
 
         /**
          * Se chegou até aqui, então o CNPJ está ok. 
@@ -162,10 +158,6 @@ class CondominioModel{
 
         //-----Inicío da extração dos números do CNPJ
         $cnpj = substr($cnpj, strpos($cnpj, '(')+2, 18);     //O CNPJ foi convertido para o formato: 99.999.999/9999-99
-        
-        //Verifica se CNPJ salvo na Seção == O cnpj passado no parâmetro, Se for diferente... gera Exceção
-        if($_SESSION['cnpj'] != $cnpj) throw new Exception("CNPJ do condomínio não é esse!");
-
         $cnpj = str_replace(array('.','/','-'), "", $cnpj);  //O CNPJ foi convertido para o formato: 99999999999999
         //----Fim da extração dos números do CNPJ
         

@@ -248,7 +248,7 @@
             
 
 
-
+            
 
         //=====Caso chegue aqui, então o condominío foi excluído    
             //Limpa o condomínio da seção (Isso vai fazer com que o Desapareça no HTML o: <nome Condominio> (99.999.999/9999-99) que foi excluido)
@@ -256,8 +256,9 @@
             $_SESSION['cond'] = null;
             
             //Recarrega a página (Isso faz com que o servidor atualize a página, removendo os dados do condomínio no sistema)                       
-            Roteador::definirRotas('Home.listar'); //Redireciona para a Rota Home (O usuário vai ter que escolher outro condomínio...)
-            Roteador::recarregarClient();          //Recarrega a página para redirecionar para a página Home
+            Roteador::atualizaSubRota('Inicio.listar'); //Mostra a página inicio
+            Roteador::definirRotas('Home.listar');      //Redireciona para a Rota Home (O usuário vai ter que escolher outro condomínio...)
+            Roteador::recarregarClient();               //Recarrega a página para redirecionar para a página Home
 
         }catch(Exception $e){//Trata as Exceções geradas
 
@@ -296,17 +297,16 @@
             $condominio = new CondominioModel();
             $condominio->adicionarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado, $bancos);
 
-
+            $view = new Views(200,'Sistema/Admin/modalSuccessView', Array("header"=>"Condomínio inserido com sucesso!", "body"=>"O condomínio foi inserido com sucesso!"));
+            $view -> imprimirHTML();
+            
             //Após incluir o condomínio, redireciona para a listagem             
-
+            /*
             Roteador::atualizaSubRota('Condominios.buscarCond');          //Define a rota que trata a listagem do condomínio
-            Roteador::adicionaParametro("cond=$razaoSocial' ('$cnpj')'"); //Passa os parâmetros para a rota
+            Roteador::adicionaParametro("cond=$razaoSocial ( ".mascara($cnpj, '##.###.###/####-##')." )"); //Passa os parâmetros para a rota
             Roteador::definirRotas('Home.listar');                        //Define uma rota Master (Pois a página do navegador será recarregada)
             Roteador::recarregarClient();                                 //Recarrega o cliente e executa a rota solicitada.
-            
-
-            
-
+            */
         }catch(Exception $e){
 
             $view = new Views(201,'Sistema/Admin/modalErroView', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
