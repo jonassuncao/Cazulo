@@ -40,53 +40,53 @@
 
         <div class="form-group col-md-3">
           <label for="campo1">Telefone</label>
-          <p>(62)0000-0000</p>
+          <p> <?= $valores['telefone']?> </p>
         </div>
 
         <div class="form-group col-md-3">
           <label for="campo1">Celular</label>
-          <p>(62)90000-0000</p>
+          <p> <?= $valores['celular']?> </p>
         </div>
 
         <div class="form-group col-md-3">
           <label for="exampleInputEmail1">Email</label>
-          <p>meu@mail.com</p>
+          <p> <?= $valores['email']?> </p>
         </div>
 
 
         <div class="form-group col-md-3">
           <label for="campo2">CEP</label>
-          <p>74000-000</p>
+          <p> <?= $valores['cep']?> </p>
         </div>
 
         <div class="form-group col-md-3">
           <label for="inputState">Rua</label>
-          <p>Rua xxxxx </p>
+          <p> <?= $valores['rua']?> </p>
         </div>
 
         <div class="form-group col-md-3">
           <label for="inputState">Numero</label>
-          <p>444</p>
+          <p> <?= $valores['numero']?> </p>
         </div>
 
         <div class="form-group col-md-3">
           <label for="inputState">Setor</label>
-          <p>Setor Bueno</p>
+          <p> <?= $valores['setor']?> </p>
         </div>
 
         <div class="form-group col-md-6">
           <label for="inputState">Complemento</label>
-          <p>Qd XX Lt xx-aa</p>
+          <p> <?= $valores['complemento']?> </p>
         </div>
 
         <div class="form-group col-md-3">
           <label for="inputState">Município</label>
-          <p>Goiânia</p>
+          <p> <?= $valores['municipio']?> </p>
         </div>
 
         <div class="form-group col-md-2">
           <label for="inputState">Estado</label>
-          <p>Goias</p>
+          <p> <?= $valores['estado']?> </p>
         </div>
 
       </div>
@@ -105,10 +105,10 @@
           </thead>
           <tbody>
             <tr>
-              <td>Caixa Economica Federal</td>
-              <td>1234</td>
-              <td>12345678-1</td>
-              <td>001</td>
+              <td><p> <?= $valores['banco']?> </p></td>
+              <td><p> <?= $valores['agencia']?> </p></td>
+              <td><p> <?= $valores['conta']?> </p></td>
+              <td><p> <?= $valores['operacao']?> </p></td>
             </tr>
             <tr>
               <td>Itau - <b>(Encerrada em 16/10/2018 17:00 - ADMIN)</b></td>
