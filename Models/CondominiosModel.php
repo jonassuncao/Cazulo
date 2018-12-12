@@ -133,8 +133,15 @@ class CondominioModel{
         //Use um while, pois essa consulta pode retornar mais de 1 linha
         while($query = $queryCondominios->resultQuery()){ //Percorre cada linha da query para pegar o resultado   
             //Crie um array temporário para que você possa extrair os dados de cada linha
+                $linha = array();
+                
+                $linha['banco']    = $query['banco'];
+                $linha['agencia']  = $query['agencia'];
+                $linha['conta']    = $query['conta'];
+                $linha['operacao'] = $query['operacao'];
 
             //Após extrair adicione esse array a lista do condomínio
+            array_push($resutado, $linha);
         }
 
         //Retorna a lista de condomínio para o model

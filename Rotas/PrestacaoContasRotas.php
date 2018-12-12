@@ -46,7 +46,7 @@
      * 
      */
     public function listarOPCAction(){
-        $tela = $_POST['tela']; // Pega qual é a opção selecionada
+        $tela = Roteador::baixarParametro('tela'); // Pega qual é a opção selecionada
 
         switch ($tela) {
             case 'pc': //Exibir o Resumo da Prestação de Contas
@@ -90,10 +90,10 @@
      * 
      */
     public function listarEXTAction(){
-        $banco    = $_POST['banco']; // Pega o nome do Banco
-        $agencia  = $_POST['ag'];    // Pega número da Agencia
-        $operacao = $_POST['op'];    // Pega número da Operação
-        $conta    = $_POST['conta']; // Pega número da Conta
+        $banco    = Roteador::baixarParametro('banco'); // Pega o nome do Banco
+        $agencia  = Roteador::baixarParametro('ag');    // Pega número da Agencia
+        $operacao = Roteador::baixarParametro('op');    // Pega número da Operação
+        $conta    = Roteador::baixarParametro('conta'); // Pega número da Conta
         $extrato  = isset($_FILES['ext'])? $_FILES['ext']: null;   // Pega o arquivo do extrato
         
         
