@@ -154,7 +154,7 @@
 
           <div class="form-group col-md-2">
             <br />
-            <a onClick="addBanco($('#inputBanco option:selected').val(), $('#agencia').val(), $('#conta').val(), $('#inputOperacao option:selected').val()); return false;" class="btn btn-success"><i class="fa fa-plus"></i></a>
+            <a onClick="addBanco($('#inputBanco option:selected').html(), $('#agencia').val(), $('#conta').val(), $('#inputOperacao option:selected').val()); return false;" class="btn btn-success"><i class="fa fa-plus"></i></a>
             <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i></a>
             <a href="#" class="btn btn-info"><i class="fa fa-lock"></i></a>
           </div>
@@ -200,7 +200,8 @@ function selectBanco(selectID, input){
 }
 
 function addBanco(banco, agencia, conta, operacao){
-
+  var linha: string = banco+" - AG: "+agencia+" "+operacao+": "+conta;
+  console.log(linha);
 }
 
 //Função Js que busca o endereço pelo CEP, usando API
