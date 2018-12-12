@@ -125,36 +125,36 @@
       <div id="box" class="form-group col-md-11">
 
         <div class="row">
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
             <label for="campo3">Banco</label>
-            <select id="inputState" class="form-control">
+            <select id="inputBanco" class="form-control">
               <option value="001">Banco do Brasil</option>
               <option value="002">Banco Itau</option>
               <option value="003" selected>Caixa Economica Federal</option>
             </select>
           </div>
 
-          <div class="form-group col-md-1">
+          <div class="form-group col-md-2">
             <label for="Magencia">Agência</label>
-            <input type="number" class="form-control" id="Nagencia">
+            <input type="number" class="form-control" id="agencia">
           </div>
 
           <div class="form-group col-md-2">
             <label for="Nconta">Conta</label>
-            <input type="number" class="form-control" id="Nconta">
+            <input type="number" class="form-control" id="conta">
           </div>
 
           <div class="form-group col-md-3">
-            <label for="campo3">Tipo de conta</label>
-            <select id="inputState" class="form-control">
-              <option value="001">Conta Corrente</option>
-              <option value="0013">Conta Poupança</option>
+            <label for="campo3">Operação</label>
+            <select id="inputOperacao" class="form-control">
+              <option value="C\C">Conta Corrente</option>
+              <option value="C\P">Conta Poupança</option>
             </select>
           </div>
 
           <div class="form-group col-md-2">
             <br />
-            <a href="#" class="btn btn-success"><i class="fa fa-plus"></i></a>
+            <a onClick="addBanco($('#inputBanco option:selected').val(), $('#agencia').val(), $('#conta').val(), $('#inputOperacao option:selected').val()); return false;" class="btn btn-success"><i class="fa fa-plus"></i></a>
             <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i></a>
             <a href="#" class="btn btn-info"><i class="fa fa-lock"></i></a>
           </div>
@@ -179,7 +179,7 @@
       <div id="actions" class="row">
         <div class="col-md-12">
           <a href="/" class="btn btn-primary" onClick='selectBanco("contasCadastradas", "bancos"); requisitarServidor("index.php", "Condominios.adicionar", $("#formCondominio").serialize()+"&uf="+$("inputState option:selected").val()+"&bancos="+$("#bancos").val(), "body_resposta"); return false;'>Salvar</a>
-          <a href="/" class="btn btn-danger" onClick='requisitarServidor("index.php", "Condominios.listar", "titulo=Condomínios", "body_resposta"); return false;'>Cancelar</a>
+          <a href="/" class="btn btn-danger" onClick='requisitarServidor("index.php", "Condominios.buscarCond", "titulo=Condomínios", "body_resposta"); return false;'>Cancelar</a>
         </div>
       </div>
 
@@ -197,6 +197,10 @@ function selectBanco(selectID, input){
     banc=banc+'|'+$(this).val();
   });
   $("#"+input).val(banc);
+}
+
+function addBanco(banco, agencia, conta, operacao){
+
 }
 
 //Função Js que busca o endereço pelo CEP, usando API
