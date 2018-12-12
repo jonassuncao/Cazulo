@@ -298,14 +298,11 @@
 
 
             //Após incluir o condomínio, redireciona para a listagem             
-            $_SESSION['cnpj'] = $cnpj;
-            $_SESSION['cond'] = $razaoSocial.' ( '.$cnpj.' )';
 
-
-            Roteador::atualizaSubRota('Condominios.listar'); //Usuario não está logado, redireciona para tela de login             
-
-            Roteador::definirRotas('Home.listar'); //Redireciona a rota para a página de principal do sistema
-            Roteador::recarregarClient(); //Usuario não está logado, redireciona para tela de login             
+            Roteador::atualizaSubRota('Condominios.buscarCond');          //Define a rota que trata a listagem do condomínio
+            Roteador::adicionaParametro("cond=$razaoSocial' ('$cnpj')'"); //Passa os parâmetros para a rota
+            Roteador::definirRotas('Home.listar');                        //Define uma rota Master (Pois a página do navegador será recarregada)
+            Roteador::recarregarClient();                                 //Recarrega o cliente e executa a rota solicitada.
             
 
             
