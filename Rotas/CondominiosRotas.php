@@ -36,19 +36,7 @@
  require_once 'Models/CondominiosModel.php';
 
  class CondominiosRotas{
-
-    /**
-     * Rota Condominio.listar
-     * Exibe a tela de listar o condominio
-     * 
-     */
-    public function listarAction(){
-        
-        $view = new Views(200,'Sistema/Admin/listarCondominiosView');        
-        $view->imprimirHTML();
-        
-    }
-    
+   
     /**
      * Rota Condominio.selecionar
      * Exibe a tela de Selecinar um condomínio
@@ -143,8 +131,13 @@
     }   
 
 ################################################################################################################################################################################################
-    //recebe o cnpj do html e manda para o Model fazer a busca dos dados  
+    /**
+     * Rota Condominio.buscarCond
+     * Exibe a tela de listar o condominio
+     * 
+     */ 
     public function buscarCondAction(){
+        
         //Tenta baixar o condomínio da requisição, e exibe uma janela pedindo confirmação de exclusão.
         try{
             /** 

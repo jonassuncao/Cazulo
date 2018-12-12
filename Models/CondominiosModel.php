@@ -91,33 +91,31 @@ class CondominioModel{
         //Monta um Array para resposta
         $resultado = Array();        
         
-        if($query = $queryCondominios->resultQuery()){ //Percorre cada linha da query para pegar o resultado   
-            
-            //Cria um array temporário para armazenar os dados extraidos da query
-            $linha = array();
+        if($query = $queryCondominios->resultQuery()){ //Percorre cada linha da query para pegar o resultado               
 
             //Extrai os dados da query e coloca no array temporário
-            $linha['cnpj']        = mascara($query['cnpj'], '##.###.###/####-##');
-            $linha['nome']        = $query['razaoSocial'];
-            $linha['telefone']    = $query['telefone'];
-            $linha['celular']     = $query['celular'];
-            $linha['email']       = $query['email'];
-            $linha['cep']         = $query['cep'];
-            $linha['rua']         = $query['rua'];
-            $linha['numero']      = $query['numero'];
-            $linha['setor']       = $query['setor'];
-            $linha['complemento'] = $query['complemento'];
-            $linha['municipio']   = $query['municipio'];
-            $linha['estado']      = $query['estado'];
+            $resultado['cnpj']        = mascara($query['cnpj'], '##.###.###/####-##');
+            $resultado['nome']        = $query['razaoSocial'];
+            $resultado['telefone']    = $query['telefone'];
+            $resultado['celular']     = $query['celular'];
+            $resultado['email']       = $query['email'];
+            $resultado['cep']         = $query['cep'];
+            $resultado['rua']         = $query['rua'];
+            $resultado['numero']      = $query['numero'];
+            $resultado['setor']       = $query['setor'];
+            $resultado['complemento'] = $query['complemento'];
+            $resultado['municipio']   = $query['municipio'];
+            $resultado['estado']      = $query['estado'];
 
-            //Adiciona o array temporário a uma variável que será usada como uma lista de condominio
-            array_push($resultado, $linha);
         } 
 
         //Caso a variável $resultado, esteja vazia mesmo após tentar extrair os dados da query... Então a query não retornou nenhum dado
         if(empty($resultado)) throw new CondominioVazioException("Não há condomínios para ser listado!");
 
+        //Retorna a lista de condomínio para o model
+        return $resultado;
 
+        
         //Consulta dados do banco
         //Define as varíaveis para realizar a busca do condomínio na Tabela Banco         
         $tabela = "condominio";       //<<==Coloca a tabela do banco
@@ -143,9 +141,7 @@ class CondominioModel{
             //Após extrair adicione esse array a lista do condomínio
             array_push($resutado, $linha);
         }
-
-        //Retorna a lista de condomínio para o model
-        return $resultado;
+        
     }
 #######################################################################################################################################################################
 

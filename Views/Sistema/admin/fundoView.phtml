@@ -131,7 +131,7 @@
 
           <li class="header">Extras</li>
           
-          <?php if(in_array("Condominio",$valores['user']['permissao'])){?><li><a href="/" onClick='requisitarServidor("index.php", "Condominios.listar", "titulo=Condomínio", "body_resposta"); return false;'><i class="fa fa-building-o"></i> Condomínio</a></li>  <?php }?>         
+          <?php if(in_array("Condominio",$valores['user']['permissao'])){?><li><a href="/" onClick='requisitarServidor("index.php", "Condominios.buscarCond", "cond="+$("#selectCond").val(), "body_resposta"); return false;'><i class="fa fa-building-o"></i> Condomínio</a></li>  <?php }?>         
           <?php if(in_array("Categoria",$valores['user']['permissao'])){?><li><a href="/" onClick='requisitarServidor("index.php", "Categoria.listar", "titulo=Categoria", "body_resposta"); return false;'><i class="fa fa-folder-open-o"></i> Categoria</a></li> <?php }?>
           <?php if(in_array("Usuarios",$valores['user']['permissao'])){?> <li><a href="/" onClick='requisitarServidor("index.php", "Usuarios.listar", "titulo=Usuários", "body_resposta"); return false;'><i class="fa fa-users"></i> <span>Usuários</span></a></li> <?php }?>
           
@@ -153,8 +153,8 @@
       <div class="pull-right hidden-xs">
         <b>Versão</b> 1.0.2
       </div>
-      <strong>Copyright &copy; 2018 <a target="_blank" href="https://jonassuncao.github.io/">@Jônathas Assunção</a> | <a target="_blank" href="https://dominicrp.github.io/">@Dominic Rocha</a> | <a target="_blank" href="https://davidbarros.github.io/">@David
-          Antônio</a> | <a target="_blank" href="https://jaderhfa.github.io/">@Jader Henrique</a>.</strong> All rights
+      <strong>Copyright &copy; 2018 <a target="_blank" href="https://jonassuncao.github.io/">@Jônathas Assunção</a> | <a target="_blank" href="https://dominicrp.github.io/">@Dominic Rocha</a> | <a target="_blank" href="https://jaderhfa.github.io/">@Jader Henrique</a> | <a target="_blank" href="https://davidbarros.github.io/">@David
+          Antônio</a>.</strong> All rights
       reserved.
     </footer>
 
