@@ -305,7 +305,13 @@
             $condominio = new CondominioModel();
             $condominio->adicionarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado, $bancos);
 
-            $view = new Views(200,'CondominiosView');
+            //Define as variáveis para exibição do modal
+            $titulo = "Condomínio Cadastrado com Sucesso";
+            $mensagem = "";
+            $acao = 'requisitarServidor("index.php", "Condominiosview","", "modal_resposta"); return false;';
+            
+            //Exibe 
+            $view = new Views(200,'modalConfirmaView', Array("header"=> $titulo,"body"=> $mensagem, "action" =>$acao));        
             $view->imprimirHTML();
 
         }catch(Exception $e){
