@@ -122,7 +122,7 @@ class CondominioModel{
         $queryCondominios->select("*",$tabela, $where);
      
         //Monta um Array para resposta
-        $resultadoBanco = Array();        
+        $resultadoBanco['banco'] = Array();        
         
         //Use um while, pois essa consulta pode retornar mais de 1 linha
         while($query = $queryCondominios->resultQuery()){ //Percorre cada linha da query para pegar o resultado   
@@ -135,7 +135,7 @@ class CondominioModel{
                 $linha['operacao'] = $query['operacao'];
 
             //Após extrair adicione esse array a lista do condomínio
-            $resutadoBanco['banco'] =  $linha;
+            array_push($resutadoBanco['banco'], $linha);
         }
         //array_push($resultado,$resultadoBanco)  
        $resultado['banco'] = $resultadoBanco;

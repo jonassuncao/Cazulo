@@ -84,8 +84,7 @@
      * 
      */
     public function condominioAction(){
-        
-        $view = new Views(200,'Sistema/Admin/condominiosView');        
+        $view = new Views(200,'Sistema/Admin/CondominiosView', Array("route" => Roteador::baixarParametro('route')));        
         $view->imprimirHTML();        
     }  
 
@@ -212,6 +211,51 @@
         }          
     }  
 
+    //Editar
+    /**
+     * Rota Condominio.buscarCond
+     * Exibe a tela de listar o condominio
+     * 
+     */ 
+    public function editarAction(){
+        
+        //Tenta baixar o condomínio da requisição, e exibe uma janela pedindo confirmação de exclusão.
+        try{
+            /** 
+             * Baixa as variáveis que o HTML enviou na requisição.
+             * 
+             */
+            $cond = Roteador::baixarParametro('cond'); 
+            $rota = Roteador::baixarParametro('route');
+
+            /**
+             * Para excluir um condomínio, será necessário informar o cnpj do condomínio a ser excluído.
+             * Verifica se conseguiu baixar o CNPJ da requisição, ou se realmente foi passado o CNPJ na requisição (Se tem algum condomínio selecionado)
+             * 
+             * Caso a $cond == null, então não foi passado um cnpj para a requisição, então gera exceção
+             *
+             */
+            if($cond == null) throw new Exception("Selecione um condomínio primeiro!");
+            
+            $condominio = new CondominioModel();//Criar conecção com Model
+            $dadosCondominio = $condominio->listarCondominio($cond); //View recebe o retorno da busca do Model
+            
+            //Define a rota para altualizar no banco de dados
+            $dadosCondominio["route"] = $rota;
+            $view = new Views(200,'Sistema/Admin/CondominiosView', $dadosCondominio);
+            $view->imprimirHTML();
+
+        }catch(Exception $e){//Trata as Exceções geradas
+
+            //Pega a mensagem de erro gerada na exceção e retorna um Modal de erro com a mensagem
+            $view = new Views(201, 'Sistema/Admin/modalErroView', Array("header"=> "Falha ao buscar condomínio!","body"=> "Motivo: ".$e->getMessage()));
+            $view->imprimirHTML();
+        }
+
+    }
+
+
+
 
    /**
      * Rota Condominio.confirmaExcluir
@@ -297,10 +341,74 @@
             $condominio = new CondominioModel();
             $condominio->adicionarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $uf, $bancos);
 
-            $view = new Views(200,'Sistema/Admin/modalSuccessView', Array("header"=>"Condomínio inserido com sucesso!", "body"=>"O condomínio foi inserido com sucesso!"));
-            $view -> imprimirHTML();
+
+
+            //Após adicionar o condomínio, será exibido um  modal... E quando clicar em 'Fechar', irá redirecionar para a rota Condominios.buscarCond
+                //Muda o condomínio selecionado para o condomínio que foi inserido
+                Roteador::adicionaParametro("cond=$razaoSocial ( ".mascara($cnpj, '##.###.###/####-##')." )"); //Passa os parâmetros para a rota
+
+                //Define as variáveis para exibição do modal
+                $titulo = "Condomínio inserido com sucesso!";
+                $mensagem = "O condomínio: <b>$razaoSocial ($cnpj)</b> foi inserido com sucesso!";            
+
+                //Quando clicar em 'Fechar' no modal, Atualizará o campo do condomínio selecionado no HTML e será redirecionado para a rota Condominios.buscarCond
+                $mudarCondominio = '$("#selectCond").val("'.$razaoSocial.' ( '.mascara($cnpj, '##.###.###/####-##').' )"); ';
+                $acao = $mudarCondominio.'requisitarServidor("index.php", "Condominios.buscarCond", "cond='.$razaoSocial.' ( '.mascara($cnpj, '##.###.###/####-##').' )" , "body_resposta");';
             
-            //Após incluir o condomínio, redireciona para a listagem             
+
+            $view = new Views(200,'Sistema/Admin/modalSuccessView', Array("header"=>$titulo, "body"=>$mensagem, "action"=>$acao));
+            $view -> imprimirHTML();
+                        
+
+        }catch(Exception $e){
+
+            $view = new Views(200,'Sistema/Admin/modalErroView', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
+            $view -> imprimirHTML();
+
+        }
+
+    }
+
+    /**
+     * Rota Condominio.adicionar
+     * 
+     * Essa é a rota do condomínio que irá adicionar um novo condomínio
+     */    
+    public function atualizarAction(){
+        try{
+            //Baixa os parâmetros passados na requisição 
+            $razaoSocial = Roteador::baixarParametro('razaoSocial');
+            $cnpj        = Roteador::baixarParametro('cnpj');
+            $telefone    = Roteador::baixarParametro('telefone');
+            $celular     = Roteador::baixarParametro('celular');
+            $email       = Roteador::baixarParametro('email');
+            $cep         = Roteador::baixarParametro('cep');
+            $rua         = Roteador::baixarParametro('rua');
+            $numero      = Roteador::baixarParametro('numero');
+            $setor       = Roteador::baixarParametro('setor');
+            $complemento = Roteador::baixarParametro('complemento');
+            $municipio   = Roteador::baixarParametro('municipio');
+            $uf          = Roteador::baixarParametro('uf');
+            $bancos      = Roteador::baixarParametro('bancos');
+                      
+            if($cnpj == null||$razaoSocial == null||$email == null) throw new Exception("Preecha todos os campos obrigatórios!<br/><h5>*Razão Social;</h5><h5>*CNPJ;</h5><h5>*E-mail;</h5>");
+
+            $condominio = new CondominioModel();            
+            $condominio->atualizarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $uf, $bancos);
+
+            //Após atualizar o condomínio, será exibido um  modal... E quando clicar em 'Fechar', irá redirecionar para a rota Condominios.buscarCond
+            
+                //Define as variáveis para exibição do modal
+                $titulo = "Condomínio atualizado com sucesso!";
+                $mensagem = "O condomínio: <b>$razaoSocial ($cnpj) </b> foi atualizado com sucesso!";            
+
+                //Quando clicar em 'Fechar' no modal, Atualizará o campo do condomínio selecionado no HTML e será redirecionado para a rota Condominios.buscarCond
+                $mudarCondominio = '$("#selectCond").val("'.$razaoSocial.' ( '.$cnpj.' )"); ';
+                $acao = $mudarCondominio.'requisitarServidor("index.php", "Condominios.buscarCond", "cond='.$razaoSocial.' ( '.$cnpj.' )" , "body_resposta");';
+            
+
+            $view = new Views(200,'Sistema/Admin/modalSuccessView', Array("header"=>$titulo, "body"=>$mensagem, "action"=>$acao));
+            $view -> imprimirHTML();            
             /*
             Roteador::atualizaSubRota('Condominios.buscarCond');          //Define a rota que trata a listagem do condomínio
             Roteador::adicionaParametro("cond=$razaoSocial ( ".mascara($cnpj, '##.###.###/####-##')." )"); //Passa os parâmetros para a rota
@@ -309,7 +417,7 @@
             */
         }catch(Exception $e){
 
-            $view = new Views(201,'Sistema/Admin/modalErroView', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
+            $view = new Views(200,'Sistema/Admin/modalErroView', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
             $view -> imprimirHTML();
 
         }

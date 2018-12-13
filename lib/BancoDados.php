@@ -119,7 +119,8 @@ class BancoDados{
      * @param Array valores Condição
      * @param tabelas Nome das tabelas
      */
-    public function update($campos = "*", $valores = "", $tabelas = ""){
+    public function update($campos = "*", $valores = "", $tabelas = "", $where = ""){
+        if($where == "") throw new Exception("Não é possível realizar update sem where!");
         $SQL_campos = "";
         $cont = 0;
         
@@ -133,13 +134,13 @@ class BancoDados{
 			$cont++;
 		}//fim foreach		
 	
-		$update = "update $tabelas set $SQL_campos where $condicao";
-
-        $query = mysqli_query($this->BD_conexao, $query);
-
+		$update = "update $tabelas set $SQL_campos where $where";
+        
+        $query = mysqli_query($this->BD_conexao, $update);
+        
         //Verifica se conseguiu realizar a query
         if(!$query)
-            throw new Exception("<br/><br/>Não foi possível alterar no Banco Dados! <br/>Motivo: ".utf8_encode(mysqli_error($this->BD_conexao))); 
+            throw new Exception("<br/><br/>Não foi possível alterar no Banco Dados! <br/> Motivo: ".utf8_encode(mysqli_error($this->BD_conexao))); 
     }    
 
     /** 

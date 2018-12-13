@@ -1,7 +1,12 @@
+<?php
+    //Pega as variáveis para renderizar a página
+    $valores = $this->getHTMLValores();          
+?>
+
 <section class="content-header">
   <h1>
-    Condomínio Residencial Liberty II
-    <small>19.494.332/0001-06</small>
+    <?php echo ($valores['nome'] != null)? $valores['nome'] : "Adicionar novo Condomínio";?>
+    <small><?= mascara($valores['cnpj'], '##.###.###/####-##')?></small>
   </h1>
 
 </section>
@@ -22,29 +27,29 @@
       <div class="row">
         <div class="form-group col-md-11">
           <label for="campo1">Razão Social</label>
-          <input type="text" name="razaoSocial"class="form-control" id="campo1">
+          <input type="text" name="razaoSocial"class="form-control" id="campo1" value="<?= $valores['nome']?>">
 
         </div>
 
         <div class="form-group col-md-3">
           <label for="input-CNPJ">CNPJ</label>
           <input type="text" name="cnpj" class="form-control cnpj-mask" id="input-CNPJ" placeholder="Ex.: 00.000.000.0000-00"
-            maxlength="14" autocomplete="off">
+            maxlength="14" autocomplete="off" <?php if($valores['route'] == 'atualizar') echo "disabled"?> value="<?= $valores['cnpj']?>">
         </div>
 
         <div class="form-group col-md-2">
           <label for="campo1">Telefone:</label>
-          <input type="text" name="telefone"class="form-control phone-mask" placeholder="Ex.:(00) 0000-0000">
+          <input type="text" name="telefone"class="form-control phone-mask" placeholder="Ex.:(00) 0000-0000" value="<?= $valores['telefone']?>">
         </div>
 
         <div class="form-group col-md-2">
           <label for="campo1">Celular:</label>
-          <input type="text" name="celular" class="form-control phone-mask" placeholder="Ex.:(00) 9 0000-0000">
+          <input type="text" name="celular" class="form-control phone-mask" placeholder="Ex.:(00) 9 0000-0000" value="<?= $valores['celular']?>">
         </div>
 
         <div class="form-group col-md-4">
           <label for="exampleInputEmail1">Email</label>
-          <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Ex.: seuemail@hotmail.com">
+          <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Ex.: seuemail@hotmail.com" value="<?= $valores['email']?>">
         </div>
 
         <br />
@@ -52,7 +57,7 @@
         <div class="form-group col-md-2">
           <label for="campo2">CEP</label>
           <div class="input-group input-group-sm">
-            <input type="text" name="cep" id="cep" class="form-control" placeholder="Ex.: 00000-000">
+            <input type="text" name="cep" id="cep" class="form-control" placeholder="Ex.: 00000-000" value="<?= $valores['cep']?>">
             <span class="input-group-btn">
               <button type="button" id="btnPesquisar" onClick="buscaCEP($('input#cep').val()); return false;" class="btn btn-success btn-flat"><i class="fa fa-search"></i></button>
             </span>
@@ -60,60 +65,59 @@
         </div>
 
         <div class="form-group col-md-4">
-          <label for="inputState">Rua</label>
-          <input type="text" name="rua" id="endereco" class="form-control phone-mask" placeholder="Rua x">
+          <label>Rua</label>
+          <input type="text" name="rua" id="endereco" class="form-control phone-mask" placeholder="Rua x" value="<?= $valores['rua']?>">
         </div>
 
         <div class="form-group col-md-1">
-          <label for="inputState">Numero</label>
-          <input type="text" name="numero"class="form-control phone-mask" placeholder="123">
+          <label>Numero</label>
+          <input type="text" name="numero"class="form-control phone-mask" placeholder="123" value="<?= $valores['numero']?>">
         </div>
 
         <div class="form-group col-md-4">
-          <label for="inputState">Setor</label>
-          <input type="text" name="setor" id="bairro" class="form-control phone-mask" placeholder="Rua x">
+          <label>Setor</label>
+          <input type="text" name="setor" id="bairro" class="form-control phone-mask" placeholder="Rua x" value="<?= $valores['setor']?>">
         </div>
 
         <div class="form-group col-md-5">
-          <label for="inputState">Complemento</label>
-          <input type="text" name="complemento"class="form-control phone-mask" placeholder="Qd. XXX Lt. XXX">
+          <label>Complemento</label>
+          <input type="text" name="complemento"class="form-control phone-mask" placeholder="Qd. XXX Lt. XXX" value="<?= $valores['complemento']?>">
         </div>
 
         <div class="form-group col-md-4">
-          <label for="inputState">Município</label>
-          <input type="text" name="municipio" id="cidade" class="form-control phone-mask" placeholder="Goiânia">
+          <label>Município</label>
+          <input type="text" name="municipio" id="cidade" class="form-control phone-mask" placeholder="Goiânia" value="<?= $valores['municipio']?>">
         </div>
 
         <div class="form-group col-md-2">
-          <label for="inputState">UF</label>
+          <label>UF</label>
           <select id="inputState" class="form-control">
-            <option value="AC">Acre</option>
-            <option value="AL">Alagoas</option>
-            <option value="AP">Amapá</option>
-            <option value="AM">Amazonas</option>
-            <option value="BA">Bahia</option>
-            <option value="CE">Ceará</option>
-            <option value="DF">Distrito Federal</option>
-            <option value="ES">Espirito Santo</option>
-            <option value="GO" selected>Goiás</option>
-            <option value="MA">Maranhão</option>
-            <option value="MS">Mato Grosso do Sul</option>
-            <option value="MT">Mato Grosso</option>
-            <option value="MG">Minas Gerais</option>
-            <option value="PA">Pará</option>
-            <option value="PB">Paraíba</option>
-            <option value="PR">Paraná</option>
-            <option value="PE">Pernambuco</option>
-            <option value="PI">Piauí</option>
-            <option value="RJ">Rio de Janeiro</option>
-            <option value="RN">Rio Grande do Norte</option>
-            <option value="RS">Rio Grande do Sul</option>
-            <option value="RO">Rondônia</option>
-            <option value="RR">Roraima</option>
-            <option value="SC">Santa Catarina</option>
-            <option value="SP">São Paulo</option>
-            <option value="SE">Sergipe</option>
-            <option value="TO">Tocantins</option>
+            <option value="AC" <?php if ($valores['estado'] == 'AC') echo "selected"?>>Acre</option>
+            <option value="AL" <?php if ($valores['estado'] == 'AL') echo "selected"?>>Alagoas</option>
+            <option value="AP" <?php if ($valores['estado'] == 'AP') echo "selected"?>>Amapá</option>
+            <option value="BA" <?php if ($valores['estado'] == 'BA') echo "selected"?>>Bahia</option>
+            <option value="CE" <?php if ($valores['estado'] == 'CE') echo "selected"?>>Ceará</option>
+            <option value="DF" <?php if ($valores['estado'] == 'DF') echo "selected"?>>Distrito Federal</option>
+            <option value="ES" <?php if ($valores['estado'] == 'ES') echo "selected"?>>Espirito Santo</option>
+            <option value="GO" <?php if ($valores['estado'] == 'GO') echo "selected"?>>Goiás</option>
+            <option value="MA" <?php if ($valores['estado'] == 'MA') echo "selected"?>>Maranhão</option>
+            <option value="MS" <?php if ($valores['estado'] == 'MS') echo "selected"?>>Mato Grosso do Sul</option>
+            <option value="MT" <?php if ($valores['estado'] == 'MT') echo "selected"?>>Mato Grosso</option>
+            <option value="MG" <?php if ($valores['estado'] == 'MG') echo "selected"?>>Minas Gerais</option>
+            <option value="PA" <?php if ($valores['estado'] == 'PA') echo "selected"?>>Pará</option>
+            <option value="PB" <?php if ($valores['estado'] == 'PB') echo "selected"?>>Paraíba</option>
+            <option value="PR" <?php if ($valores['estado'] == 'PR') echo "selected"?>>Paraná</option>
+            <option value="PE" <?php if ($valores['estado'] == 'PE') echo "selected"?>>Pernambuco</option>
+            <option value="PI" <?php if ($valores['estado'] == 'PI') echo "selected"?>>Piauí</option>
+            <option value="RJ" <?php if ($valores['estado'] == 'RJ') echo "selected"?>>Rio de Janeiro</option>
+            <option value="RN" <?php if ($valores['estado'] == 'RN') echo "selected"?>>Rio Grande do Norte</option>
+            <option value="RS" <?php if ($valores['estado'] == 'RS') echo "selected"?>>Rio Grande do Sul</option>
+            <option value="RO" <?php if ($valores['estado'] == 'RO') echo "selected"?>>Rondônia</option>
+            <option value="RR" <?php if ($valores['estado'] == 'RR') echo "selected"?>>Roraima</option>
+            <option value="SC" <?php if ($valores['estado'] == 'SC') echo "selected"?>>Santa Catarina</option>
+            <option value="SP" <?php if ($valores['estado'] == 'SP') echo "selected"?>>São Paulo</option>
+            <option value="SE" <?php if ($valores['estado'] == 'SE') echo "selected"?>>Sergipe</option>
+            <option value="TO" <?php if ($valores['estado'] == 'TO') echo "selected"?>>Tocantins</option>
 
           </select>
         </div>
@@ -136,12 +140,12 @@
 
           <div class="form-group col-md-2">
             <label for="Magencia">Agência</label>
-            <input type="number" class="form-control" id="agencia">
+            <input type="text" class="form-control" id="agencia">
           </div>
 
           <div class="form-group col-md-2">
             <label for="Nconta">Conta</label>
-            <input type="number" class="form-control" id="conta">
+            <input type="text" class="form-control" id="conta">
           </div>
 
           <div class="form-group col-md-3">
@@ -155,8 +159,8 @@
           <div class="form-group col-md-2">
             <br />
             <a onClick="addBanco($('#inputBanco option:selected').html(), $('#agencia').val(), $('#conta').val(), $('#inputOperacao option:selected').val()); return false;" class="btn btn-success"><i class="fa fa-plus"></i></a>
-            <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i></a>
-            <a href="#" class="btn btn-info"><i class="fa fa-lock"></i></a>
+            <a onClick="$('#contasCadastradas option:selected').remove()" class="btn btn-danger"><i class="fa fa-remove"></i></a>
+            <!--a href="#" class="btn btn-info"><i class="fa fa-lock"></i></a-->
           </div>
 
 
@@ -165,8 +169,9 @@
             <label for="contasCadastradas">Bancos cadastrados</label>
             <input type="hidden" class="form-control" id="bancos">
             <select multiple class="form-control" id="contasCadastradas">
-              <option>Caixa Economica Federal - AG: 1234 C/C: 12345678-1</option>
-              <option>Itau (Encerrada) - AG: 1234 C/P: 12345678-1</option>
+              <?php foreach ($valores['banco'] as $banco) { ?>
+                <option onClick="$(this).attr('selected', 'selected')"><?= $banco['nomeBanco']?> - AG: <?= $banco['agencia']?> <?= $banco['operacao']?>: <?= $banco['conta']?></option>              
+              <?php }?>              
             </select>
           </div>
 
@@ -178,7 +183,7 @@
       <hr />
       <div id="actions" class="row">
         <div class="col-md-12">
-          <a href="/" class="btn btn-primary" onClick='selectBanco("contasCadastradas", "bancos"); requisitarServidor("index.php", "Condominios.adicionar", $("#formCondominio").serialize()+"&uf="+$("#inputState option:selected").val()+"&bancos="+$("#bancos").val(), "body_resposta"); return false;'>Salvar</a>
+          <a href="/" class="btn btn-primary" onClick='selectBanco("contasCadastradas", "bancos"); requisitarServidor("index.php", "Condominios.<?= $valores['route']?>", $("#formCondominio").serialize()+"&uf="+$("#inputState option:selected").val()+"&bancos="+$("#bancos").val(), "modal_resposta"); return false;'>Salvar</a>
           <a href="/" class="btn btn-danger" onClick='requisitarServidor("index.php", "Condominios.buscarCond", "titulo=Condomínios", "body_resposta"); return false;'>Cancelar</a>
         </div>
       </div>
@@ -193,16 +198,23 @@
 
 function selectBanco(selectID, input){
   var banc="";
-  $("#"+selectID+"option").each(function(){
+  $("#"+selectID+" option").each(function(){
     banc=banc+'|'+$(this).val();
   });
   $("#"+input).val(banc);
 }
 
 function addBanco(banco, agencia, conta, operacao){
-  //Monta a linha
+  
+  //Verifica se as variaveis possuem algum valor 
+  if((agencia.toString()).length == 0 || (conta.toString()).length == 0){
+    alert('Agencia e Conta são campos com preenchimento obrigatório!');
+    return false;
+  }
+  
+  //Monta a linha  
   var linha = banco+" - AG: "+agencia+" "+operacao+": "+conta;
-
+  console.log('pqp');
   //Adiciona a linha na lista
   $("#contasCadastradas").append("<option>"+linha+"</option>");
 }
@@ -221,7 +233,8 @@ function buscaCEP(cep){
       data: { code: cep },
       beforeSend: function( result ) {
           $("button#btnPesquisar").html('<img src="Views\\img\\load.gif" alt="Buscando" height="20" width="20">');
-          $("input#cep").attr('disabled','disabled');
+          $("input#cep").attr('disabled','disabled');     
+          $("select#inputState option").removeAttr('selected');    
           $("select#inputState").attr('disabled','disabled');
           $("input#cidade").attr('disabled','disabled');
           $("input#bairro").attr('disabled','disabled');
@@ -234,7 +247,7 @@ function buscaCEP(cep){
         return;
     }
     $("input#cep").val( result.code );
-    $("select#inputState option[value='"+result.state+"']").attr({ selected : "selected" });
+    $("select#inputState option[value='"+result.state+"']").attr('selected','selected');
     $("input#cidade").val( result.city );
     $("input#bairro").val( result.district );
     $("input#endereco").val( result.address );

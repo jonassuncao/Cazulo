@@ -5,7 +5,8 @@
 <section class="content-header">
   <h1>
     <?= $valores['nome']?>    
-  </h1>
+    <small><?= mascara($valores['cnpj'], '##.###.###/####-##')?></small>
+  </h1>  
 </section>
 
 <!-- Main content -->
@@ -35,7 +36,7 @@
 
         <div class="form-group col-md-3">
           <label for="input-CNPJ">CNPJ</label>
-          <p> <?= $valores['cnpj']?> </p>
+          <p> <?= mascara($valores['cnpj'], '##.###.###/####-##')?> </p>
         </div>
 
         <div class="form-group col-md-3">
@@ -120,7 +121,7 @@
       <hr />
       <div id="actions" class="row">
         <div class="col-md-12">
-          <a href="/" onClick='requisitarServidor("index.php", "Condominios.condominio", "titulo=Editar Condomínio", "body_resposta"); return false;' class="btn btn-primary">Atualizar</a>
+          <a href="/" onClick='requisitarServidor("index.php", "Condominios.editar", "route=atualizar&cond="+$("#selectCond").val(), "body_resposta"); return false;' class="btn btn-primary">Atualizar</a>
           <a href="/" onClick='requisitarServidor("index.php", "Condominios.excluir", "cond="+$("#selectCond").val(), "modal_resposta"); return false;' class="btn btn-danger">Excluir</a>
         </div>
       </div>

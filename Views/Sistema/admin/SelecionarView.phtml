@@ -15,11 +15,11 @@
           <div class="form-group col-md-12">
 
             <div style="width: 20vw;" class="input-group input-group-sm">
-              <input type="text" class="form-control" placeholder="Informe o CNPJ/Nome Condomínio">
+              <input type="text" class="form-control" id="inputCond" placeholder="Informe o CNPJ/Nome Condomínio">
               <span class="input-group-btn">
-                <button type="button" class="btn btn-success btn-flat" style="border-radius: 0 4px 4px 0;"><i class="fa fa-filter"></i></button>
+              <a href="/" data-dismiss="modal"onClick='requisitarServidor("index.php", "Condominios.condominio", "route=adicionar", "body_resposta"); return false;' class="btn btn-info"><i class="fa fa-plus"></i></a>               
               </span>
-              <a href="/" data-dismiss="modal" style="width: 40px; float:left; margin-left:10px; padding: 4px;" onClick='requisitarServidor("index.php", "Condominios.condominio", "titulo=Adicionar Condomínio", "body_resposta"); return false;' class="btn btn-info"><i class="fa fa-plus"></i></a>               
+              
             </div>
 
             <hr />
@@ -53,4 +53,18 @@
 </div>
 <script>
   $('#modal-default').modal();
+
+
+  //Filtro
+  $(function(){
+      $("#inputCond").keyup(function(){
+          var texto = $(this).val();
+          
+          $("#listaCond option").css("display", "block");
+          $("#listaCond option").each(function(){
+              if($(this).text().toLowerCase().indexOf(texto.toLowerCase()) < 0)
+                $(this).css("display", "none");
+          });
+      });
+  });
 </script>
