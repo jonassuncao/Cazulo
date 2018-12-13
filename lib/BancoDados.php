@@ -136,7 +136,7 @@ class BancoDados{
 	
 		$update = "update $tabelas set $SQL_campos where $condicao";
 
-        $query = mysqli_query($this->BD_conexao, $query);
+        $query = mysqli_query($this->BD_conexao, $update);
 
         //Verifica se conseguiu realizar a query
         if(!$query)
