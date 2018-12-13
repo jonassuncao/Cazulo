@@ -1,7 +1,12 @@
+<?php
+    //Pega as variáveis para renderizar a página
+    $valores = $this->getHTMLValores();      
+?>
+
 <section class="content-header">
   <h1>
-    Condomínio Residencial Liberty II
-    <small>19.494.332/0001-06</small>
+    <?= $valores['nome']?>
+    <small><?= $valores['cnpj']?></small>
   </h1>
 
 </section>
@@ -22,19 +27,19 @@
       <div class="row">
         <div class="form-group col-md-11">
           <label for="campo1">Razão Social</label>
-          <input type="text" name="razaoSocial"class="form-control" id="campo1">
+          <input type="text" name="razaoSocial"class="form-control" id="campo1" value="<?= $valores['nome']?>">
 
         </div>
 
         <div class="form-group col-md-3">
           <label for="input-CNPJ">CNPJ</label>
           <input type="text" name="cnpj" class="form-control cnpj-mask" id="input-CNPJ" placeholder="Ex.: 00.000.000.0000-00"
-            maxlength="14" autocomplete="off">
+            maxlength="14" autocomplete="off" value="<?= $valores['cnpj']?>">
         </div>
 
         <div class="form-group col-md-2">
           <label for="campo1">Telefone:</label>
-          <input type="text" name="telefone"class="form-control phone-mask" placeholder="Ex.:(00) 0000-0000">
+          <input type="text" name="telefone"class="form-control phone-mask" placeholder="Ex.:(00) 0000-0000" value="<?= $valores['telefone']?>">
         </div>
 
         <div class="form-group col-md-2">
@@ -178,7 +183,7 @@
       <hr />
       <div id="actions" class="row">
         <div class="col-md-12">
-          <a href="/" class="btn btn-primary" onClick='selectBanco("contasCadastradas", "bancos"); requisitarServidor("index.php", "Condominios.adicionar", $("#formCondominio").serialize()+"&uf="+$("#inputState option:selected").val()+"&bancos="+$("#bancos").val(), "body_resposta"); return false;'>Salvar</a>
+          <a href="/" class="btn btn-primary" onClick='selectBanco("contasCadastradas", "bancos"); requisitarServidor("index.php", "Condominios.<?= $valores['route']?>", $("#formCondominio").serialize()+"&uf="+$("#inputState option:selected").val()+"&bancos="+$("#bancos").val(), "body_resposta"); return false;'>Salvar</a>
           <a href="/" class="btn btn-danger" onClick='requisitarServidor("index.php", "Condominios.buscarCond", "titulo=Condomínios", "body_resposta"); return false;'>Cancelar</a>
         </div>
       </div>

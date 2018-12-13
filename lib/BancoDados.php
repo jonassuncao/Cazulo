@@ -119,7 +119,8 @@ class BancoDados{
      * @param Array valores Condição
      * @param tabelas Nome das tabelas
      */
-    public function update($campos = "*", $valores = "", $tabelas = ""){
+    public function update($campos = "*", $valores = "", $tabelas = "", $where = ""){
+        if($where == "") throw new Exception("Não é possível realizar update sem where!");
         $SQL_campos = "";
         $cont = 0;
         

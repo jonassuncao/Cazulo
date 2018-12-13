@@ -124,7 +124,7 @@
       <hr />
       <div id="actions" class="row">
         <div class="col-md-12">
-          <a href="/" onClick='requisitarServidor("index.php", "Condominios.condominio", "titulo=Editar Condomínio", "body_resposta"); return false;' class="btn btn-primary">Atualizar</a>
+          <a href="/" onClick='requisitarServidor("index.php", "Condominios.editar", "route=atualizar&cond="+$("#selectCond").val(), "body_resposta"); return false;' class="btn btn-primary">Atualizar</a>
           <a href="/" onClick='requisitarServidor("index.php", "Condominios.excluir", "cond="+$("#selectCond").val(), "modal_resposta"); return false;' class="btn btn-danger">Excluir</a>
         </div>
       </div>
