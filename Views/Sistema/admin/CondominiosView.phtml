@@ -198,7 +198,7 @@
 
 function selectBanco(selectID, input){
   var banc="";
-  $("#"+selectID+"option").each(function(){
+  $("#"+selectID+" option").each(function(){
     banc=banc+'|'+$(this).val();
   });
   $("#"+input).val(banc);

@@ -390,7 +390,7 @@
             $municipio   = Roteador::baixarParametro('municipio');
             $uf          = Roteador::baixarParametro('uf');
             $bancos      = Roteador::baixarParametro('bancos');
-            
+                      
             if($cnpj == null||$razaoSocial == null||$email == null) throw new Exception("Preecha todos os campos obrigatórios!<br/><h5>*Razão Social;</h5><h5>*CNPJ;</h5><h5>*E-mail;</h5>");
 
             $condominio = new CondominioModel();            
