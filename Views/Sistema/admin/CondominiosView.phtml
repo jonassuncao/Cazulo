@@ -151,8 +151,8 @@
           <div class="form-group col-md-3">
             <label for="campo3">Operação</label>
             <select id="inputOperacao" class="form-control">
-              <option value="C\C">Conta Corrente</option>
-              <option value="C\P">Conta Poupança</option>
+              <option value="C/C">Conta Corrente</option>
+              <option value="C/P">Conta Poupança</option>
             </select>
           </div>
 
@@ -214,7 +214,7 @@ function addBanco(banco, agencia, conta, operacao){
   
   //Monta a linha  
   var linha = banco+" - AG: "+agencia+" "+operacao+": "+conta;
-  console.log('pqp');
+  
   //Adiciona a linha na lista
   $("#contasCadastradas").append("<option>"+linha+"</option>");
 }

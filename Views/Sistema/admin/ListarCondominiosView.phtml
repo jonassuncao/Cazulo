@@ -105,14 +105,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <?php foreach ($valores['banco'] as $banco) { ?>    
-              <td><p> <?= $banco['nomeBanco']?> </p></td>
-              <td><p> <?= $banco['agencia']?> </p></td>
-              <td><p> <?= $banco['conta']?> </p></td>
-              <td><p> <?= $banco['operacao']?> </p></td>
-              <?php }?> 
-            </tr>
+            <?php foreach ($valores['banco'] as $banco) { ?>  
+              <tr>                
+                <td><p> <?= $banco['nomeBanco']?> </p></td>
+                <td><p> <?= $banco['agencia']?> </p></td>
+                <td><p> <?= $banco['conta']?> </p></td>
+                <td><p> <?= $banco['operacao']?> </p></td>              
+              </tr>
+            <?php }?> 
           </tbody>
         </table>
 

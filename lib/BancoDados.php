@@ -74,9 +74,9 @@ class BancoDados{
         $query .= ($where != "")? " where ".$where : "";     //Inclui a condição
         $query .= ($order != "")? " order by ".$order : "";  //Inlcui a ordenação
         $query .= " limit ".$pagina.", ".($pagina+$limit);
-
+        
         $query = mysqli_query($this->BD_conexao, $query);
-                 
+        
         //Verifica se conseguiu realizar a query
         if(!$query)
             throw new Exception("<br/><br/>Não foi possível realizar consulta no Banco Dados! <br/>Motivo: ".utf8_encode(mysqli_error($this->BD_conexao)));         
@@ -104,7 +104,7 @@ class BancoDados{
 		$SQL_valores = substr($SQL_valores, 0, strrpos($SQL_valores,","));	//Exclui a ultima virgula									
         
         $query = "insert into $tabelas ($campos) values ($SQL_valores)";	                
-
+        
         $query = mysqli_query($this->BD_conexao, $query);                
 
         //Verifica se conseguiu realizar a query
@@ -153,9 +153,9 @@ class BancoDados{
 
         $query  = " delete from $tabelas";
         $query .= " where ".$where;
-
+        
         $query = mysqli_query($this->BD_conexao, $query);
-
+        
         //Verifica se conseguiu realizar a query
         if(!$query)
             throw new Exception("<br/><br/>Não foi possível deletar no Banco Dados! <br/>Motivo: ".utf8_encode(mysqli_error($this->BD_conexao))); 
