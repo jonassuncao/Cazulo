@@ -44,12 +44,12 @@
 
         <div class="form-group col-md-2">
           <label for="campo1">Celular:</label>
-          <input type="text" name="celular" class="form-control phone-mask" placeholder="Ex.:(00) 9 0000-0000">
+          <input type="text" name="celular" class="form-control phone-mask" placeholder="Ex.:(00) 9 0000-0000" value="<?= $valores['celular']?>">
         </div>
 
         <div class="form-group col-md-4">
           <label for="exampleInputEmail1">Email</label>
-          <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Ex.: seuemail@hotmail.com">
+          <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Ex.: seuemail@hotmail.com" value="<?= $valores['email']?>">
         </div>
 
         <br />
@@ -57,7 +57,7 @@
         <div class="form-group col-md-2">
           <label for="campo2">CEP</label>
           <div class="input-group input-group-sm">
-            <input type="text" name="cep" id="cep" class="form-control" placeholder="Ex.: 00000-000">
+            <input type="text" name="cep" id="cep" class="form-control" placeholder="Ex.: 00000-000" value="<?= $valores['cep']?>">
             <span class="input-group-btn">
               <button type="button" id="btnPesquisar" onClick="buscaCEP($('input#cep').val()); return false;" class="btn btn-success btn-flat"><i class="fa fa-search"></i></button>
             </span>
@@ -66,27 +66,27 @@
 
         <div class="form-group col-md-4">
           <label for="inputState">Rua</label>
-          <input type="text" name="rua" id="endereco" class="form-control phone-mask" placeholder="Rua x">
+          <input type="text" name="rua" id="endereco" class="form-control phone-mask" placeholder="Rua x" value="<?= $valores['rua']?>">
         </div>
 
         <div class="form-group col-md-1">
           <label for="inputState">Numero</label>
-          <input type="text" name="numero"class="form-control phone-mask" placeholder="123">
+          <input type="text" name="numero"class="form-control phone-mask" placeholder="123" value="<?= $valores['numero']?>">
         </div>
 
         <div class="form-group col-md-4">
           <label for="inputState">Setor</label>
-          <input type="text" name="setor" id="bairro" class="form-control phone-mask" placeholder="Rua x">
+          <input type="text" name="setor" id="bairro" class="form-control phone-mask" placeholder="Rua x" value="<?= $valores['setor']?>">
         </div>
 
         <div class="form-group col-md-5">
           <label for="inputState">Complemento</label>
-          <input type="text" name="complemento"class="form-control phone-mask" placeholder="Qd. XXX Lt. XXX">
+          <input type="text" name="complemento"class="form-control phone-mask" placeholder="Qd. XXX Lt. XXX" value="<?= $valores['complemento']?>">
         </div>
 
         <div class="form-group col-md-4">
           <label for="inputState">Município</label>
-          <input type="text" name="municipio" id="cidade" class="form-control phone-mask" placeholder="Goiânia">
+          <input type="text" name="municipio" id="cidade" class="form-control phone-mask" placeholder="Goiânia" value="<?= $valores['estado']?>">
         </div>
 
         <div class="form-group col-md-2">
