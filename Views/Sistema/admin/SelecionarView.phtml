@@ -62,7 +62,7 @@
           
           $("#listaCond option").css("display", "block");
           $("#listaCond option").each(function(){
-              if($(this).text().indexOf(texto) < 0)
+              if($(this).text().toLowerCase().indexOf(texto.toLowerCase()) < 0)
                 $(this).css("display", "none");
           });
       });

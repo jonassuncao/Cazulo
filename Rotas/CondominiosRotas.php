@@ -356,13 +356,13 @@
                 $acao = $mudarCondominio.'requisitarServidor("index.php", "Condominios.buscarCond", "cond='.$razaoSocial.' ( '.mascara($cnpj, '##.###.###/####-##').' )" , "body_resposta");';
             
 
-            $view = new Views(201,'Sistema/Admin/modalSuccessView', Array("header"=>$titulo, "body"=>$mensagem, "action"=>$acao));
+            $view = new Views(200,'Sistema/Admin/modalSuccessView', Array("header"=>$titulo, "body"=>$mensagem, "action"=>$acao));
             $view -> imprimirHTML();
                         
 
         }catch(Exception $e){
 
-            $view = new Views(201,'Sistema/Admin/modalErroView', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
+            $view = new Views(200,'Sistema/Admin/modalErroView', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
             $view -> imprimirHTML();
 
         }
@@ -407,7 +407,7 @@
                 $acao = $mudarCondominio.'requisitarServidor("index.php", "Condominios.buscarCond", "cond='.$razaoSocial.' ( '.$cnpj.' )" , "body_resposta");';
             
 
-            $view = new Views(201,'Sistema/Admin/modalSuccessView', Array("header"=>$titulo, "body"=>$mensagem, "action"=>$acao));
+            $view = new Views(200,'Sistema/Admin/modalSuccessView', Array("header"=>$titulo, "body"=>$mensagem, "action"=>$acao));
             $view -> imprimirHTML();            
             /*
             Roteador::atualizaSubRota('Condominios.buscarCond');          //Define a rota que trata a listagem do condomínio
@@ -417,7 +417,7 @@
             */
         }catch(Exception $e){
 
-            $view = new Views(201,'Sistema/Admin/modalErroView', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
+            $view = new Views(200,'Sistema/Admin/modalErroView', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
             $view -> imprimirHTML();
 
         }

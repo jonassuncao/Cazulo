@@ -183,7 +183,7 @@
       <hr />
       <div id="actions" class="row">
         <div class="col-md-12">
-          <a href="/" class="btn btn-primary" onClick='selectBanco("contasCadastradas", "bancos"); requisitarServidor("index.php", "Condominios.<?= $valores['route']?>", $("#formCondominio").serialize()+"&uf="+$("#inputState option:selected").val()+"&bancos="+$("#bancos").val(), "body_resposta"); return false;'>Salvar</a>
+          <a href="/" class="btn btn-primary" onClick='selectBanco("contasCadastradas", "bancos"); requisitarServidor("index.php", "Condominios.<?= $valores['route']?>", $("#formCondominio").serialize()+"&uf="+$("#inputState option:selected").val()+"&bancos="+$("#bancos").val(), "modal_resposta"); return false;'>Salvar</a>
           <a href="/" class="btn btn-danger" onClick='requisitarServidor("index.php", "Condominios.buscarCond", "titulo=Condomínios", "body_resposta"); return false;'>Cancelar</a>
         </div>
       </div>
