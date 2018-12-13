@@ -5,7 +5,8 @@
 <section class="content-header">
   <h1>
     <?= $valores['nome']?>    
-  </h1>
+    <small><?= mascara($valores['cnpj'], '##.###.###/####-##')?></small>
+  </h1>  
 </section>
 
 <!-- Main content -->
@@ -35,7 +36,7 @@
 
         <div class="form-group col-md-3">
           <label for="input-CNPJ">CNPJ</label>
-          <p> <?= $valores['cnpj']?> </p>
+          <p> <?= mascara($valores['cnpj'], '##.###.###/####-##')?> </p>
         </div>
 
         <div class="form-group col-md-3">
@@ -105,11 +106,11 @@
           </thead>
           <tbody>
             <tr>
-              <?php foreach ($valores['banco'] as $condominio) { ?>    
-              <td><p> <?= $condominio['nomeBanco']?> </p></td>
-              <td><p> <?= $condominio['agencia']?> </p></td>
-              <td><p> <?= $condominio['conta']?> </p></td>
-              <td><p> <?= $condominio['operacao']?> </p></td>
+              <?php foreach ($valores['banco'] as $banco) { ?>    
+              <td><p> <?= $banco['nomeBanco']?> </p></td>
+              <td><p> <?= $banco['agencia']?> </p></td>
+              <td><p> <?= $banco['conta']?> </p></td>
+              <td><p> <?= $banco['operacao']?> </p></td>
               <?php }?> 
             </tr>
           </tbody>

@@ -341,16 +341,25 @@
             $condominio = new CondominioModel();
             $condominio->adicionarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $uf, $bancos);
 
-            $view = new Views(200,'Sistema/Admin/modalSuccessView', Array("header"=>"Condomínio inserido com sucesso!", "body"=>"O condomínio foi inserido com sucesso!"));
-            $view -> imprimirHTML();
+
+
+            //Após adicionar o condomínio, será exibido um  modal... E quando clicar em 'Fechar', irá redirecionar para a rota Condominios.buscarCond
+                //Muda o condomínio selecionado para o condomínio que foi inserido
+                Roteador::adicionaParametro("cond=$razaoSocial ( ".mascara($cnpj, '##.###.###/####-##')." )"); //Passa os parâmetros para a rota
+
+                //Define as variáveis para exibição do modal
+                $titulo = "Condomínio inserido com sucesso!";
+                $mensagem = "O condomínio: <b>$razaoSocial ($cnpj)</b> foi inserido com sucesso!";            
+
+                //Quando clicar em 'Fechar' no modal, Atualizará o campo do condomínio selecionado no HTML e será redirecionado para a rota Condominios.buscarCond
+                $mudarCondominio = '$("#selectCond").val("'.$razaoSocial.' ( '.mascara($cnpj, '##.###.###/####-##').' )"); ';
+                $acao = $mudarCondominio.'requisitarServidor("index.php", "Condominios.buscarCond", "cond='.$razaoSocial.' ( '.mascara($cnpj, '##.###.###/####-##').' )" , "body_resposta");';
             
-            //Após incluir o condomínio, redireciona para a listagem             
-            /*
-            Roteador::atualizaSubRota('Condominios.buscarCond');          //Define a rota que trata a listagem do condomínio
-            Roteador::adicionaParametro("cond=$razaoSocial ( ".mascara($cnpj, '##.###.###/####-##')." )"); //Passa os parâmetros para a rota
-            Roteador::definirRotas('Home.listar');                        //Define uma rota Master (Pois a página do navegador será recarregada)
-            Roteador::recarregarClient();                                 //Recarrega o cliente e executa a rota solicitada.
-            */
+
+            $view = new Views(201,'Sistema/Admin/modalSuccessView', Array("header"=>$titulo, "body"=>$mensagem, "action"=>$acao));
+            $view -> imprimirHTML();
+                        
+
         }catch(Exception $e){
 
             $view = new Views(201,'Sistema/Admin/modalErroView', Array("header"=>"Falha ao inserir o condomínio", "body"=>"Motivo: ".$e->getMessage()));
@@ -384,13 +393,22 @@
             
             if($cnpj == null||$razaoSocial == null||$email == null) throw new Exception("Preecha todos os campos obrigatórios!<br/><h5>*Razão Social;</h5><h5>*CNPJ;</h5><h5>*E-mail;</h5>");
 
-            $condominio = new CondominioModel();
+            $condominio = new CondominioModel();            
             $condominio->atualizarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $uf, $bancos);
 
-            $view = new Views(200,'Sistema/Admin/modalSuccessView', Array("header"=>"Condomínio alterado com sucesso!", "body"=>"O condomínio foi alterado com sucesso!"));
-            $view -> imprimirHTML();
+            //Após atualizar o condomínio, será exibido um  modal... E quando clicar em 'Fechar', irá redirecionar para a rota Condominios.buscarCond
             
-            //Após incluir o condomínio, redireciona para a listagem             
+                //Define as variáveis para exibição do modal
+                $titulo = "Condomínio atualizado com sucesso!";
+                $mensagem = "O condomínio: <b>$razaoSocial ($cnpj) </b> foi atualizado com sucesso!";            
+
+                //Quando clicar em 'Fechar' no modal, Atualizará o campo do condomínio selecionado no HTML e será redirecionado para a rota Condominios.buscarCond
+                $mudarCondominio = '$("#selectCond").val("'.$razaoSocial.' ( '.$cnpj.' )"); ';
+                $acao = $mudarCondominio.'requisitarServidor("index.php", "Condominios.buscarCond", "cond='.$razaoSocial.' ( '.$cnpj.' )" , "body_resposta");';
+            
+
+            $view = new Views(201,'Sistema/Admin/modalSuccessView', Array("header"=>$titulo, "body"=>$mensagem, "action"=>$acao));
+            $view -> imprimirHTML();            
             /*
             Roteador::atualizaSubRota('Condominios.buscarCond');          //Define a rota que trata a listagem do condomínio
             Roteador::adicionaParametro("cond=$razaoSocial ( ".mascara($cnpj, '##.###.###/####-##')." )"); //Passa os parâmetros para a rota

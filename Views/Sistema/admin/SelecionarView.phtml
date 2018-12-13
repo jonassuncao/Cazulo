@@ -15,7 +15,7 @@
           <div class="form-group col-md-12">
 
             <div style="width: 20vw;" class="input-group input-group-sm">
-              <input type="text" class="form-control" placeholder="Informe o CNPJ/Nome Condomínio">
+              <input type="text" class="form-control" id="inputCond" placeholder="Informe o CNPJ/Nome Condomínio">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-success btn-flat" style="border-radius: 0 4px 4px 0;"><i class="fa fa-filter"></i></button>
               </span>
@@ -53,4 +53,18 @@
 </div>
 <script>
   $('#modal-default').modal();
+
+
+  //Filtro
+  $(function(){
+      $("#inputCond").keyup(function(){
+          var texto = $(this).val();
+          
+          $("#listaCond option").css("display", "block");
+          $("#listaCond option").each(function(){
+              if($(this).text().indexOf(texto) < 0)
+                $(this).css("display", "none");
+          });
+      });
+  });
 </script>

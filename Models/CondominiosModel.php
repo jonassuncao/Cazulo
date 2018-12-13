@@ -90,7 +90,7 @@ class CondominioModel{
         if($query = $queryCondominios->resultQuery()){ //Percorre cada linha da query para pegar o resultado               
 
             //Extrai os dados da query e coloca no array temporário
-            $resultado['cnpj']        = mascara($query['cnpj'], '##.###.###/####-##');
+            $resultado['cnpj']        = $query['cnpj'];
             $resultado['nome']        = $query['razaoSocial'];
             $resultado['telefone']    = $query['telefone'];
             $resultado['celular']     = $query['celular'];
@@ -226,7 +226,7 @@ class CondominioModel{
         $valor = Array($razaoSocial, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado);
         $tabela = "condominio";  
         $where = "cnpj = '$cnpj'";      
-
+        
         //Cria conexão com o Banco, passa as variáveis como parâmetro 
         $queryCondominios = new BancoDados();                    
         $queryCondominios->update($campos, $valor, $tabela, $where);
