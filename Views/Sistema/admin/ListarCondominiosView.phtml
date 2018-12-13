@@ -105,16 +105,12 @@
           </thead>
           <tbody>
             <tr>
-              <td><p> <?= $valores['banco']?> </p></td>
+              <?php foreach ($valores['banco']) { ?>    
+              <td><p> <?= $valores['nomeBanco']?> </p></td>
               <td><p> <?= $valores['agencia']?> </p></td>
               <td><p> <?= $valores['conta']?> </p></td>
               <td><p> <?= $valores['operacao']?> </p></td>
-            </tr>
-            <tr>
-              <td>Itau - <b>(Encerrada em 16/10/2018 17:00 - ADMIN)</b></td>
-              <td>1234-5</td>
-              <td>12345678-1</td>
-              <td>013</td>
+              <?php }?> 
             </tr>
           </tbody>
         </table>

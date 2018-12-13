@@ -129,7 +129,7 @@ class CondominioModel{
             //Crie um array temporário para que você possa extrair os dados de cada linha
                 $linha = array();
                 
-                $linha['banco']    = $query['banco'];
+                $linha['nomeBanco']    = $query['nomeBanco'];
                 $linha['agencia']  = $query['agencia'];
                 $linha['conta']    = $query['conta'];
                 $linha['operacao'] = $query['operacao'];
