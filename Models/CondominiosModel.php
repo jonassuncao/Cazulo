@@ -135,7 +135,7 @@ class CondominioModel{
                 $linha['operacao'] = $query['operacao'];
 
             //Após extrair adicione esse array a lista do condomínio
-            array_push($resutadoBanco, $linha);
+            $resutadoBanco['banco'] =  $linha;
         }
         //array_push($resultado,$resultadoBanco)  
        $resultado['banco'] = $resultadoBanco;
