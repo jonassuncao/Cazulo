@@ -109,12 +109,12 @@ class CondominioModel{
         if(empty($resultado)) throw new CondominioVazioException("Não há condomínios para ser listado!");
 
         //Retorna a lista de condomínio para o model
-        return $resultado;
+        //return $resultado;
 
         
         //Consulta dados do banco
         //Define as varíaveis para realizar a busca do condomínio na Tabela Banco         
-        $tabela = "condominio";       //<<==Coloca a tabela do banco
+        $tabela = "banco";       //<<==Coloca a tabela do banco
         $where = "cnpj = '$cnpj'";     //<<===Arrume o where, para que pegue todos os bancos desse cnj
 
         //Cria conexão com o Banco, passa as variáveis como parâmetro 
@@ -122,7 +122,7 @@ class CondominioModel{
         $queryCondominios->select("*",$tabela, $where);
      
         //Monta um Array para resposta
-        $resultado = Array();        
+        $resultadoBanco = Array();        
         
         //Use um while, pois essa consulta pode retornar mais de 1 linha
         while($query = $queryCondominios->resultQuery()){ //Percorre cada linha da query para pegar o resultado   
@@ -135,9 +135,12 @@ class CondominioModel{
                 $linha['operacao'] = $query['operacao'];
 
             //Após extrair adicione esse array a lista do condomínio
-            array_push($resutado, $linha);
+            array_push($resutadoBanco, $linha);
         }
-        
+        //array_push($resultado,$resultadoBanco)  
+       $resultado['banco'] = $resultadoBanco;
+
+        return $resultado;
     }
 #######################################################################################################################################################################
 
