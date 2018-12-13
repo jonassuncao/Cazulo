@@ -228,9 +228,79 @@ class CondominioModel{
         $where = "cnpj = '$cnpj'";      
         
         //Cria conexão com o Banco, passa as variáveis como parâmetro 
-        $queryCondominios = new BancoDados();                    
-        $queryCondominios->update($campos, $valor, $tabela, $where);
+        $query = new BancoDados();                    
+        $query->update($campos, $valor, $tabela, $where);
 
+
+        //Atualizar Bancos
+
+        $bancos = explode(); // Converte a string para Array()
+
+        foreach ($bancos as $banco) {
+            //Percorre cada linha do banco para separar: Banco, agencia, operacao e conta
+        }
+
+        //Atualiza bancos no banco de dados
+        
+        $tabela = "banco";      
+
+        //Percorre cada linha da do array banco para adicionar/atualizar
+        foreach ($bancos as $banco) {
+            //Verifica se o banco está cadastrado
+            $where  = "     cnpj     = ".$cnpj;
+            $where .= " and operacao = ".$banco['operacao'];    
+            $where .= " and agencia  = ".$banco['agencia'];
+            $where .= " and conta    = ".$banco['conta'];
+
+            $query->select("*",$tabela, $where);
+                                 
+            if($query->resultQuery()){ //Percorre cada linha da query para pegar o resultado   
+                //Já existe cadastro, então atualiza
+                $campos = "nomeBanco";                 
+                $valor = Array($banco['nomeBanco']);     
+                $where  = "     cnpj     = ".$cnpj;
+                $where .= " and operacao = ".$banco['operacao'];    
+                $where .= " and agencia  = ".$banco['agencia'];
+                $where .= " and conta    = ".$banco['conta'];
+
+                $query->update($campos, $valor, $tabela, $where);              
+            }else{
+                //Não existe cadastro, então adiciona
+                $campos = "cnpj, operacao, agencia, conta, nomeBanco"; 
+                $valor = Array($cnpj, $banco['operacao'], $banco['agencia'], $banco['conta'], $banco['nomeBanco']);     
+
+                $query->insert($campos, $valor, $tabela);              
+            }
+        }
+        //Terminou de incluir e atualizar os bancos, Agora deve excluir os bancos que não estão sendo usados
+
+        foreach ($bancos as $banco) {
+            //Verifica se o banco está cadastrado
+            $where = "cnpj = '$cnpj'";      
+
+            $excluir = new BancoDados();                    
+            $excluir->select("*",$tabela, $where);
+                                 
+            while($result = $excluir->resultQuery()){ //Percorre cada linha da query para pegar o resultado   
+                //Verifica se o banco cadastrado ainda existe no array $bancos
+                $podeExclui = true;
+                foreach ($bancos as $banco) {
+                    if($banco['operacao'] = $result['operacao'] && $banco['agencia'] = $result['agencia'] && $banco['conta'] = $result['conta']){
+                        $podeExclui = false;
+                        break;
+                    }
+                }
+                
+                if(!$podeExclui) continue; // Se variavel $podeExclui for falso, então não pode excluir o banco
+
+                //Se chegou aqui então pode excluir o banco    
+                $where  = "     cnpj     = ".$cnpj;
+                $where .= " and operacao = ".$banco['operacao'];    
+                $where .= " and agencia  = ".$banco['agencia'];
+                $where .= " and conta    = ".$banco['conta'];
+                $queryCondominios->delete($tabela, $where);
+            }
+        }
     }
 }
 
