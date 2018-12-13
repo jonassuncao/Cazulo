@@ -140,12 +140,12 @@
 
           <div class="form-group col-md-2">
             <label for="Magencia">Agência</label>
-            <input type="number" class="form-control" id="agencia">
+            <input type="text" class="form-control" id="agencia">
           </div>
 
           <div class="form-group col-md-2">
             <label for="Nconta">Conta</label>
-            <input type="number" class="form-control" id="conta">
+            <input type="text" class="form-control" id="conta">
           </div>
 
           <div class="form-group col-md-3">
@@ -205,17 +205,16 @@ function selectBanco(selectID, input){
 }
 
 function addBanco(banco, agencia, conta, operacao){
-  //Monta a linha
+  
+  //Verifica se as variaveis possuem algum valor 
+  if((agencia.toString()).length == 0 || (conta.toString()).length == 0){
+    alert('Agencia e Conta são campos com preenchimento obrigatório!');
+    return false;
+  }
+  
+  //Monta a linha  
   var linha = banco+" - AG: "+agencia+" "+operacao+": "+conta;
-
-  //Adiciona a linha na lista
-  $("#contasCadastradas").append("<option>"+linha+"</option>");
-}
-
-function addBanco(banco, agencia, conta, operacao){
-  //Monta a linha
-  var linha = banco+" - AG: "+agencia+" "+operacao+": "+conta;
-
+  console.log('pqp');
   //Adiciona a linha na lista
   $("#contasCadastradas").append("<option>"+linha+"</option>");
 }
