@@ -90,7 +90,7 @@ class CondominioModel{
         if($query = $queryCondominios->resultQuery()){ //Percorre cada linha da query para pegar o resultado               
 
             //Extrai os dados da query e coloca no array temporário
-            $resultado['cnpj']        = $query['cnpj'];
+            $resultado['cnpj']        = mascara($query['cnpj'], '##.###.###/####-##');
             $resultado['nome']        = $query['razaoSocial'];
             $resultado['telefone']    = $query['telefone'];
             $resultado['celular']     = $query['celular'];
@@ -120,23 +120,26 @@ class CondominioModel{
         //Cria conexão com o Banco, passa as variáveis como parâmetro 
         //$queryCondominios = new BancoDados();    //<<===não é necessário instanciar novamente a classe de BancoDados, podemos usar a classe que foi instanciada para aconsulta de condominio                
         $queryCondominios->select("*",$tabela, $where);
-         
-        $resultado['banco'] = Array(); 
+     
+        //Monta um Array para resposta
+        $resultadoBanco['banco'] = Array();        
+        
         //Use um while, pois essa consulta pode retornar mais de 1 linha
         while($query = $queryCondominios->resultQuery()){ //Percorre cada linha da query para pegar o resultado   
             //Crie um array temporário para que você possa extrair os dados de cada linha
-                $linha = Array();
+                $linha = array();
                 
-                $linha['nomeBanco'] = $query['nomeBanco'];
-                $linha['agencia']   = $query['agencia'];
-                $linha['conta']     = $query['conta'];
-                $linha['operacao']  = $query['operacao'];
+                $linha['nomeBanco']    = $query['nomeBanco'];
+                $linha['agencia']  = $query['agencia'];
+                $linha['conta']    = $query['conta'];
+                $linha['operacao'] = $query['operacao'];
 
             //Após extrair adicione esse array a lista do condomínio
-             
-            array_push($resultado['banco'], $linha);            
+            array_push($resutadoBanco['banco'], $linha);
         }
-                  
+        //array_push($resultado,$resultadoBanco)  
+       $resultado['banco'] = $resultadoBanco;
+
         return $resultado;
     }
 #######################################################################################################################################################################
@@ -193,27 +196,6 @@ class CondominioModel{
     }
 
     public function adicionarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado, $bancos){
-        
-        $cnpj = str_replace(array('.','/','-'), "", $cnpj);  //O CNPJ foi convertido para o formato: 99999999999999
-        //----Fim da extração dos números do CNPJ
-
-        //Verifica se CNPJ o cnpj está no formato: 99999999999999 e se possui 14 digítos
-        if(!is_numeric($cnpj) || strlen($cnpj) != 14) throw new Exception("CNPJ inválido!");
-              
-        //inserir na tabela condominio
-        $campos = "cnpj, razaoSocial, telefone, celular, email, cep, rua, numero, setor, complemento, municipio, estado";
-        $valor = Array($cnpj, $razaoSocial, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado);
-        $tabela = "condominio";        
-
-        //Cria conexão com o Banco, passa as variáveis como parâmetro 
-        $queryCondominios = new BancoDados();                    
-        $queryCondominios->insert($campos, $valor, $tabela);
-         
-
-    }
-
-
-    public function atualizarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado, $bancos){
         
         $cnpj = str_replace(array('.','/','-'), "", $cnpj);  //O CNPJ foi convertido para o formato: 99999999999999
         //----Fim da extração dos números do CNPJ
