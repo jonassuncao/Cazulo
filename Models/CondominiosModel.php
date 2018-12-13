@@ -137,8 +137,9 @@ class CondominioModel{
             //Após extrair adicione esse array a lista do condomínio
             array_push($resutadoBanco, $linha);
         }
-        array_push($resultado,$resultadoBanco)  
-       
+        //array_push($resultado,$resultadoBanco)  
+       $resultado['banco'] = $resultadoBanco;
+
         return $resultado;
     }
 #######################################################################################################################################################################
