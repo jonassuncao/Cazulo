@@ -200,7 +200,10 @@ function selectBanco(selectID, input){
 }
 
 function addBanco(banco, agencia, conta, operacao){
-  var linha: string = banco+" - AG: "+agencia+" "+operacao+": "+conta;
+  //Monta a linha
+  var linha = banco+" - AG: "+agencia+" "+operacao+": "+conta;
+
+  //Adiciona a linha na lista
   console.log(linha);
 }
 
