@@ -90,7 +90,7 @@ class CondominioModel{
         if($query = $queryCondominios->resultQuery()){ //Percorre cada linha da query para pegar o resultado               
 
             //Extrai os dados da query e coloca no array temporário
-            $resultado['cnpj']        = mascara($query['cnpj'], '##.###.###/####-##');
+            $resultado['cnpj']        = $query['cnpj'];
             $resultado['nome']        = $query['razaoSocial'];
             $resultado['telefone']    = $query['telefone'];
             $resultado['celular']     = $query['celular'];
@@ -122,20 +122,21 @@ class CondominioModel{
         $queryCondominios->select("*",$tabela, $where);
      
         //Monta um Array para resposta
-        $resultadoBanco['banco'] = Array();        
+        $resultadoBanco = Array();        
         
         //Use um while, pois essa consulta pode retornar mais de 1 linha
         while($query = $queryCondominios->resultQuery()){ //Percorre cada linha da query para pegar o resultado   
             //Crie um array temporário para que você possa extrair os dados de cada linha
                 $linha = array();
                 
-                $linha['nomeBanco']    = $query['nomeBanco'];
-                $linha['agencia']  = $query['agencia'];
-                $linha['conta']    = $query['conta'];
-                $linha['operacao'] = $query['operacao'];
+                $linha['nomeBanco'] = $query['nomeBanco'];
+                $linha['agencia']   = $query['agencia'];
+                $linha['conta']     = $query['conta'];
+                $linha['operacao']  = $query['operacao'];
 
             //Após extrair adicione esse array a lista do condomínio
-            array_push($resutadoBanco['banco'], $linha);
+            
+            array_push($resultadoBanco,$linha);
         }
         //array_push($resultado,$resultadoBanco)  
        $resultado['banco'] = $resultadoBanco;
@@ -196,6 +197,56 @@ class CondominioModel{
     }
 
     public function adicionarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado, $bancos){
+        
+        $cnpj = str_replace(array('.','/','-'), "", $cnpj);  //O CNPJ foi convertido para o formato: 99999999999999
+        //----Fim da extração dos números do CNPJ
+
+        //Verifica se CNPJ o cnpj está no formato: 99999999999999 e se possui 14 digítos
+        if(!is_numeric($cnpj) || strlen($cnpj) != 14) throw new Exception("CNPJ inválido!");
+        
+        //inserir na tabela condominio
+        $campos = "cnpj,razaoSocial, telefone, celular, email, cep, rua, numero, setor, complemento, municipio, estado";
+        $valor = Array($cnpj, $razaoSocial, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado);
+        $tabela = "condominio";  
+        
+        
+        //Cria conexão com o Banco, passa as variáveis como parâmetro 
+        $query = new BancoDados();                    
+        $query->insert($campos, $valor, $tabela);
+
+
+        //Atualizar Bancos
+        $bancos = explode("|", substr($bancos, 1)); // Converte a string para Array()
+        
+        foreach ($bancos as $key => $banco) {
+                        
+            $banc = array();
+            $banc['nomeBanco'] = substr($banco, 0, strpos($banco, " -"));
+            $banc['agencia']   = substr($banco, strpos($banco, "AG:")+4, (strpos($banco, "C/")-1) - (strpos($banco, "AG:")+4));
+            $banc['operacao']  = substr($banco, strpos($banco, "C/"), (strpos($banco, "C/")+1) - (strpos($banco, "C/")-2));
+            $banc['conta']     = substr($banco, strpos($banco, "/")+4);
+
+            $bancos[$key] = $banc;        
+        }
+        
+        //Atualiza bancos no banco de dados        
+        $tabela = "banco";      
+
+        //Percorre cada linha da do array banco para adicionar/atualizar
+        foreach ($bancos as $banco) {
+                        
+            //Não existe cadastro, então adiciona
+            $campos = "cnpj, operacao, agencia, conta, nomeBanco"; 
+            $valor = Array($cnpj, $banco['operacao'], $banco['agencia'], $banco['conta'], $banco['nomeBanco']);     
+
+            $query->insert($campos, $valor, $tabela);              
+            
+        }
+        
+        
+    }
+
+    public function atualizarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado, $bancos){
         
         $cnpj = str_replace(array('.','/','-'), "", $cnpj);  //O CNPJ foi convertido para o formato: 99999999999999
         //----Fim da extração dos números do CNPJ
