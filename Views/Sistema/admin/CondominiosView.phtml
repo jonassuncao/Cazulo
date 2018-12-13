@@ -95,7 +95,7 @@
             <option value="CE">Ceará</option>
             <option value="DF">Distrito Federal</option>
             <option value="ES">Espirito Santo</option>
-            <option value="GO">Goiás</option>
+            <option value="GO" selected>Goiás</option>
             <option value="MA">Maranhão</option>
             <option value="MS">Mato Grosso do Sul</option>
             <option value="MT">Mato Grosso</option>
@@ -178,7 +178,7 @@
       <hr />
       <div id="actions" class="row">
         <div class="col-md-12">
-          <a href="/" class="btn btn-primary" onClick='selectBanco("contasCadastradas", "bancos"); requisitarServidor("index.php", "Condominios.adicionar", $("#formCondominio").serialize()+"&uf="+$("inputState option:selected").val()+"&bancos="+$("#bancos").val(), "body_resposta"); return false;'>Salvar</a>
+          <a href="/" class="btn btn-primary" onClick='selectBanco("contasCadastradas", "bancos"); requisitarServidor("index.php", "Condominios.adicionar", $("#formCondominio").serialize()+"&uf="+$("#inputState option:selected").val()+"&bancos="+$("#bancos").val(), "body_resposta"); return false;'>Salvar</a>
           <a href="/" class="btn btn-danger" onClick='requisitarServidor("index.php", "Condominios.buscarCond", "titulo=Condomínios", "body_resposta"); return false;'>Cancelar</a>
         </div>
       </div>
@@ -204,7 +204,7 @@ function addBanco(banco, agencia, conta, operacao){
   var linha = banco+" - AG: "+agencia+" "+operacao+": "+conta;
 
   //Adiciona a linha na lista
-  console.log(linha);
+  $("#contasCadastradas").append("<option>"+linha+"</option>");
 }
 
 //Função Js que busca o endereço pelo CEP, usando API

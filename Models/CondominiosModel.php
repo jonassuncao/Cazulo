@@ -202,8 +202,7 @@ class CondominioModel{
 
         //Verifica se CNPJ o cnpj está no formato: 99999999999999 e se possui 14 digítos
         if(!is_numeric($cnpj) || strlen($cnpj) != 14) throw new Exception("CNPJ inválido!");
-
-        $mensagem;
+        
         try{
             //inserir na tabela condominio
             $campos = "cnpj, razaoSocial, telefone, celular, email, cep, rua, numero, setor, complemento, municipio, estado";
