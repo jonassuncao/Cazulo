@@ -291,11 +291,11 @@
             $municipio   = Roteador::baixarParametro('municipio');
             $uf          = Roteador::baixarParametro('uf');
             $bancos      = Roteador::baixarParametro('bancos');
-
+            
             if($cnpj == null||$razaoSocial == null||$email == null) throw new Exception("Preecha todos os campos obrigatórios!<br/><h5>*Razão Social;</h5><h5>*CNPJ;</h5><h5>*E-mail;</h5>");
 
             $condominio = new CondominioModel();
-            $condominio->adicionarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $estado, $bancos);
+            $condominio->adicionarCondominio($razaoSocial, $cnpj, $telefone, $celular, $email, $cep, $rua, $numero, $setor, $complemento, $municipio, $uf, $bancos);
 
             $view = new Views(200,'Sistema/Admin/modalSuccessView', Array("header"=>"Condomínio inserido com sucesso!", "body"=>"O condomínio foi inserido com sucesso!"));
             $view -> imprimirHTML();
