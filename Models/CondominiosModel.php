@@ -120,26 +120,23 @@ class CondominioModel{
         //Cria conexão com o Banco, passa as variáveis como parâmetro 
         //$queryCondominios = new BancoDados();    //<<===não é necessário instanciar novamente a classe de BancoDados, podemos usar a classe que foi instanciada para aconsulta de condominio                
         $queryCondominios->select("*",$tabela, $where);
-     
-        //Monta um Array para resposta
-        $resultadoBanco = Array();        
-        
+         
+        $resultado['banco'] = Array(); 
         //Use um while, pois essa consulta pode retornar mais de 1 linha
         while($query = $queryCondominios->resultQuery()){ //Percorre cada linha da query para pegar o resultado   
             //Crie um array temporário para que você possa extrair os dados de cada linha
-                $linha = array();
+                $linha = Array();
                 
-                $linha['nomeBanco']    = $query['nomeBanco'];
-                $linha['agencia']  = $query['agencia'];
-                $linha['conta']    = $query['conta'];
-                $linha['operacao'] = $query['operacao'];
+                $linha['nomeBanco'] = $query['nomeBanco'];
+                $linha['agencia']   = $query['agencia'];
+                $linha['conta']     = $query['conta'];
+                $linha['operacao']  = $query['operacao'];
 
             //Após extrair adicione esse array a lista do condomínio
-            array_push($resutadoBanco, $linha);
+             
+            array_push($resultado['banco'], $linha);            
         }
-        //array_push($resultado,$resultadoBanco)  
-       $resultado['banco'] = $resultadoBanco;
-
+                  
         return $resultado;
     }
 #######################################################################################################################################################################
