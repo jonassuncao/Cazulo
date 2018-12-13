@@ -134,13 +134,13 @@ class BancoDados{
 			$cont++;
 		}//fim foreach		
 	
-		$update = "update $tabelas set $SQL_campos where $condicao";
-
-        $query = mysqli_query($this->BD_conexao, $query);
-
+		$update = "update $tabelas set $SQL_campos where $where";
+        
+        $query = mysqli_query($this->BD_conexao, $update);
+        
         //Verifica se conseguiu realizar a query
         if(!$query)
-            throw new Exception("<br/><br/>Não foi possível alterar no Banco Dados! <br/>Motivo: ".utf8_encode(mysqli_error($this->BD_conexao))); 
+            throw new Exception("<br/><br/>Não foi possível alterar no Banco Dados! <br/> Motivo: ".utf8_encode(mysqli_error($this->BD_conexao))); 
     }    
 
     /** 

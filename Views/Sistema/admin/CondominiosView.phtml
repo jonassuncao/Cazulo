@@ -92,15 +92,14 @@
         <div class="form-group col-md-2">
           <label for="inputState">UF</label>
           <select id="inputState" class="form-control">
-            <option value="AC">Acre</option>
-            <option value="AL">Alagoas</option>
-            <option value="AP">Amapá</option>
-            <option value="AM">Amazonas</option>
+            <option value="AC" <?php if($valores['estado'] == 'AC') echo "selected"?>>Acre</option>
+            <option value="AL" <?php if($valores['estado'] == 'AL') echo "selected"?>>Alagoas</option>
+            <option value="AP" <?php if($valores['estado'] == 'AP') echo "selected"?>>Amapá</option>
             <option value="BA">Bahia</option>
             <option value="CE">Ceará</option>
             <option value="DF">Distrito Federal</option>
             <option value="ES">Espirito Santo</option>
-            <option value="GO" selected>Goiás</option>
+            <option value="GO" <?php if($valores['estado'] == 'GO' || $valores['estado'] == null) echo "selected"?>>Goiás</option>
             <option value="MA">Maranhão</option>
             <option value="MS">Mato Grosso do Sul</option>
             <option value="MT">Mato Grosso</option>
